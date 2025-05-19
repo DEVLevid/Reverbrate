@@ -37,10 +37,10 @@ Esse público costuma:
 
 ### Também é ideal para:
 
-- 🎙 **Criadores de conteúdo musical**, que desejam engajar com seus seguidores.  
-- 🎶 **Exploradores sonoros**, interessados em fugir do mainstream e encontrar sons únicos.
+-  **Criadores de conteúdo musical**, que desejam engajar com seus seguidores.  
+-  **Exploradores sonoros**, interessados em fugir do mainstream e encontrar sons únicos.
 
-## 🚧 Status do Projeto
+## Status do Projeto
 
 Em desenvolvimento. Novas funcionalidades estão sendo implementadas continuamente.
 
