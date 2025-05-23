@@ -65,7 +65,13 @@ Para sincronizar os modulos
 
 ### Como rodar o projeto
 
-1. Crie um `.env` em `./backend` e outro em `./frontend` contendo o conteúdo dos seus respectivos `.env.example` dentro de ambas as pastas
+1. Crie um `.env` em `./backend` e outro em `./frontend` contendo o conteúdo dos seus respectivos `.env.example` dentro de ambas as pastas após isso rode
+
+```bash
+source ./backend/.env
+source ./frontend/.env
+```
+
 2. Volte para a pasta raiz com
 
 ```bash
