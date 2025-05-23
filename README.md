@@ -37,11 +37,45 @@ Esse público costuma:
 
 ### Também é ideal para:
 
--  **Criadores de conteúdo musical**, que desejam engajar com seus seguidores.  
--  **Exploradores sonoros**, interessados em fugir do mainstream e encontrar sons únicos.
+- **Criadores de conteúdo musical**, que desejam engajar com seus seguidores.
+- **Exploradores sonoros**, interessados em fugir do mainstream e encontrar sons únicos.
 
 ## Status do Projeto
 
 Em desenvolvimento. Novas funcionalidades estão sendo implementadas continuamente.
 
----
+## Como instalar
+
+O projeto utiliza do backend como um submodulo, portanto para clonar o projeto você precisa utilizar o comando
+
+```bash
+git clone --recurse-submodules https://github.com/DEVLevid/Reverberate.git
+```
+
+> ⚠️ Aviso: para o submódulo funcionar corretamente você precisa ter permissão de edição em
+> `https://github.com/mrleonardobrito/reverbrate-backend`
+
+Ou caso já tenha clonado o projeto utilize
+
+```bash
+git submodule update --init --recursive
+```
+
+Para sincronizar os modulos
+
+### Como rodar o projeto
+
+1. Crie um `.env` em `./backend` e outro em `./frontend` contendo o conteúdo dos seus respectivos `.env.example` dentro de ambas as pastas
+2. Volte para a pasta raiz com
+
+```bash
+cd ..
+```
+
+3. Rode o comando para rodar o projeto em desenvolvimento
+
+```bash
+npm run dev
+```
+
+Caso esteja tudo configurado o backend e o frontend irão rodar corretamente

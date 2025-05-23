@@ -1,9 +1,9 @@
 {
-  "name": "reverberate",
+  "name": "reverbrate-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -H 127.0.0.1",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
