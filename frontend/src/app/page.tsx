@@ -1,7 +1,13 @@
-export default function Home() {
-  return (
-    <div>
-      <h1>Bem-vindo ao Reverberate!</h1>
-    </div>
-  );
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+export default async function Home() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token");
+
+  if (!token) {
+    redirect("/login");
+  }
+
+  return <>bem vindo!</>;
 }
