@@ -6,41 +6,41 @@ export interface TrackInfo {
   artist: string;
 }
 
-export interface Review {
+export interface TrackReview {
   rate: number;
   comment: string;
 }
 
-export interface Comment {
+export interface Review {
   id: string;
   track_info: TrackInfo;
-  review: Review;
+  review: TrackReview;
 }
 
-export interface CommentsResponse {
-  data: Comment[];
+export interface ReviewsResponse {
+  data: Review[];
   limit: number;
   offset: number;
   total: number;
 }
 
-export interface CreateCommentRequest {
+export interface CreateReviewRequest {
   track_id: string;
   rate: number;
   comment: string;
 }
 
-export interface UpdateCommentRequest {
+export interface UpdateReviewRequest {
   rate?: number;
   comment?: string;
 }
 
-export interface CommentListRequest {
+export interface ReviewListRequest {
   limit?: number;
   offset?: number;
 }
 
-export interface CommentByTrackRequest {
+export interface ReviewByTrackRequest {
   trackId: string;
   limit?: number;
   offset?: number;

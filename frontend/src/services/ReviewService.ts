@@ -1,16 +1,16 @@
-import { commentsApi } from '../infra/api/comments';
+import { ReviewsApi } from '../infra/api/review';
 import {
-  CommentsResponse,
-  Comment,
-  CreateCommentRequest,
-  UpdateCommentRequest,
-} from '../types/comment';
+  ReviewsResponse,
+  Review,
+  CreateReviewRequest,
+  UpdateReviewRequest,
+} from '../types/reviews';
 import { ApiError } from '../infra/api/config';
 
-export class CommentService {
-  static async getComments(limit = 20, offset = 0): Promise<CommentsResponse> {
+export class ReviewService {
+  static async getReviews(limit = 20, offset = 0): Promise<ReviewsResponse> {
     try {
-      return await commentsApi.getComments(limit, offset);
+      return await ReviewsApi.getReviews(limit, offset);
     } catch (error) {
       if (error instanceof ApiError) {
         throw new Error(`Erro ao buscar comentários: ${error.message}`);
@@ -19,9 +19,9 @@ export class CommentService {
     }
   }
 
-  static async getCommentById(id: string): Promise<Comment> {
+  static async getReviewById(id: string): Promise<Review> {
     try {
-      return await commentsApi.getCommentById(id);
+      return await ReviewsApi.getReviewById(id);
     } catch (error) {
       if (error instanceof ApiError) {
         if (error.status === 404) {
@@ -33,7 +33,7 @@ export class CommentService {
     }
   }
 
-  static async createComment(data: CreateCommentRequest): Promise<Comment> {
+  static async createReview(data: CreateReviewRequest): Promise<Review> {
     try {
       if (!data.track_id) {
         throw new Error('ID da música é obrigatório');
@@ -45,22 +45,22 @@ export class CommentService {
         throw new Error('Comentário é obrigatório');
       }
 
-      return await commentsApi.createComment(data);
+      return await ReviewsApi.createReview(data);
     } catch (error) {
       if (error instanceof ApiError) {
         if (error.status === 400) {
-          throw new Error('Dados inválidos para criar comentário');
+          throw new Error('Dados inválidos para criar a avaliação');
         }
         if (error.status === 409) {
           throw new Error('Você já comentou nesta música');
         }
-        throw new Error(`Erro ao criar comentário: ${error.message}`);
+        throw new Error(`Erro ao criar avaliação: ${error.message}`);
       }
       throw error 
     }
   }
 
-  static async updateComment(id: string, data: UpdateCommentRequest): Promise<Comment> {
+  static async updateReview(id: string, data: UpdateReviewRequest): Promise<Review> {
     try {
       if (data.rate !== undefined && (data.rate < 1 || data.rate > 5)) {
         throw new Error('Avaliação deve estar entre 1 e 5');
@@ -69,7 +69,7 @@ export class CommentService {
         throw new Error('Comentário não pode estar vazio');
       }
 
-      return await commentsApi.updateComment(id, data);
+      return await ReviewsApi.updateReview(id, data);
     } catch (error) {
       if (error instanceof ApiError) {
         if (error.status === 404) {
@@ -84,9 +84,9 @@ export class CommentService {
     }
   }
 
-  static async deleteComment(id: string): Promise<void> {
+  static async deleteReview(id: string): Promise<void> {
     try {
-      await commentsApi.deleteComment(id);
+      await ReviewsApi.deleteReview(id);
     } catch (error) {
       if (error instanceof ApiError) {
         if (error.status === 404) {
@@ -101,9 +101,9 @@ export class CommentService {
     }
   }
 
-  static async getCommentsByTrackId(trackId: string, limit = 20, offset = 0): Promise<CommentsResponse> {
+  static async getReviewsByTrackId(trackId: string, limit = 20, offset = 0): Promise<ReviewsResponse> {
     try {
-      return await commentsApi.getCommentsByTrackId(trackId, limit, offset);
+      return await ReviewsApi.getReviewsByTrackId(trackId, limit, offset);
     } catch (error) {
       if (error instanceof ApiError) {
         throw new Error(`Erro ao buscar comentários da música: ${error.message}`);

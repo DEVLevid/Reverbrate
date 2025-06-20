@@ -1,6 +1,6 @@
-import { Comment, TrackInfo } from "@/types/comment";
+import { Review, TrackInfo } from "@/types/reviews";
 
-export const mockComments: Comment[] = [
+export const mockComments: Review[] = [
     {
       id: "f86073ff-66df-45de-8f1e-48c4e9352893",
       track_info: {
