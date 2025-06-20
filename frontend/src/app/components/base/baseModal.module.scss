@@ -1,0 +1,40 @@
+.customModal :global(.ant-modal-content) {
+  background: #1C1825;
+  color: white;
+  border: 1px solid #1C1825;
+}
+
+.customModal :global(.ant-modal-header),
+.customModal :global(.ant-modal-footer) {
+  background: #1C1825;
+}
+
+.customModal :global(.ant-modal-title),
+.customModal :global(.ant-modal-footer),
+.customModal :global(.ant-modal-header),
+.customModal :global(.ant-modal-body),
+.customModal :global(.ant-modal-close-x),
+.customModal :global(.ant-btn),
+.customModal :global(.ant-input),
+.customModal :global(.ant-form-item-label > label) {
+  color: white !important;
+}
+
+.customModal :global(.ant-btn),
+.customModal :global(.ant-input),
+.customModal :global(.ant-modal-close),
+.customModal :global(.ant-modal-footer),
+.customModal :global(.ant-modal-header) {
+  border-color: #1C1825 !important;
+  background: #1C1825 !important;
+} 
+
+.customModal :global(.ant-btn) {
+    border: 1px solid red;
+}
+
+.customModal :global(.ant-btn-primary) {
+  background: #7C6AA0 !important;
+  border-color: #7C6AA0 !important;
+  color: #fff !important;
+}
