@@ -1,13 +1,13 @@
-import { ReviewsApi } from '../infra/api/review';
+import { ReviewsApi } from '../../api/review';
 import {
   ReviewsResponse,
   Review,
   CreateReviewRequest,
   UpdateReviewRequest,
-} from '../types/reviews';
-import { ApiError } from '../infra/api/config';
+} from '../../../types/reviews';
+import { ApiError } from '../../api/config';
 
-export class ReviewService {
+export class ReviewRoutesMock {
   static async getReviews(limit = 20, offset = 0): Promise<ReviewsResponse> {
     try {
       return await ReviewsApi.getReviews(limit, offset);
