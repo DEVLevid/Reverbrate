@@ -78,7 +78,13 @@ source ./frontend/.env
 cd ..
 ```
 
-3. Rode o comando para rodar o projeto em desenvolvimento
+3. Instale os pacotes do node
+
+```
+npm install
+```
+
+4. Rode o comando para rodar o projeto em desenvolvimento
 
 ```bash
 npm run dev
