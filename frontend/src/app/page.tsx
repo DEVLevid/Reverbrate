@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import NavBar from "./components/navBar/navBar";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -9,5 +10,7 @@ export default async function Home() {
     redirect("/login");
   }
 
-  return <>Bem vindo</>;
+  return <>
+      <NavBar/>
+  </>;
 }

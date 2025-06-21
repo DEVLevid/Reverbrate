@@ -1,0 +1,35 @@
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 32rem;
+}
+
+.input {
+    background-color: #1C1825;
+    width: 100%;
+    padding: 0.7rem 0.7rem 0.7rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.icon {
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.input:focus {
+    outline: none;
+    border: none;
+}
