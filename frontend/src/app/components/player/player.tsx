@@ -8,6 +8,7 @@ import { useAuth } from "@/app/hooks/useAuth";
 import Image from "next/image";
 import BaseModal from "../base/baseModal";
 import PlayerControls from "./player-controls/PlayerControls";
+
 import PlayerMusicInfo from "./player-music-info/PlayerMusicInfo";
 import PlayerMusicReview from "./player-review-music/PlayerReviewMusic";
 
@@ -204,7 +205,7 @@ function Player() {
     <article
       className={`${styles.playerContainer} ${
         showPlayer ? styles.showPlayer : styles.hidePlayer
-      } ${!state.current_track.name ? styles.disabledContainer : ""}`}
+      }`}
       onClick={(e) => {
         e.preventDefault();
         if (!state.current_track.name && !isModalOpen) {

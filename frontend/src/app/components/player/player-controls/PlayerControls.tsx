@@ -61,22 +61,22 @@ function PlayerControls({
   return (
     <section className={styles.playerControlContainer}>
       <div className={styles.controlsWrapper}>
-        <button className={styles.skipButton}>
-          <SkipBackIcon
-            size={24}
-            weight="fill"
-            className={styles.skipIcon}
-            onClick={() => player.previousTrack()}
-          />
+        <button
+          className={styles.skipButton}
+          onClick={() => player.previousTrack()}
+        >
+          <SkipBackIcon size={24} weight="fill" className={styles.skipIcon} />
         </button>
-        <button className={styles.playButton}>
+        <button
+          className={styles.playButton}
+          onClick={() => player.togglePlay()}
+        >
           {isPaused ? (
             <PlayIcon
               size={24}
               weight="fill"
               className={styles.playIcon}
               key="play-icon"
-              onClick={() => player.togglePlay()}
             />
           ) : (
             <PauseIcon
@@ -84,16 +84,17 @@ function PlayerControls({
               weight="fill"
               className={styles.pauseIcon}
               key="pause-icon"
-              onClick={() => player.togglePlay()}
             />
           )}
         </button>
-        <button className={styles.skipButton}>
+        <button
+          className={styles.skipButton}
+          onClick={() => player.nextTrack()}
+        >
           <SkipForwardIcon
             size={24}
             weight="fill"
             className={styles.skipIcon}
-            onClick={() => player.nextTrack()}
           />
         </button>
       </div>

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Player from "./components/player/player";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -9,5 +10,9 @@ export default async function Home() {
     redirect("/login");
   }
 
-  return <>Bem vindo</>;
+  return (
+    <>
+      <Player />
+    </>
+  );
 }
