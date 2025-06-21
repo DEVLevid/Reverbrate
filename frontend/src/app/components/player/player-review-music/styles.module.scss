@@ -1,0 +1,29 @@
+.musicReviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  .musicReviewText {
+    font-size: 1rem;
+  }
+
+  .starsContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.25rem;
+  }
+
+  .star,
+  .starFilled:hover {
+    fill: #1c1825;
+    transition: fill 0.2s ease;
+    cursor: pointer;
+  }
+
+  .star:hover,
+  .starFilled {
+    fill: #ffe100;
+  } 
+}
