@@ -1,0 +1,36 @@
+.playerContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 2rem;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+
+  transition: transform 0.5s ease-out;
+}
+
+.connectModalWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  font-weight: 500;
+
+  .connectModalChildren {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.hidePlayer {
+  transform: translateY(100%);
+}
+
+.showPlayer {
+  transform: translateY(0);
+}
