@@ -3,6 +3,7 @@
 import './globals.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
+import { SearchProvider } from './contexts/SearchContext';
 
 export default function RootLayout({
   children,
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <SearchProvider>
+            {children}
+          </SearchProvider>
         </QueryClientProvider>
       </body>
     </html>
