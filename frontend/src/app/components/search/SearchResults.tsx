@@ -3,6 +3,8 @@
 import React from 'react';
 import { SearchTrack } from '@/types/search';
 import styles from './searchResults.module.scss';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 interface SearchResultsProps {
   tracks: SearchTrack[];
@@ -25,7 +27,9 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
   if (isLoading) {
     return (
       <div className={styles.container}>
-        <div className={styles.loading}>Carregando...</div>
+        <div className={styles.loading}>
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 40, color: '#7C6AA0' }} spin />} />
+        </div>
       </div>
     );
   }

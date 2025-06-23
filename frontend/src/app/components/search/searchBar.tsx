@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import styles from './searchBar.module.scss';
-import { MagnifyingGlass } from '@phosphor-icons/react/dist/ssr';
+import { MagnifyingGlass, X, XCircle } from '@phosphor-icons/react/dist/ssr';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -30,6 +30,20 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           value={query}
           onChange={handleInputChange}
         />
+        {query && (
+          <button
+            type="button"
+            aria-label="Limpar busca"
+            className={styles.clearButton}
+            onClick={() => {
+              setQuery('');
+              onSearch('');
+            }}
+            tabIndex={0}
+          >
+            <X size={18} />
+          </button>
+        )}
       </div>
     </div>
   )
