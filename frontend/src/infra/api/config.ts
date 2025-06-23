@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:3001';
 
 export class ApiError extends Error {
   constructor(
@@ -19,8 +19,12 @@ async function handleResponse<T>(response: Response): Promise<T> {
       response.statusText
     );
   }
-  
-  return response.json();
+
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.includes('application/json')) {
+    return response.json();
+  }
+  return response.text() as Promise<T>;
 }
 
 export async function apiRequest<T>(
@@ -32,15 +36,23 @@ export async function apiRequest<T>(
   const defaultOptions: RequestInit = {
     headers: {
       'Content-Type': 'application/json',
-      ...options.headers,
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://127.0.0.1:3000',
     },
-    credentials:'include',
+    credentials: 'include',
+    mode: 'cors',
   };
 
-  const response = await fetch(url, {
+  // Merge headers properly
+  const mergedOptions = {
     ...defaultOptions,
     ...options,
-  });
+    headers: {
+      ...defaultOptions.headers,
+      ...(options.headers || {}),
+    },
+  };
 
+  const response = await fetch(url, mergedOptions);
   return handleResponse<T>(response);
 } 
