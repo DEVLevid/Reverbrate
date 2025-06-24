@@ -1,0 +1,68 @@
+.musicInfoContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  // Adicionado: Permite que o container encolha corretamente dentro de um grid/flex parent.
+  // Essencial para o layout `1fr` funcionar como esperado com conteúdo que transborda.
+  min-width: 0;
+}
+
+.albumImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.musicInfoTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  min-width: 0; // Também importante para o aninhamento flex/grid
+}
+
+.musicTitle {
+  font-weight: 700;
+}
+
+.scrollWrapper {
+  // Removido: O max-width fixo foi removido para permitir que o componente
+  // se ajuste ao tamanho do seu container grid `1fr`.
+  // max-width: 180px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.staticText {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// ALTERAÇÃO PRINCIPAL PARA CORRIGIR A ANIMAÇÃO
+.scrollText {
+  display: flex; // Usa flexbox para alinhar os dois <span>'s
+  width: max-content; // Garante que o container tenha a largura do seu conteúdo
+  animation-name: marqueeLoop;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  // Aplica um espaçamento consistente à DIREITA de cada `span`.
+  // Isso garante que as duas metades da animação sejam IDÊNTICAS.
+  > span {
+    padding-right: 1.5rem; // Espaçamento entre o texto e sua cópia
+    white-space: nowrap;
+  }
+}
+
+@keyframes marqueeLoop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    // Agora isso funciona perfeitamente, pois as duas metades são iguais.
+    transform: translateX(-50%);
+  }
+}

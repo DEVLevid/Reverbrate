@@ -1,0 +1,76 @@
+.playerControlContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .controlsWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+
+    .playButton,
+    .skipButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      padding: 0.5rem;
+      border: none;
+      cursor: pointer;
+
+      background: none;
+      color: var(--text-color, #fff);
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      position: relative;
+      width: 32px;
+      height: 32px;
+      overflow: hidden;
+    }
+
+    .playIcon,
+    .pauseIcon,
+    .skipIcon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 24px;
+      height: 24px;
+      display: block;
+      animation: rotateIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+  }
+
+  .musicBarContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+
+    .musicMinutes {
+      font-size: 1rem;
+
+      min-width: 45px;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
