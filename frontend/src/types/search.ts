@@ -5,22 +5,30 @@ export interface SearchParams {
     offset?: number;
   }
   
-  export interface SearchTrack {
+  export interface Review {
+    rate: number;
+    comment: string;
+    created_at: string;
+    updated_at: string;
+  }
+  
+  export interface TrackWithReview {
     id: string;
     name: string;
-    artist: string;
-    album?: string;
-    cover?: string;
-    isrc_id?: string;
+    artist_name: string;
+    cover: string;
+    type: string;
+    uri: string;
+    review: Review | null;
   }
   
   export interface SearchResponse {
     tracks: {
-      limit: number;
-      next: any;
-      offset: number;
-      previous: any;
-      total: number;
-      data: SearchTrack[];
+      data: TrackWithReview[];
+      limit?: number;
+      next?: any;
+      offset?: number;
+      previous?: any;
+      total?: number;
     };
   }

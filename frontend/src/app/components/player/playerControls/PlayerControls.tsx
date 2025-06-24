@@ -7,7 +7,7 @@ import {
 import { ActionDispatch, useEffect, useState } from "react";
 
 import { formatMillisecondsToMMSS } from "@/lib/utils";
-import ProgressBar from "../progress-bar/ProgressBar";
+import ProgressBar from "../progressBar/ProgressBar";
 import styles from "./styles.module.scss";
 
 interface PlayerControlsProps {

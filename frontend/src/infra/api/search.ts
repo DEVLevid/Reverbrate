@@ -1,6 +1,5 @@
 import { SearchParams, SearchResponse } from '@/types/search';
 import { apiRequest } from './config';
-import { cookies } from 'next/headers';
 
 export const SearchApi = {
   search: async (params: SearchParams): Promise<SearchResponse> => {

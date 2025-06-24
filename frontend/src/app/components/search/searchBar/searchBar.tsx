@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import styles from './searchBar.module.scss';
+import styles from './styles.module.scss';
 import { MagnifyingGlass, X, XCircle } from '@phosphor-icons/react/dist/ssr';
 
 interface SearchBarProps {

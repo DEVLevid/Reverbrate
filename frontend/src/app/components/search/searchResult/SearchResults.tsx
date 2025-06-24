@@ -1,13 +1,15 @@
 "use client"
 
 import React from 'react';
-import { SearchTrack } from '@/types/search';
-import styles from './searchResults.module.scss';
+import { TrackWithReview } from '@/types/search';
+import styles from './styles.module.scss';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import { DotsThree, DotsThreeVertical } from '@phosphor-icons/react/dist/ssr';
+import BaseReview from '../../review/review';
 
 interface SearchResultsProps {
-  tracks: SearchTrack[];
+  tracks: TrackWithReview[];
   isLoading: boolean;
   error: any;
   hasSearched: boolean;
@@ -52,11 +54,10 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Resultados da busca</h2>
       <div className={styles.trackList}>
         {tracks.map((track) => (
           <div key={track.id} className={styles.trackItem}>
-            <div className={styles.trackCover}>
+            <div className={styles.trackCover} style={{ cursor: 'pointer' }}>
               {track.cover ? (
                 <img src={track.cover} alt={track.name} />
               ) : (
@@ -67,11 +68,10 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
             </div>
             <div className={styles.trackInfo}>
               <h3 className={styles.trackName}>{track.name}</h3>
-              <p className={styles.trackArtist}>{track.artist}</p>
-              {track.album && (
-                <p className={styles.trackAlbum}>{track.album}</p>
-              )}
+              <p className={styles.trackArtist}>{track.artist_name}</p>
             </div>
+            <BaseReview track={track} />
+            <DotsThree size={22} />
           </div>
         ))}
       </div>

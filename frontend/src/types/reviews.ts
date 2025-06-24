@@ -26,8 +26,10 @@ export interface ReviewsResponse {
 
 export interface CreateReviewRequest {
   track_id: string;
-  rate: number;
-  comment: string;
+  review: {
+    rate: number;
+    comment: string;
+  };
 }
 
 export interface UpdateReviewRequest {

@@ -1,9 +1,9 @@
 "use client"
 
 import React from "react";
-import styles from "./navBar.module.scss";
+import styles from "./styles.module.scss";
 import { Bell, House, User } from "@phosphor-icons/react";
-import SearchBar from "../search/searchBar";
+import SearchBar from "../search/searchBar/searchBar";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 export default function NavBar() {
