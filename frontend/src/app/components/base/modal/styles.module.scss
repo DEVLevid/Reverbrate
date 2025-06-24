@@ -9,6 +9,17 @@
   background: #1C1825;
 }
 
+.customModal :global(.ant-modal-header) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.customModal :global(.ant-modal-title) {
+  align-self: center;
+  font-size: 1.2rem;
+}
+
 .customModal :global(.ant-modal-title),
 .customModal :global(.ant-modal-footer),
 .customModal :global(.ant-modal-header),

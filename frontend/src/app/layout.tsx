@@ -3,6 +3,10 @@
 import './globals.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
+import { SearchProvider } from './contexts/SearchContext';
+import '@ant-design/v5-patch-for-react-19';
+import { Toaster } from 'react-hot-toast';
+import { PlayerProvider } from './contexts/PlayerContext';
 
 export default function RootLayout({
   children,
@@ -21,9 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+        <Toaster />
+        <PlayerProvider>
+          <QueryClientProvider client={queryClient}>
+            <SearchProvider>
+              {children}
+            </SearchProvider>
+          </QueryClientProvider>
+        </PlayerProvider>
       </body>
     </html>
   )

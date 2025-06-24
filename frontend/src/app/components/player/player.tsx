@@ -6,11 +6,12 @@ import { useEffect, useReducer, useState } from "react";
 
 import { useAuth } from "@/app/hooks/useAuth";
 import Image from "next/image";
-import BaseModal from "../base/baseModal";
-import PlayerControls from "./player-controls/PlayerControls";
+import BaseModal from "../base/modal/baseModal";
+import PlayerControls from "./playerControls/PlayerControls";
 
-import PlayerMusicInfo from "./player-music-info/PlayerMusicInfo";
-import PlayerMusicReview from "./player-review-music/PlayerReviewMusic";
+import PlayerMusicInfo from "./playerMusicInfo/PlayerMusicInfo";
+import PlayerMusicReview from "./playerReviewMusic/PlayerReviewMusic";
+import { usePlayer } from '@/app/contexts/PlayerContext';
 
 const initialPlayerState = {
   is_paused: true,
@@ -28,7 +29,8 @@ const initialPlayerState = {
   duration: 0,
 };
 
-const playerReducer = (prevState, action) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const playerReducer = (prevState: any, action: any) => {
   switch (action.type) {
     case "SET_PLAYER":
       return { ...prevState, player: action.payload };
@@ -60,6 +62,7 @@ function Player() {
   const [token, setToken] = useState<string | undefined>("");
 
   const { tokenMutation } = useAuth();
+  const { currentTrack } = usePlayer();
 
   useEffect(() => {
     tokenMutation.mutate();
@@ -86,7 +89,11 @@ function Player() {
 
     document.body.appendChild(script);
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     window.onSpotifyWebPlaybackSDKReady = () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const player = new window.Spotify.Player({
         name: "Reverbrate Player",
         getOAuthToken: (cb: (token: string | undefined) => void) => {
@@ -143,7 +150,7 @@ function Player() {
         }
       );
 
-      player.addListener("player_state_changed", (playerState) => {
+      player.addListener("player_state_changed", (playerState: any) => {
         if (!playerState) {
           return;
         }
@@ -160,12 +167,12 @@ function Player() {
         dispatch({ type: "SET_PROGRESS", payload: playerState.position });
         dispatch({ type: "SET_DURATION", payload: playerState.duration });
 
-        player.getCurrentState().then((playerState) => {
+        player.getCurrentState().then((playerState: any) => {
           dispatch({ type: "SET_ACTIVE", payload: !!playerState });
         });
       });
 
-      player.connect().then((success) => {
+      player.connect().then((success: any) => {
         if (success) {
           console.log("A conexão com o Spotify Player foi bem-sucedida.");
           dispatch({ type: "SET_PLAYER", payload: player });
@@ -174,11 +181,26 @@ function Player() {
         }
       });
 
-      return () => {
-        window.onSpotifyWebPlaybackSDKReady = null;
-      };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      window.onSpotifyWebPlaybackSDKReady = null;
     };
   }, [token]);
+
+  useEffect(() => {
+    if (!currentTrack || !state.player) return;
+    // Tocar a música selecionada
+    state.player._options.getOAuthToken((token: string) => {
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${state.player._options.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ uris: [currentTrack.uri] }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+    });
+  }, [currentTrack, state.player]);
 
   const handleModalClose = () => {
     setIsModalOpen(false);

@@ -22,9 +22,12 @@
     "lint:backend": "cd backend && npm run lint"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.7"
+    "cookie-parser": "^1.4.7",
+    "js-cookie": "^3.0.5",
+    "react-hot-toast": "^2.5.2"
   }
 }

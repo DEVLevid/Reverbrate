@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
-import styles from './baseModal.module.scss';
+import styles from './styles.module.scss';
 
 export interface BaseModalProps {
   open: boolean;
