@@ -1,0 +1,70 @@
+.container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-left: 1rem;
+}
+
+.cardReview {
+    display: flex;
+    gap: 2rem;
+}
+
+.reviewContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.carouselContent {
+    display: flex;
+    margin-left: 2rem;
+    gap: 2rem;
+
+}
+
+.trackContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.title {
+    margin-left: 2rem;
+}
+
+.trackInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: white;
+    max-width: 120px;
+
+    .name {
+        margin-top: 0.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .artist {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.albumCover {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 8px;
+}
+
+.comment {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
