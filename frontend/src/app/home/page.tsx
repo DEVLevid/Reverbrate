@@ -1,10 +1,9 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import NavBar from "./components/navBar/navBar";
-import SearchContainer from "./components/search/searchContainer/SearchContainer";
-import RecentActivity from "./components/recentActivity/recentActivity";
+import NavBar from "../components/navBar/navBar";
+import SearchContainer from "../components/search/searchContainer/SearchContainer";
 
-export default async function RootPage() {
+export default async function Home() {
   const cookieStore = await cookies();
   const token = cookieStore.get("access_token");
 
@@ -17,8 +16,7 @@ export default async function RootPage() {
       <NavBar/>
       <main style={{ padding: '20px' }}>
         <SearchContainer />
-        <RecentActivity />
       </main>
     </>
   );
-}
+} 
