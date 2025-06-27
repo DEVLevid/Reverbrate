@@ -9,13 +9,47 @@ import { useSearchContext } from "../../contexts/SearchContext";
 export default function NavBar() {
   const { setSearchQuery } = useSearchContext();
 
+  const handleHomeClick = () => {
+    window.location.href = "/home";
+  };
+
+  const handleProfileClick = () => {
+    window.location.href = "/profile";
+  };
+
   return (
     <nav className={styles.container}>
       <div className={styles.navItens}>
-        <House size={32} />
+        <button 
+          onClick={handleHomeClick} 
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            color: "white",
+            cursor: 'pointer',
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <House size={28} />
+        </button>
         <SearchBar onSearch={setSearchQuery} />
-        <Bell size={32} />
-        <User size={32} />
+        <Bell size={28} />
+        <button 
+          onClick={handleProfileClick} 
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            color: "white",
+            cursor: 'pointer',
+            padding: 0,
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        >
+          <User size={28} />
+        </button>
       </div>
     </nav>
   );
