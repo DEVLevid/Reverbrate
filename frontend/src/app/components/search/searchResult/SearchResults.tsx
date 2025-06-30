@@ -18,11 +18,7 @@ interface SearchResultsProps {
 export default function SearchResults({ tracks, isLoading, error, hasSearched }: SearchResultsProps) {
   if (!hasSearched) {
     return (
-      <div className={styles.container}>
-        <div className={styles.welcome}>
-          <h2>Bem-vindo ao Reverbrate</h2>
-        </div>
-      </div>
+      <></>
     );
   }
 
