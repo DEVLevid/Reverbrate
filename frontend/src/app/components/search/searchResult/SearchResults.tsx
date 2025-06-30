@@ -5,7 +5,7 @@ import { TrackWithReview } from '@/types/search';
 import styles from './styles.module.scss';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { DotsThree, DotsThreeVertical } from '@phosphor-icons/react/dist/ssr';
+import { DotsThree } from '@phosphor-icons/react/dist/ssr';
 import BaseReview from '../../review/review';
 
 interface SearchResultsProps {

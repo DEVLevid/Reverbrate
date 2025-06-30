@@ -12,9 +12,14 @@ import styles from "./styles.module.scss";
 
 interface PlayerControlsProps {
   progress: number;
-  dispatchFn: ActionDispatch<[action: any]>;
+  dispatchFn: ActionDispatch<[action: { type: string; payload?: number }]>;
   duration: number;
-  player: any;
+  player: {
+    previousTrack: () => void;
+    nextTrack: () => void;
+    togglePlay: () => void;
+    seek?: (ms: number) => Promise<void>;
+  };
   isPaused: boolean;
 }
 
@@ -42,13 +47,10 @@ function PlayerControls({
 
   const handleProgressSeek = (newProgressPercent: number) => {
     setIsSeeking(false);
-
     const newProgressMs = (newProgressPercent / 100) * duration;
-
     dispatchFn({ type: "SET_PROGRESS", payload: newProgressMs });
-
     if (player && typeof player.seek === "function") {
-      player.seek(newProgressMs).catch((error: any) => {
+      player.seek(newProgressMs).catch((error: unknown) => {
         console.error("Erro ao buscar no Spotify:", error);
       });
     } else {
@@ -65,37 +67,31 @@ function PlayerControls({
           className={styles.skipButton}
           onClick={() => player.previousTrack()}
         >
-          <SkipBackIcon size={24} weight="fill" className={styles.skipIcon} />
+          <span className={styles.skipIcon}>
+            <SkipBackIcon size={24} weight="fill" />
+          </span>
         </button>
         <button
           className={styles.playButton}
           onClick={() => player.togglePlay()}
         >
           {isPaused ? (
-            <PlayIcon
-              size={24}
-              weight="fill"
-              className={styles.playIcon}
-              key="play-icon"
-            />
+            <span className={styles.playIcon}>
+              <PlayIcon size={24} weight="fill" key="play-icon" />
+            </span>
           ) : (
-            <PauseIcon
-              size={24}
-              weight="fill"
-              className={styles.pauseIcon}
-              key="pause-icon"
-            />
+            <span className={styles.pauseIcon}>
+              <PauseIcon size={24} weight="fill" key="pause-icon" />
+            </span>
           )}
         </button>
         <button
           className={styles.skipButton}
           onClick={() => player.nextTrack()}
         >
-          <SkipForwardIcon
-            size={24}
-            weight="fill"
-            className={styles.skipIcon}
-          />
+          <span className={styles.skipIcon}>
+            <SkipForwardIcon size={24} weight="fill" />
+          </span>
         </button>
       </div>
       <div className={styles.musicBarContainer}>
