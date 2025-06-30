@@ -20,6 +20,8 @@ export interface Review {
 export interface ReviewsResponse {
   data: Review[];
   limit: number;
+  next?: boolean;
+  previous?: boolean;
   offset: number;
   total: number;
 }
