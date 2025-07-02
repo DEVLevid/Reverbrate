@@ -1,6 +1,7 @@
 // Nenhuma alteração necessária aqui. O código anterior está correto.
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
+import Image from "next/image";
 
 interface ArtistInfoProps {
   uri: string;
@@ -63,7 +64,7 @@ function PlayerMusicInfo({ title, artists, album }: PlayerMusicInfoProps) {
 
   return (
     <section className={styles.musicInfoContainer}>
-      <img src={albumImageSrc} alt={album.name} className={styles.albumImage} />
+      <Image src={albumImageSrc} alt={album.name} className={styles.albumImage} width={60} height={60} />
       <div className={styles.musicInfoTextContainer}>
         <div className={styles.scrollWrapper}>
           <div

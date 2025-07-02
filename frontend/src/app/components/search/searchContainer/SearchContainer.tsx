@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useSearch } from '../../../hooks/useSearch';
 import { useSearchContext } from '../../../contexts/SearchContext';
 import SearchResults from '../searchResult/SearchResults';
-import BaseReview from '../../review/review';
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();

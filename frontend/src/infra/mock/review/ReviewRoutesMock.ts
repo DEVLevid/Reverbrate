@@ -38,10 +38,10 @@ export class ReviewRoutesMock {
       if (!data.track_id) {
         throw new Error('ID da música é obrigatório');
       }
-      if (data.rate < 1 || data.rate > 5) {
+      if (data.review.rate < 1 || data.review.rate > 5) {
         throw new Error('Avaliação deve estar entre 1 e 5');
       }
-      if (!data.comment || data.comment.trim().length === 0) {
+      if (!data.review.comment || data.review.comment.trim().length === 0) {
         throw new Error('Comentário é obrigatório');
       }
 

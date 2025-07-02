@@ -5,7 +5,7 @@ import { TrackWithReview } from '@/types/search';
 import styles from './styles.module.scss';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { DotsThree, DotsThreeVertical } from '@phosphor-icons/react/dist/ssr';
+import { DotsThree } from '@phosphor-icons/react/dist/ssr';
 import BaseReview from '../../review/review';
 
 interface SearchResultsProps {
@@ -18,11 +18,7 @@ interface SearchResultsProps {
 export default function SearchResults({ tracks, isLoading, error, hasSearched }: SearchResultsProps) {
   if (!hasSearched) {
     return (
-      <div className={styles.container}>
-        <div className={styles.welcome}>
-          <h2>Bem-vindo ao Reverbrate</h2>
-        </div>
-      </div>
+      <></>
     );
   }
 
