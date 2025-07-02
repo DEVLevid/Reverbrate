@@ -1,0 +1,22 @@
+.carouselItemContainer {
+    background-color: #1c1825;
+    padding: 1rem;
+    border-radius: 1rem;
+
+    color: #fff;
+
+    display: flex;
+    gap: 1rem;
+
+    .carouselItemImage {
+        border-radius: 0.5rem;
+    }
+
+    .carouselItemTextWrapper {
+        width: 100%;
+        .carouselItemTitleWrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
