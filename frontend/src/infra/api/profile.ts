@@ -1,4 +1,4 @@
-import { Profile } from "@/types/user";
+import { Profile } from "@/types/profile";
 import { apiRequest } from "./config";
 
 export const ProfileApi = {

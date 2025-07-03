@@ -34,9 +34,7 @@ function ProfileContainer() {
                         />
                         <ReviewsCarousel reviews={profile!.reviews} />
                     </article>
-                    <article>
-                        <h1>TESTE</h1>
-                    </article>
+                    <article></article>
                 </>
             )}
         </main>

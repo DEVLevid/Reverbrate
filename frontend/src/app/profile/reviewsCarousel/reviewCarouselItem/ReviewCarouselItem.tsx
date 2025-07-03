@@ -5,6 +5,7 @@ import { Button } from "antd";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import BaseReview from "@/app/components/review/review";
 
 interface ReviewCarouselItemProps {
     data: Review;
@@ -18,8 +19,8 @@ export default function ReviewCarouselItem({ data }: ReviewCarouselItemProps) {
             <Image
                 src={data.track_info.cover}
                 alt={`Capa da música ${data.track_info.name}`}
-                width={100}
-                height={100}
+                width={60}
+                height={60}
                 className={styles.carouselItemImage}
             />
 
@@ -33,13 +34,20 @@ export default function ReviewCarouselItem({ data }: ReviewCarouselItemProps) {
                     </>
                 </div>
 
-                <span>{data.track_info.artist}</span>
+                <span className={styles.carouselItemArtistName}>{data.track_info.artist}</span>
 
                 <p className={styles.carouselItemComment}>
                     {data.review.comment}
                 </p>
-
-                <StarSelector rating={rating} setRating={setRating} />
+                <BaseReview track={{
+                    id: data.track_info.id,
+                    name: data.track_info.name,
+                    cover: data.track_info.cover,
+                    artist_name: data.track_info.artist,
+                    review: data.review,
+                    type: "",
+                    uri: "",
+                }} />
             </div>
         </div>
     );

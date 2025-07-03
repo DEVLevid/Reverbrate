@@ -1,4 +1,5 @@
 .carouselItemContainer {
+    font-family: "Inter", sans-serif;
     background-color: #1c1825;
     padding: 1rem;
     border-radius: 1rem;
@@ -13,10 +14,18 @@
     }
 
     .carouselItemTextWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
         width: 100%;
+        
         .carouselItemTitleWrapper {
             display: flex;
             justify-content: space-between;
+        }
+
+        .carouselItemArtistName {
+            margin-top: -0.5rem;
         }
 
         .carouselItemComment {
