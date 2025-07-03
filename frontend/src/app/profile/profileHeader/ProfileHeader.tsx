@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import ProfileHeaderSkeleton from "./profileHeaderSkeleton/ProfileHeaderSkeleton";
 import styles from "./styles.module.scss";
 
 interface ProfileHeaderProps {
@@ -10,12 +9,6 @@ interface ProfileHeaderProps {
 }
 
 function ProfileHeader({ name, email, image }: ProfileHeaderProps) {
-    const isLoading = !name;
-
-    if (isLoading) {
-        return <ProfileHeaderSkeleton />;
-    }
-
     return (
         <div className={styles.profileHeaderContainer}>
             <Image

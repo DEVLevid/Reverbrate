@@ -1,34 +1,44 @@
 "use client";
 
-import { ProfileInfo } from "@/types/user";
-import { useEffect, useState } from "react";
+import { useProfile } from "@/app/hooks/useProfile";
 import ProfileHeader from "../profileHeader/ProfileHeader";
-import styles from "./styles.module.scss";
+import ProfileHeaderSkeleton from "../profileHeader/profileHeaderSkeleton/ProfileHeaderSkeleton";
 import ReviewsCarousel from "../reviewsCarousel/ReviewsCarousel";
-import { ReviewsResponse } from "@/types/reviews";
+import ReviewsCarouselSkeleton from "../reviewsCarousel/reviewsCarouselSkeleton/ReviewsCarouselSkeleton";
+import styles from "./styles.module.scss";
 
 function ProfileContainer() {
-    const [profile, setProfile] = useState<ProfileInfo | undefined>();
-
-    useEffect(() => {}, []);
+    const { getProfile } = useProfile();
+    const { data: profile, isLoading, isError } = getProfile();
 
     return (
         <main className={styles.profileContainer}>
-            <article className={styles.profileFirstWrapper}>
-                <ProfileHeader
-                    name={profile ? profile.name : ""}
-                    email={profile ? profile.email : ""}
-                    image={profile ? profile.image : ""}
-                />
-                <ReviewsCarousel
-                    reviews={
-                        profile ? profile.reviews : ({} as ReviewsResponse)
-                    }
-                />
-            </article>
-            <article>
-                <h1>TESTE</h1>
-            </article>
+            {isError ? (
+                <>
+                    <h2 className={styles.profileErrorMessage}>
+                        Houve um erro, tente novamente mais tarde.
+                    </h2>
+                </>
+            ) : isLoading ? (
+                <article className={styles.profileFirstWrapper}>
+                    <ProfileHeaderSkeleton />
+                    <ReviewsCarouselSkeleton />
+                </article>
+            ) : (
+                <>
+                    <article className={styles.profileFirstWrapper}>
+                        <ProfileHeader
+                            name={profile!.name}
+                            email={profile!.email}
+                            image={profile!.image}
+                        />
+                        <ReviewsCarousel reviews={profile!.reviews} />
+                    </article>
+                    <article>
+                        <h1>TESTE</h1>
+                    </article>
+                </>
+            )}
         </main>
     );
 }

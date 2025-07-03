@@ -2,7 +2,6 @@ import { ReviewsResponse } from "@/types/reviews";
 import { Carousel } from "antd";
 import ReviewCarouselItem from "./reviewCarouselItem/ReviewCarouselItem";
 import styles from "./styles.module.scss";
-import { VinylRecordIcon } from "@phosphor-icons/react";
 
 interface ReviewsCarouselProps {
     reviews: ReviewsResponse;

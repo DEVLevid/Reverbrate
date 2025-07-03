@@ -1,6 +1,6 @@
 import { ReviewsResponse } from "./reviews";
 
-export interface ProfileInfo {
+export interface Profile {
     id: string;
     name: string;
     email: string;
