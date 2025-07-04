@@ -7,4 +7,11 @@ export const AuthApi = {
       method: "GET",
     });
   },
+
+  refreshToken: async (refreshToken: string) => {
+    return apiRequest("/auth/refresh", {
+      method: "POST",
+      body: JSON.stringify({ refreshToken }),
+    });
+  },
 };

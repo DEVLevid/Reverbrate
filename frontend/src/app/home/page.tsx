@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import NavBar from "../components/navBar/navBar";
 import SearchContainer from "../components/search/searchContainer/SearchContainer";
 import RecentActivity from "../components/recentActivity/recentActivity";
+import Player from "../components/player/player";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -14,11 +15,12 @@ export default async function Home() {
 
   return (
     <>
-      <NavBar/>
-      <main style={{ padding: '20px' }}>
+      <NavBar />
+      <main style={{ padding: "20px" }}>
         <SearchContainer />
         <RecentActivity />
+        <Player />
       </main>
     </>
   );
-} 
+}

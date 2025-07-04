@@ -1,0 +1,99 @@
+.card {
+    width: 260px;
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+   
+    .image {
+      height: 140px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+  
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      padding: 12px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      color: #fff;
+  
+      .title {
+        margin: 0;
+        font-size: 1rem;
+        text-overflow: ellipsis;
+        font-weight: bold;
+      }
+  
+      .artist {
+        font-size: 0.85rem;
+        opacity: 0.9;
+      }
+    }
+  
+    .content {
+      padding: 12px;
+    }
+  
+    .user {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .userInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+
+        .userInfoText {
+          display: flex;
+          flex-direction: column;
+
+          .username {
+            font-weight: 600;
+            color: white;
+            margin: 0;
+          }
+  
+          .time {
+            font-size: 0.75rem;
+            color: #888;
+            margin: 0;
+          }
+        }
+
+        .avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+      } 
+  
+      .rating {
+        font-size: 0.9rem;
+        color: #f4c150;
+      }
+    }
+  
+    .comment {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #cacaca;
+      margin: 8px 0;
+      height: 60px;
+      overflow: hidden;
+    }
+  
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  }
+  

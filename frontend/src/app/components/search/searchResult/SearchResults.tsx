@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import React from 'react';
-import { TrackWithReview } from '@/types/search';
-import styles from './styles.module.scss';
-import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
-import { DotsThree } from '@phosphor-icons/react/dist/ssr';
-import BaseReview from '../../review/review';
+import React from "react";
+import { TrackWithReview } from "@/types/search";
+import styles from "./styles.module.scss";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { DotsThree } from "@phosphor-icons/react/dist/ssr";
+import BaseReview from "../../review/review";
+import { usePlayerContext as usePlayer } from "@/app/contexts/PlayerContext";
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];
@@ -15,18 +16,30 @@ interface SearchResultsProps {
   hasSearched: boolean;
 }
 
-export default function SearchResults({ tracks, isLoading, error, hasSearched }: SearchResultsProps) {
+export default function SearchResults({
+  tracks,
+  isLoading,
+  error,
+  hasSearched,
+}: SearchResultsProps) {
   if (!hasSearched) {
-    return (
-      <></>
-    );
+    return <></>;
   }
+
+  const { playTrack } = usePlayer();
 
   if (isLoading) {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
-          <Spin indicator={<LoadingOutlined style={{ fontSize: 40, color: '#7C6AA0' }} spin />} />
+          <Spin
+            indicator={
+              <LoadingOutlined
+                style={{ fontSize: 40, color: "#7C6AA0" }}
+                spin
+              />
+            }
+          />
         </div>
       </div>
     );
@@ -35,7 +48,9 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
   if (error) {
     return (
       <div className={styles.container}>
-        <div className={styles.error}>Erro ao buscar músicas: {error.message}</div>
+        <div className={styles.error}>
+          Erro ao buscar músicas: {error.message}
+        </div>
       </div>
     );
   }
@@ -52,8 +67,12 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
     <div className={styles.container}>
       <div className={styles.trackList}>
         {tracks.map((track) => (
-          <div key={track.id} className={styles.trackItem}>
-            <div className={styles.trackCover} style={{ cursor: 'pointer' }}>
+          <div
+            key={track.id}
+            className={styles.trackItem}
+            onClick={() => playTrack(track)}
+          >
+            <div className={styles.trackCover} style={{ cursor: "pointer" }}>
               {track.cover ? (
                 <img src={track.cover} alt={track.name} />
               ) : (
@@ -73,4 +92,4 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
       </div>
     </div>
   );
-} 
+}

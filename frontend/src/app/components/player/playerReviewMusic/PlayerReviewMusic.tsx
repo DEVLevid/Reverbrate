@@ -1,26 +1,18 @@
 import { StarIcon } from "@phosphor-icons/react";
 
 import styles from "./styles.module.scss";
+import BaseReview from "../../review/review";
+import { usePlayerContext as usePlayer } from "@/app/contexts/PlayerContext";
 
 function PlayerMusicReview() {
-  const rating = 3;
-
-  const renderStars = () => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <StarIcon
-        key={index}
-        size={20}
-        weight="fill"
-        color={index < rating ? '#ffe100' : '#1c1825'}
-      />
-    ));
-  };
+  const { currentTrack } = usePlayer();
+  if (!currentTrack) return null;
 
   return (
     <section className={styles.musicReviewContainer}>
       <span>Avalie</span>
 
-      <div className={styles.starsContainer}>{renderStars()}</div>
+      <BaseReview track={currentTrack} />
     </section>
   );
 }

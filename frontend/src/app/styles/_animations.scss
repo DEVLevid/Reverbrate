@@ -1,0 +1,21 @@
+@keyframes marqueeLoop {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scrollText {
+    display: flex; 
+    width: max-content;
+    animation-name: marqueeLoop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    > span {
+      padding-right: 1.5rem; 
+      white-space: nowrap;
+    }
+}
