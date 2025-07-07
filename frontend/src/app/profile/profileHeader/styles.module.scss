@@ -1,0 +1,27 @@
+.profileHeaderContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .profileHeaderImage {
+        border-radius: 100%;
+        width: 12rem;
+        height: 12rem;
+        aspect-ratio: 1;
+    }
+
+    .profileHeaderText {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .profileHeaderName {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .profileHeaderEmail {
+            font-size: 1.5rem;
+        }
+    }
+}

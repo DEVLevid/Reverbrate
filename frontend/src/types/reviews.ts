@@ -7,8 +7,10 @@ export interface TrackInfo {
 }
 
 export interface TrackReview {
-  rate: number;
-  comment: string;
+    rate: number;
+    comment: string;
+    created_at: string;
+    updated_at: string;
 }
 
 export interface Review {
@@ -20,6 +22,8 @@ export interface Review {
 export interface ReviewsResponse {
   data: Review[];
   limit: number;
+  next?: boolean;
+  previous?: boolean;
   offset: number;
   total: number;
 }
