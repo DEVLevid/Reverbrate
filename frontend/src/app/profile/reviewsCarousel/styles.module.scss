@@ -1,10 +1,11 @@
 .carouselContainer {
     max-width: 800px;
+
     .carousel {
         margin-left: -2rem;
     }
-    .reviewGroup {
 
+    .reviewGroup {
         padding: 1rem 2rem 2rem 2rem;
         display: grid !important;
         grid-template-columns: 1fr 1fr;

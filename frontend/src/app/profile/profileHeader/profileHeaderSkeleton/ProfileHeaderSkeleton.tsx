@@ -7,8 +7,9 @@ function ProfileHeaderSkeleton() {
             <Skeleton.Input
                 active
                 style={{
-                    width: "192px",
-                    height: "192px",
+                    width: "128px",
+                    minWidth: "128px",
+                    height: "128px",
                     backgroundColor: "#1C1825",
                     borderRadius: "100%",
                 }}
@@ -17,7 +18,7 @@ function ProfileHeaderSkeleton() {
                 <Skeleton.Input
                     active
                     style={{
-                        width: "200px",
+                        width: "160px",
                         height: "36px",
                         backgroundColor: "#1C1825",
                     }}
@@ -25,9 +26,8 @@ function ProfileHeaderSkeleton() {
                 <Skeleton.Input
                     active
                     style={{
-                        width: "250px",
-                        height: "24px",
-                        marginTop: "8px",
+                        width: "200px",
+                        height: "20px",
                         backgroundColor: "#1C1825",
                     }}
                 />
