@@ -1,9 +1,23 @@
 "use client";
 
-import { AuthContext } from "../contexts/AuthContext";
-import { useContext } from "react";
+import { AuthApi } from "@/infra/api/auth";
+
+import { useMutation } from "@tanstack/react-query";
 
 export function useAuth() {
-  const { token, refreshToken } = useContext(AuthContext);
-  return { token, refreshToken };
+  const tokenMutation = useMutation({
+    mutationFn: () => AuthApi.token(),
+
+    onSuccess: (data) => {
+      console.log("Login bem-sucedido!", data.access_token);
+    },
+
+    onError: (error) => {
+      console.error("Falha no login:", error);
+    },
+  });
+
+  return {
+    tokenMutation,
+  };
 }
