@@ -25,3 +25,14 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .profileHeaderContainer {
+        padding-left: 2rem;
+
+        .profileHeaderImage {
+            width: 6rem;
+            height: 6rem;
+        }
+    }
+}

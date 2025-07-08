@@ -1,4 +1,7 @@
 .carouselContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     max-width: 800px;
 
     .carousel {
@@ -11,5 +14,21 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
         width: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carouselContainer {
+        h2 {
+            margin-left: 2rem;
+        }
+
+        .carousel {
+            margin-left: 0;
+        }
+
+        .reviewGroup {
+            grid-template-columns: 1fr;
+        }
     }
 }
