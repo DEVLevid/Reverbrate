@@ -1,0 +1,17 @@
+.item {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &[data-variant="primary"] {
+        background-color: #1C1825;
+    }
+
+    &[data-variant="secondary"] {
+        background-color: #383256;
+    }
+}

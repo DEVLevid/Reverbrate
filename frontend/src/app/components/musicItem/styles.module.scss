@@ -1,0 +1,40 @@
+.infoWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .image {
+        border-radius: 0.5rem;
+    }
+
+    .infoWrapperText {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        h3 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 0.825rem;
+            opacity: 0.75;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.reviewWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .optionBtn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+    }
+}
