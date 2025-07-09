@@ -5,8 +5,7 @@ import { TrackWithReview } from '@/types/search';
 import styles from './styles.module.scss';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-import { DotsThree } from '@phosphor-icons/react/dist/ssr';
-import BaseReview from '../../review/review';
+import TracksResult from './tracks/tracksResult';
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];
@@ -50,27 +49,7 @@ export default function SearchResults({ tracks, isLoading, error, hasSearched }:
 
   return (
     <div className={styles.container}>
-      <div className={styles.trackList}>
-        {tracks.map((track) => (
-          <div key={track.id} className={styles.trackItem}>
-            <div className={styles.trackCover} style={{ cursor: 'pointer' }}>
-              {track.cover ? (
-                <img src={track.cover} alt={track.name} />
-              ) : (
-                <div className={styles.placeholderCover}>
-                  <span>🎵</span>
-                </div>
-              )}
-            </div>
-            <div className={styles.trackInfo}>
-              <h3 className={styles.trackName}>{track.name}</h3>
-              <p className={styles.trackArtist}>{track.artist_name}</p>
-            </div>
-            <BaseReview track={track} />
-            <DotsThree size={22} />
-          </div>
-        ))}
-      </div>
+        <TracksResult tracks={tracks} isLoading={isLoading} error={error} hasSearched={hasSearched} />
     </div>
   );
 } 
