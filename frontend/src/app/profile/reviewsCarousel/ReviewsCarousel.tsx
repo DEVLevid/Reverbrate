@@ -24,18 +24,22 @@ function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     return (
         <div className={styles.carouselContainer}>
             <h2>Avaliações recentes</h2>
-            <Carousel fade arrows draggable className={styles.carousel}>
-                {groupedReviews.map((group, index) => (
-                    <div key={index} className={styles.reviewGroup}>
-                        {group.map((review, i) => (
-                            <ReviewCarouselItem
-                                key={review?.id || i}
-                                data={review}
-                            />
-                        ))}
-                    </div>
-                ))}
-            </Carousel>
+            {reviews.data?.length === 0 ?
+                <div className={styles.noContentContainer}>
+                    <p>Houve um erro, tente novamente mais tarde.</p>
+                </div> :
+                <Carousel fade arrows draggable className={styles.carousel}>
+                    {groupedReviews.map((group, index) => (
+                        <div key={index} className={styles.reviewGroup}>
+                            {group.map((review, i) => (
+                                <ReviewCarouselItem
+                                    key={review?.id || i}
+                                    data={review}
+                                />
+                            ))}
+                        </div>
+                    ))}
+                </Carousel>}
         </div>
     );
 }
