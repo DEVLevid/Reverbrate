@@ -6,16 +6,12 @@ import styles from "./styles.module.scss";
 import Image from "next/image";
 import MusicItem from "@/app/components/musicItem/musicItem";
 import { TrackWithReview } from "@/types/search";
+import { useParams } from "next/navigation";
 
-interface ArtistPageProps {
-    params: {
-        id: string;
-    }
-}
-
-export default function ArtistPage({ params }: ArtistPageProps) {
+export default function ArtistPage() {
+    const { id } = useParams() as { id: string };
     const { getArtist } = useArtist();
-    const { data: artist, isLoading, isError } = getArtist(params.id);
+    const { data: artist, isLoading, isError } = getArtist(id);
 
     return (
         <>
