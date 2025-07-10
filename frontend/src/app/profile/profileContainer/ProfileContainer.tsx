@@ -7,6 +7,8 @@ import ReviewsCarousel from "../reviewsCarousel/ReviewsCarousel";
 import ReviewsCarouselSkeleton from "../reviewsCarousel/reviewsCarouselSkeleton/ReviewsCarouselSkeleton";
 import styles from "./styles.module.scss";
 import { useReviews } from "@/app/hooks/useReviews";
+import ListsCarousel from "../listsCarousel/ListsCarousel";
+import FollowersInfo from "../followersInfo/FollowersInfo";
 
 function ProfileContainer() {
   const { getProfile } = useProfile();
@@ -24,20 +26,26 @@ function ProfileContainer() {
         <article className={styles.profileFirstWrapper}>
           <ProfileHeaderSkeleton />
           <ReviewsCarouselSkeleton />
+          {/* <ListsCarouselSkeleton /> */}
         </article>
       ) : (
         <>
           {profile && (
-            <article className={styles.profileFirstWrapper}>
-              <ProfileHeader
-                name={profile.name}
-                email={profile.email}
-                image={profile.image}
-              />
-              <ReviewsCarousel reviews={profile.reviews} />
-            </article>
+            <>
+              <article className={styles.profileFirstWrapper}>
+                <ProfileHeader
+                  name={profile.user.name}
+                  email={profile.user.email}
+                  image={profile.user.image}
+                />
+                <ReviewsCarousel reviews={profile.reviews} />
+              </article>
+              <article>
+                <FollowersInfo />
+                <ListsCarousel lists={profile.lists} />
+              </article>
+            </>
           )}
-          <article></article>
         </>
       )}
     </main>
