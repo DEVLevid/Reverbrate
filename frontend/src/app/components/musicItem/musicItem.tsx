@@ -10,7 +10,7 @@ interface MusicItemProps {
     ommitArtist?: boolean;
 }
 export default function MusicItem({ track, ommitArtist }: MusicItemProps) {
-    return <Item key={track.id}>
+    return <Item>
         <div className={styles.infoWrapper}>
             <Image src={track.cover} alt={"Capa do album da musica" + track.name} width={60} height={60} className={styles.image} />
             <div className={styles.infoWrapperText}>
