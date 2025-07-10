@@ -4,44 +4,43 @@ import ReviewCarouselItem from "./reviewCarouselItem/ReviewCarouselItem";
 import styles from "./styles.module.scss";
 
 interface ReviewsCarouselProps {
-    reviews: ReviewsResponse;
+  reviews: ReviewsResponse;
 }
 
 function chunkArray<T>(arr: T[], size: number): T[][] {
-    const result: T[][] = [];
-    for (let i = 0; i < arr.length; i += size) {
-        result.push(arr.slice(i, i + size));
-    }
-    return result;
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
 }
 
 function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
-    const groupedReviews = chunkArray(
-        reviews.data?.length ? reviews.data : Array(8).fill(null),
-        8
-    );
+  const groupedReviews = chunkArray(
+    reviews.data?.length ? reviews.data : Array(8).fill(null),
+    8
+  );
 
-    return (
-        <div className={styles.carouselContainer}>
-            <h2>Avaliações recentes</h2>
-            {reviews.data?.length === 0 ?
-                <div className={styles.noContentContainer}>
-                    <p>Houve um erro, tente novamente mais tarde.</p>
-                </div> :
-                <Carousel fade arrows draggable className={styles.carousel}>
-                    {groupedReviews.map((group, index) => (
-                        <div key={index} className={styles.reviewGroup}>
-                            {group.map((review, i) => (
-                                <ReviewCarouselItem
-                                    key={review?.id || i}
-                                    data={review}
-                                />
-                            ))}
-                        </div>
-                    ))}
-                </Carousel>}
+  return (
+    <div className={styles.carouselContainer}>
+      <h2>Avaliações recentes</h2>
+      {reviews.data.length > 0 ? (
+        <Carousel fade arrows draggable className={styles.carousel}>
+          {groupedReviews.map((group, index) => (
+            <div key={index} className={styles.reviewGroup}>
+              {group.map((review, i) => (
+                <ReviewCarouselItem key={review?.id || i} data={review} />
+              ))}
+            </div>
+          ))}
+        </Carousel>
+      ) : (
+        <div className={styles.noReviews}>
+          <p>Nenhuma avaliação encontrada</p>
         </div>
-    );
+      )}
+    </div>
+  );
 }
 
 export default ReviewsCarousel;
