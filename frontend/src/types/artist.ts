@@ -15,6 +15,6 @@ interface Artist {
     name: string,
     cover: string,
     uri: string,
-    top_tracks: ArtistTrack[]
+    tracks: ArtistTrack[]
 }
 

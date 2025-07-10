@@ -17,28 +17,27 @@ export default function ArtistPage({ params }: ArtistPageProps) {
     const { getArtist } = useArtist();
     const { data: artist, isLoading, isError } = getArtist(params.id);
 
-    console.log(artist)
-    console.log(isLoading)
-    console.log(isError)
-
     return (
         <>
             <NavBar />
-            <main className={styles.artistContainer}>
+            <main className={styles.mainContainer}>
                 {isError ?
                     <p>Não foi possível encontrar informações desse artista...</p>
                     : isLoading ?
                         <p>Carregando...</p>
-                        : <>
+                        : <section className={styles.artistContainer}>
                             <div className={styles.artistHeader}>
                                 <Image className={styles.artistImage} src={artist!.cover} alt="" width={128} height={128} />
-                                <h1>{artist!.name}</h1>
+                                <div className={styles.artistHeaderWrapper}>
+                                    <span>Artista</span>
+                                    <h1>{artist!.name}</h1>
+                                </div>
                             </div>
                             <div className={styles.artistTracksContainer}>
-                                <h3>Músicas</h3>
+                                <h3 className={styles.musicListTitle}>Músicas</h3>
                                 <ul className={styles.musicList}>
                                     {
-                                        artist!.top_tracks.map((track) => {
+                                        artist!.tracks.map((track) => {
                                             const trackWithReview: TrackWithReview = {
                                                 artist_name: artist!.name,
                                                 cover: track.cover,
@@ -54,13 +53,13 @@ export default function ArtistPage({ params }: ArtistPageProps) {
                                                 }
                                             }
                                             return (
-                                                <MusicItem key={track.id} track={trackWithReview} />
+                                                <MusicItem key={track.id} track={trackWithReview} ommitArtist />
                                             )
                                         })
                                     }
                                 </ul>
                             </div>
-                        </>}
+                        </section>}
             </main>
         </>
     )
