@@ -1,41 +1,42 @@
 "use client";
 
-import NavBar from "@/app/components/navBar/navBar";
-import { useArtist } from "@/app/hooks/useArtist";
-import styles from "./styles.module.scss";
-import Image from "next/image";
 import MusicItem from "@/app/components/musicItem/musicItem";
+import NavBar from "@/app/components/navBar/navBar";
+import { useAlbum } from "@/app/hooks/useAlbum";
 import { TrackWithReview } from "@/types/search";
+import Image from "next/image";
 import { useParams } from "next/navigation";
+import styles from "./styles.module.scss";
 
 export default function ArtistPage() {
     const { id } = useParams() as { id: string };
-    const { getArtist } = useArtist();
-    const { data: artist, isLoading, isError } = getArtist(id);
+    const { getAlbum } = useAlbum();
+    const { data: album, isLoading, isError } = getAlbum(id);
 
     return (
         <>
             <NavBar />
             <main className={styles.mainContainer}>
                 {isError ?
-                    <p>Não foi possível encontrar informações desse artista...</p>
+                    <p>Não foi possível encontrar informações desse album...</p>
                     : isLoading ?
                         <p>Carregando...</p>
                         : <section className={styles.artistContainer}>
                             <div className={styles.artistHeader}>
-                                <Image className={styles.artistImage} src={artist!.cover} alt="" width={128} height={128} />
+                                <Image className={styles.artistImage} src={album!.cover} alt="" width={128} height={128} />
                                 <div className={styles.artistHeaderWrapper}>
-                                    <span>Artista</span>
-                                    <h1>{artist!.name}</h1>
+                                    <span>Álbum</span>
+                                    <h1>{album!.name}</h1>
+                                    <span>{album!.artist_name}</span>
                                 </div>
                             </div>
                             <div className={styles.artistTracksContainer}>
                                 <h3 className={styles.musicListTitle}>Músicas</h3>
                                 <ul className={styles.musicList}>
                                     {
-                                        artist!.tracks.map((track) => {
+                                        album!.tracks.map((track) => {
                                             const trackWithReview: TrackWithReview = {
-                                                artist_name: artist!.name,
+                                                artist_name: track.artist,
                                                 cover: track.cover,
                                                 id: track.id,
                                                 name: track.name,
