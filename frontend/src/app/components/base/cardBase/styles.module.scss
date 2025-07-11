@@ -1,7 +1,9 @@
 .cardContainer{
-    width: 250px;
-    height: 200px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 260px;
     border-radius: 8px;
     background-color: #1C1825;
-    padding: 1rem;
+    overflow: hidden;
 }
