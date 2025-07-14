@@ -1,6 +1,7 @@
 "use client";
 
 import { AuthApi } from "@/infra/api/auth";
+import { SignUpData } from "@/types/auth";
 import { useMutation } from "@tanstack/react-query";
 
 export function useAuth() {
@@ -15,7 +16,12 @@ export function useAuth() {
     },
   });
 
+  const signUp = useMutation({
+    mutationFn: (data: SignUpData) => AuthApi.signup(data),
+  });
+
   return {
     tokenMutation,
+    signUp
   };
 }
