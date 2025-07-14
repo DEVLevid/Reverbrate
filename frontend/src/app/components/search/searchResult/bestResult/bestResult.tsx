@@ -12,7 +12,9 @@ export default function BestResult({
   return (
     <div className={styles.bestResult}>
       <div className={styles.bestCoverContainer}>
-        <img src={track.cover} alt={track.name} className={styles.bestCover} />
+        {track.cover ? (
+          <img src={track.cover} alt={track.name} className={styles.bestCover} />
+        ) : null}
       </div>
       <div className={styles.bestInfo}>
         <div className={styles.trackInfoContainer}>

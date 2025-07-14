@@ -55,11 +55,13 @@ export default function RecentActivity() {
                 <CardBase key={review.id}>
                   <div className={style.reviewContent}>
                     <div className={style.coverContainer}>
-                      <img
-                        src={review.track_info.cover}
-                        alt={review.track_info.name}
-                        className={style.albumCover}
-                      />
+                      {review.track_info.cover ? (
+                        <img
+                          src={review.track_info.cover}
+                          alt={review.track_info.name}
+                          className={style.albumCover}
+                        />
+                      ) : null}
 
                       <div className={style.trackInfo}>
                         <div className={style.name}>

@@ -6,13 +6,11 @@ import { useSearchContext } from '../../../contexts/SearchContext';
 import SearchResults from '../searchResult/SearchResults';
 import RecentActivity from '../../recentActivity/recentActivity';
 import { ArtistItem, AlbumItem, TrackWithReview } from '@/types/search';
-import { mockAlbums } from '@/infra/mock/search/mockAlbums';
-import { mockArtists } from '@/infra/mock/search/mockArtists';
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();
   const [debouncedQuery, setDebouncedQuery] = useState('');
-  const { searchTracks } = useSearch();
+  const { searchTracks, searchAlbums, searchArtists } = useSearch();
   
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,16 +20,31 @@ export default function SearchContainer() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data, isLoading, error } = searchTracks({
+  const { data: tracksData, isLoading: isLoadingTracks, error: errorTracks } = searchTracks({
     query: debouncedQuery,
     type: 'track',
-    limit: 20,
+    limit: 40,
     offset: 0
   });
 
-  const tracks: TrackWithReview[] = data?.tracks?.data || [];
-  const albums: AlbumItem[] = data?.albums?.data || mockAlbums;
-  const artists: ArtistItem[] = data?.artists?.data || mockArtists;
+  const { data: albumsData, isLoading: isLoadingAlbums, error: errorAlbums } = searchAlbums({
+    query: debouncedQuery,
+    limit: 40,
+    offset: 0
+  });
+
+  const { data: artistsData, isLoading: isLoadingArtists, error: errorArtists } = searchArtists({
+    query: debouncedQuery,
+    limit: 40,
+    offset: 0
+  });
+
+  const tracks: TrackWithReview[] = tracksData?.tracks?.data || [];
+  const albums: AlbumItem[] = albumsData?.albums?.data || [];
+  const artists: ArtistItem[] = artistsData?.artists?.data || [];
+
+  const isLoading = isLoadingTracks || isLoadingAlbums || isLoadingArtists;
+  const error = errorTracks || errorAlbums || errorArtists || null;
 
   if (!!debouncedQuery) {
     return (

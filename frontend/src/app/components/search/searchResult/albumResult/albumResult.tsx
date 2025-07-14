@@ -2,6 +2,7 @@ import { AlbumItem } from "@/types/search";
 import styles from "./styles.module.scss";
 import React from "react";
 import { Carousel } from "antd";
+import { DotsThreeVertical } from "@phosphor-icons/react/dist/ssr";
 
 export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
   return (
@@ -18,11 +19,20 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
         {albums.map((album) => (
           <div key={album.id} className={styles.albumItem}>
             <div className={styles.coverContainer}>
-              <img
-                src={album.cover}
-                alt={album.name}
-                className={styles.albumCover}
-              />
+              {album.cover ? (
+                <>
+                  <div className={styles.coverMenuContainer}>
+                    <img
+                      src={album.cover}
+                      alt={album.name}
+                      className={styles.albumCover}
+                    />
+                    <div className={styles.icon}>
+                      <DotsThreeVertical size={32} color="white" />
+                    </div>
+                  </div>
+                </>
+              ) : null}
             </div>
             <div className={styles.albumInfo}>
               <div className={styles.albumName}>{album.name}</div>
