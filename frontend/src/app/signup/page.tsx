@@ -1,11 +1,12 @@
 "use client";
 
-import { InfoIcon } from "@phosphor-icons/react";
+import { CircleNotchIcon, InfoIcon } from "@phosphor-icons/react";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Input from "../components/base/input/input";
 import { useAuth } from "../hooks/useAuth";
 import styles from "./styles.module.scss";
-import { redirect } from "next/navigation";
 
 export default function SignupPage() {
   const [name, setName] = useState<string>("");
@@ -25,15 +26,24 @@ export default function SignupPage() {
     setDisabled(!(isNameValid && isNicknameValid && isEmailValid));
   }, [name, nickname, email]);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (disabled) return;
 
-    signUp.mutate({
+    await signUp.mutateAsync({
       name: name,
       nickname: nickname,
       email: email,
       bio: bio,
+    }, {
+      onError: (e) => {
+        if (e.message === "HTTP error! status: 400") {
+          toast.error(<p>O e-mail cadastrado deve ser o mesmo da sua conta <span className={styles.spotifyName}>Spotify®</span>.</p>)
+        } else {
+          toast.error(<p>Houve um erro ao tentar cadastrar. Tente novamente mais tarde.</p>)
+        }
+      }
     });
+
     redirect("/");
   };
 
@@ -83,7 +93,14 @@ export default function SignupPage() {
           onClick={handleSignUp}
           disabled={disabled}
         >
-          Confirmar cadastro
+          {
+            signUp.isPending ?
+              <div className={styles.loadingWrapper}>
+                <CircleNotchIcon size={24} />
+              </div>
+              :
+              "Confirmar cadastro"
+          }
         </button>
       </section>
     </main>

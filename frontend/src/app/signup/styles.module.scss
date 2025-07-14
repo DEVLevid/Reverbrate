@@ -66,8 +66,26 @@
                 opacity: 25%;
                 cursor: not-allowed;
             }
+
+            & .loadingWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: spin 1s linear infinite;
+
+                @keyframes spin {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
         }
     }
+}
+
+.spotifyName {
+    color: #1DB954;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
