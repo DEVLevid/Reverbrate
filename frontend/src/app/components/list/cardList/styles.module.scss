@@ -54,5 +54,11 @@
             align-items: center;
             cursor: pointer;
         }
-    }    
+    }  
+}
+
+.menuIcon :global(.ant-dropdown-menu-root) {
+  background-color: #7C6AA0 !important;
+  color: #fff !important;
+  border-radius: 8px;
 }

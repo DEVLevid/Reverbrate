@@ -1,19 +1,26 @@
 'use client'
 
 import React from 'react'
-import styles from './styles.module.scss';
-import { mockLists } from '@/infra/mock/lists/listMock';
 import CardList from './cardList/cardlist';
-
+import { useLists } from '@/app/hooks/useLists';
+import { Spin } from 'antd';
+import styles from './styles.module.scss';
 export default function List() {
-  const firstFourLists = mockLists.slice(0, 4);
+  const { fetchLists } = useLists();
+  const { data, isLoading, error } = fetchLists();
+
+  if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 120 }}><Spin size="large" /></div>;
+  if (error) return <div>Erro ao carregar listas</div>;
+
+  const lists = data?.data || [];
+
   return (
     <div className={styles.container}>
-      {firstFourLists.map((list) => (
+      {lists.map((list) => (
         <CardList
           key={list.id}
           listName={list.name}
-          userName="Levid" 
+          userName="Usuário" 
           listType={list.type}
         />
       ))}

@@ -6,7 +6,6 @@ import {
   CreateListRequest,
   UpdateListRequest,
   EditListItemsRequest,
-  ListResponse,
 } from '@/types/lists';
 
 export function useLists() {

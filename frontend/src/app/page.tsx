@@ -4,6 +4,7 @@ import NavBar from "./components/navBar/navBar";
 import SearchContainer from "./components/search/searchContainer/SearchContainer";
 import RecentActivity from "./components/recentActivity/recentActivity";
 import Home from "./home/page";
+import List from "./components/list/list";
 
 export default async function RootPage() {
   const cookieStore = await cookies();
@@ -16,6 +17,7 @@ export default async function RootPage() {
   return (
     <>
      <Home />
+     <List />
     </>
   );
 }
