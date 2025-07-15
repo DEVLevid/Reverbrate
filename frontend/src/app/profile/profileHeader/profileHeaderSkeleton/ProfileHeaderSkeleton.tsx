@@ -6,30 +6,16 @@ function ProfileHeaderSkeleton() {
         <div className={styles.profileHeaderContainer}>
             <Skeleton.Input
                 active
-                style={{
-                    width: "192px",
-                    height: "192px",
-                    backgroundColor: "#1C1825",
-                    borderRadius: "100%",
-                }}
+                className={styles.profileHeaderAvatar}
             />
             <div className={styles.profileHeaderText}>
                 <Skeleton.Input
                     active
-                    style={{
-                        width: "200px",
-                        height: "36px",
-                        backgroundColor: "#1C1825",
-                    }}
+                    className={styles.profileHeaderName}
                 />
                 <Skeleton.Input
                     active
-                    style={{
-                        width: "250px",
-                        height: "24px",
-                        marginTop: "8px",
-                        backgroundColor: "#1C1825",
-                    }}
+                    className={styles.profileHeaderBio}
                 />
             </div>
         </div>

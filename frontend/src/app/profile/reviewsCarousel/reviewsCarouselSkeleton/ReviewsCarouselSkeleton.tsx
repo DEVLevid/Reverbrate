@@ -3,18 +3,18 @@ import ReviewsCarouselItemSkeleton from "../reviewCarouselItem/reviewsCarouselIt
 import styles from ".././styles.module.scss";
 
 function ReviewsCarouselSkeleton() {
-  return (
-    <div className={styles.carouselContainer}>
-      <h2>Avaliações recentes</h2>
-      <Carousel fade arrows draggable className={styles.carousel}>
-        <div className={styles.reviewGroup}>
-          {Array.from({ length: 8 }).map((_, index) => (
-            <ReviewsCarouselItemSkeleton key={index} />
-          ))}
-        </div>
-      </Carousel>
-    </div>
-  );
+    return (
+      <div className={styles.carouselContainer}>
+          <h2>Avaliações recentes</h2>
+          <Carousel fade arrows draggable className={styles.carousel}>
+              <div className={styles.reviewGroup}>
+                  {Array.from({ length: 8 }).map((_, idx) => (
+                      <ReviewsCarouselItemSkeleton key={idx} />
+                  ))}
+              </div>
+          </Carousel>
+      </div>
+    );
 }
 
 export default ReviewsCarouselSkeleton;
