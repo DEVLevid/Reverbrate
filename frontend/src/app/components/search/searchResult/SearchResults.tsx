@@ -1,60 +1,45 @@
-"use client";
+"use client"
 
-import React from "react";
-import { TrackWithReview, AlbumItem, ArtistItem } from "@/types/search";
-import styles from "./styles.module.scss";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
-import TracksResult from "./tracks/tracksResult";
-import BestResult from "./bestResult/bestResult";
-import AlbumsResult from "./albumResult/albumResult";
-import ArtistsResult from "./artistResult/artistResult";
+import React from 'react';
+import { TrackWithReview } from '@/types/search';
+import styles from './styles.module.scss';
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { DotsThree } from '@phosphor-icons/react/dist/ssr';
+import BaseReview from '../../review/review';
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];
-  albums: AlbumItem[];
-  artists: ArtistItem[];
   isLoading: boolean;
-  error: Error | null;
+  error: any;
   hasSearched: boolean;
 }
 
-export default function SearchResults({
-  tracks,
-  albums,
-  artists,
-  isLoading,
-  error,
-  hasSearched,
-}: SearchResultsProps) {
+export default function SearchResults({ tracks, isLoading, error, hasSearched }: SearchResultsProps) {
   if (!hasSearched) {
-    return <></>;
+    return (
+      <></>
+    );
   }
+
   if (isLoading) {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
-          <Spin
-            indicator={
-              <LoadingOutlined
-                style={{ fontSize: 40, color: "#7C6AA0" }}
-                spin
-              />
-            }
-          />
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 40, color: '#7C6AA0' }} spin />} />
         </div>
       </div>
     );
   }
+
   if (error) {
     return (
       <div className={styles.container}>
-        <div className={styles.error}>
-          Erro ao buscar músicas: {error.message}
-        </div>
+        <div className={styles.error}>Erro ao buscar músicas: {error.message}</div>
       </div>
     );
   }
+
   if (tracks.length === 0 && hasSearched) {
     return (
       <div className={styles.container}>
@@ -62,33 +47,30 @@ export default function SearchResults({
       </div>
     );
   }
-  const bestTrack = tracks.length > 0 ? tracks[0] : null;
-  const otherTracks = tracks.length > 1 ? tracks.slice(1) : [];
+
   return (
     <div className={styles.container}>
-      <div className={styles.tracksAndBestResultContainer}>
-        <div className={styles.bestResultContainer}>
-          <h2 className={styles.title}>Melhor Resultado</h2>
-          <BestResult track={bestTrack} />
-        </div>
-        <div className={styles.tracksContainer}>
-          <h2 className={styles.title}>Músicas</h2>
-          <div className={styles.trackList}>
-            <TracksResult
-              tracks={otherTracks}
-              isLoading={false}
-              error={new Error()}
-              hasSearched={true}
-            />
+      <div className={styles.trackList}>
+        {tracks.map((track) => (
+          <div key={track.id} className={styles.trackItem}>
+            <div className={styles.trackCover} style={{ cursor: 'pointer' }}>
+              {track.cover ? (
+                <img src={track.cover} alt={track.name} />
+              ) : (
+                <div className={styles.placeholderCover}>
+                  <span>🎵</span>
+                </div>
+              )}
+            </div>
+            <div className={styles.trackInfo}>
+              <h3 className={styles.trackName}>{track.name}</h3>
+              <p className={styles.trackArtist}>{track.artist_name}</p>
+            </div>
+            <BaseReview track={track} />
+            <DotsThree size={22} />
           </div>
-        </div>
-      </div>
-      <div className={styles.albumContainer}>
-        <AlbumsResult albums={albums} />
-      </div>
-      <div className={styles.artistContainer}>
-        <ArtistsResult artists={artists} />
+        ))}
       </div>
     </div>
   );
-}
+} 
