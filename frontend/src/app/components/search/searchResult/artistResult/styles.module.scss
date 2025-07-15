@@ -39,6 +39,22 @@
       color: white;
     }
   }
+
+  .placeholderCover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 15rem;
+    height: 250px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .placeholderIcon {
+    font-size: 2rem;
+  }
 }
 
 .coverMenuContainer {

@@ -2,9 +2,11 @@ import React from 'react'
 import styles from './styles.module.scss';
 import { ArtistItem } from '@/types/search';
 import { Carousel } from 'antd';
-import { DotsThreeVertical } from "@phosphor-icons/react/dist/ssr";
+import { DotsThreeVertical, User } from "@phosphor-icons/react/dist/ssr";
+import { useRouter } from 'next/navigation';
 
 export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
+  const router = useRouter();
     return (
       <div className={styles.container}>
         <h3>Artistas</h3>
@@ -17,7 +19,9 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
           className={styles.artistList}
         >
           {artists.map((artist) => (
-            <div key={artist.id} className={styles.artistItem}>
+            <div key={artist.id} className={styles.artistItem} onClick={() => {
+              router.push(`/artist/${artist.id}`);
+            }}>
               {artist.cover ? (
                 <div className={styles.coverMenuContainer}>
                   <img
@@ -29,7 +33,13 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
                     <DotsThreeVertical size={32} color="#fff" />
                   </div>
                 </div>
-              ) : null}
+              ) : (
+                <div className={styles.placeholderCover}>
+                  <span className={styles.placeholderIcon}>
+                    <User size={32} color="#fff" />
+                  </span>
+                </div>
+              )}
               <div className={styles.info}>
                 <h3 className={styles.name}>{artist.name}</h3>
               </div>

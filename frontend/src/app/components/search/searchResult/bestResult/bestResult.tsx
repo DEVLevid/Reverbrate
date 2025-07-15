@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import { TrackWithReview } from "@/types/search";
-import { StarSelector } from "@/app/components/base/starSelector/starSelector";
+import BaseReview from "@/app/components/review/review";
 
 export default function BestResult({
   track,
@@ -14,7 +14,11 @@ export default function BestResult({
       <div className={styles.bestCoverContainer}>
         {track.cover ? (
           <img src={track.cover} alt={track.name} className={styles.bestCover} />
-        ) : null}
+        ) : (
+          <div className={styles.placeholderCover}>
+            <span>🎵</span>
+          </div>
+        )}
       </div>
       <div className={styles.bestInfo}>
         <div className={styles.trackInfoContainer}>
@@ -22,21 +26,15 @@ export default function BestResult({
             <div className={styles.bestName}>{track.name}</div>
             <div className={styles.bestArtist}>{track.artist_name}</div>
           </div>
-
-          {track.review && (
-            <div className={styles.satarContainer}>
-              <StarSelector
-                rating={track.review.rate}
-                setRating={function (value: number): void {}}
-                disableHover
-              />
-            </div>
-          )}
+          <div className={styles.satarContainer}>
+            <BaseReview track={track} />
+          </div>
+      
         </div>
         {track.review && (
           <>
             <div className={styles.bestComment}>
-              <i>"{track.review.comment}"</i>
+              <i>&quot;{track.review.comment}&quot;</i>
             </div>
           </>
         )}

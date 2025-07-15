@@ -3,8 +3,10 @@ import styles from "./styles.module.scss";
 import React from "react";
 import { Carousel } from "antd";
 import { DotsThreeVertical } from "@phosphor-icons/react/dist/ssr";
+import { useRouter } from "next/navigation";
 
 export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <h3>Álbuns</h3>
@@ -17,7 +19,9 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
         className={styles.albumList}
       >
         {albums.map((album) => (
-          <div key={album.id} className={styles.albumItem}>
+          <div key={album.id} className={styles.albumItem} onClick={() => {
+            router.push(`/album/${album.id}`);
+          }}>
             <div className={styles.coverContainer}>
               {album.cover ? (
                 <>
