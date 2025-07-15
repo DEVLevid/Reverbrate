@@ -19,8 +19,8 @@ export default function ReviewCarouselItem({ data }: ReviewCarouselItemProps) {
             <Image
                 src={data.track_info.cover}
                 alt={`Capa da música ${data.track_info.name}`}
-                width={100}
-                height={100}
+                width={60}
+                height={60}
                 className={styles.carouselItemImage}
             />
 
