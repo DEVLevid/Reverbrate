@@ -3,11 +3,19 @@
     align-items: center;
     gap: 1rem;
 
-    .profileHeaderImage {
+    .profileHeaderImage,
+    .profileHeaderImagePlaceholder {
         border-radius: 100%;
         width: 12rem;
         height: 12rem;
         aspect-ratio: 1;
+    }
+
+    .profileHeaderImagePlaceholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1C1825;
     }
 
     .profileHeaderText {
