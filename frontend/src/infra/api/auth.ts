@@ -1,5 +1,5 @@
+import { SignUpData, SpotifyToken } from "../../types/auth";
 import { apiRequest } from "./config";
-import { SpotifyToken } from "../../types/auth";
 
 export const AuthApi = {
   token: async (): Promise<SpotifyToken> => {
@@ -7,4 +7,14 @@ export const AuthApi = {
       method: "GET",
     });
   },
+
+  signup: async (data: SignUpData): Promise<void> => {
+    return apiRequest<void>("/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  }
 };

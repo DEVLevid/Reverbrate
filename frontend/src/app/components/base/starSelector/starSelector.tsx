@@ -6,7 +6,8 @@ export const StarSelector: React.FC<{
   rating: number;
   setRating: (value: number) => void;
   disabled?: boolean;
-}> = ({ rating, setRating, disabled }) => {
+  disableHover?: boolean;
+}> = ({ rating, setRating, disabled, disableHover }) => {
   const [hover, setHover] = useState(0);
   return (
     <div className={styles.stars}>
@@ -19,8 +20,8 @@ export const StarSelector: React.FC<{
           }
           style={{ cursor: disabled ? "not-allowed" : "pointer" }}
           onClick={() => !disabled && setRating(star)}
-          onMouseEnter={() => !disabled && setHover(star)}
-          onMouseLeave={() => !disabled && setHover(0)}
+          onMouseEnter={() => !disabled && !disableHover && setHover(star)}
+          onMouseLeave={() => !disabled && !disableHover && setHover(0)}
           tabIndex={0}
           role="button"
           aria-label={`Dar nota ${star}`}

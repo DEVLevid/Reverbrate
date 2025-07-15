@@ -18,3 +18,21 @@ button {
   font-weight: 400;
   font-size: 1rem;
 }
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #7C6AA0 #18151f;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+  background: #18151f;
+  border-radius: 8px;
+}
+html::-webkit-scrollbar-thumb {
+  background: #7C6AA0;
+  border-radius: 8px;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: #a594d6;
+}
