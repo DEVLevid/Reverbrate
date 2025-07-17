@@ -6,9 +6,11 @@ import List from "@/app/components/list/list";
 export default function ListContainer() {
   return (
     <div className={styles.container}>
-      <div className={styles.titleContaienr}>
+      <div className={styles.titleContainer}>
         <h1 className={styles.title}>Listas</h1>
-        <Plus size={32} />
+        <div className={styles.icon}>
+          <Plus size={28} />
+        </div>
       </div>
       <List />
     </div>

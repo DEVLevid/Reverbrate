@@ -1,6 +1,6 @@
 .profileContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     max-width: 100%;
     width: 100%;
@@ -15,5 +15,20 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
+       
+        .reviewsAndListWrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 2rem;
+
+            .reviews{
+                width: 50%;
+            }
+
+            .lists {
+                width: 100%;
+            }
+        }
     }
 }
