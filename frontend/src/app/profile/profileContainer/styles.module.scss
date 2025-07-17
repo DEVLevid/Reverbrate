@@ -14,17 +14,6 @@
     .profileFirstWrapper {
         display: flex;
         flex-direction: column;
-        gap: 4rem;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .profileContainer {
-        padding: 2rem 1rem;
-        grid-template-columns: repeat(1, 1fr);
-
-        .profileFirstWrapper {
-            gap: 2rem;
-        }
+        gap: 2rem;
     }
 }

@@ -15,8 +15,8 @@ function ProfileHeader({ name, email, image }: ProfileHeaderProps) {
             {image ? <Image
                 src={image}
                 alt={"Imagem de Perfil de " + name}
-                width={128}
-                height={128}
+                width={192}
+                height={192}
                 className={styles.profileHeaderImage}
                 style={{ borderRadius: "50%" }}
             /> :
