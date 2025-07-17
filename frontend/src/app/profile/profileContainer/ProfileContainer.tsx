@@ -6,7 +6,7 @@ import ProfileHeaderSkeleton from "../profileHeader/profileHeaderSkeleton/Profil
 import ReviewsCarousel from "../reviewsCarousel/ReviewsCarousel";
 import ReviewsCarouselSkeleton from "../reviewsCarousel/reviewsCarouselSkeleton/ReviewsCarouselSkeleton";
 import styles from "./styles.module.scss";
-import { useReviews } from "@/app/hooks/useReviews";
+import ListContainer from "../listContainer/listContainer";
 
 function ProfileContainer() {
   const { getProfile } = useProfile();
@@ -35,6 +35,7 @@ function ProfileContainer() {
                 image={profile.image}
               />
               <ReviewsCarousel reviews={profile.reviews} />
+              <ListContainer />
             </article>
           )}
           <article></article>
