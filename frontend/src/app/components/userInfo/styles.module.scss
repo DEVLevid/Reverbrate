@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    grid-column: span 3;
+
+    .image {
+        border-radius: 100%;
+    }
+
+    .infoWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .titleWrapper {
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .idWrapper {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                opacity: 0.5;
+
+                span {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                }
+
+                button {
+                    background: none;
+                    border: none;
+                    padding: 0.15rem;
+                    border-radius: 100%;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    color: #fff;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover {
+                        background-color: #fff;
+                        color: #09080c;
+                    }
+                }
+            }
+        }
+
+        .bio {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: justify;
+        }
+
+        .noBio {
+            opacity: 0.5;
+        }
+    }
+}
+
+@media screen and (max-width: 64rem) {
+    .container {
+        grid-column: 1;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .image {
+            width: 7rem;
+            height: 7rem;
+        }
+    }
+}
+
+@media screen and (max-width: 48rem) {
+    .container {
+        .infoWrapper {
+            .titleWrapper {
+                h3 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .bio {
+                font-size: 0.75rem;
+            }
+
+            .noBio {
+                font-size: 0.75rem;
+            }
+        }
+    }
+}
