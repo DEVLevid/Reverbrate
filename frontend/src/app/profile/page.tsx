@@ -2,6 +2,7 @@
 
 import Error from "../components/base/error/error";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
+import ListList from "../components/listList/listList";
 import NavBar from "../components/navBar/navBar";
 import ReviewList from "../components/reviewList/reviewList";
 import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
@@ -61,8 +62,10 @@ export default function Profile() {
                                 <ReviewListSkeleton />
                             ) : (
                                 profile && (
-                                    // <ListList title="Listas recentes" lists={profile.lists} />
-                                    <p>lists</p>
+                                    <ListList
+                                        title="Listas recentes"
+                                        lists={profile.lists}
+                                    />
                                 )
                             )}
                         </section>

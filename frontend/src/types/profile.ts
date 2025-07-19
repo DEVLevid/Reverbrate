@@ -1,3 +1,4 @@
+import { ListsResponse } from "./lists";
 import { ReviewsResponse } from "./reviews";
 
 // export interface Network {
@@ -15,6 +16,6 @@ export interface Profile {
     image: string;
     bio: string;
     reviews: ReviewsResponse;
-    // lists: ListsResponse;
+    lists: ListsResponse;
     // network: Network;
 }
