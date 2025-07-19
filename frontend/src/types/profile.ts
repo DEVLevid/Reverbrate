@@ -1,22 +1,20 @@
 import { ReviewsResponse } from "./reviews";
 
-export interface User {
+// export interface Network {
+//     followers: number,
+//     following: number,
+//     reviews: number,
+//     lists: number
+// }
+
+export interface Profile {
     id: string;
     name: string;
+    nickname: string;
     email: string;
     image: string;
     bio: string;
-}
-
-export interface Network {
-    followers: number,
-    following: number,
-    reviews: number,
-    lists: number
-}
-
-export interface Profile {
-    user: User;
     reviews: ReviewsResponse;
-    network: Network;
+    // lists: ListsResponse;
+    // network: Network;
 }
