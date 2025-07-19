@@ -1,0 +1,219 @@
+.itemSkeleton {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background-color: transparent;
+    position: relative;
+}
+
+.infoWrapperSkeleton {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    .imageSkeleton {
+        width: 60px;
+        height: 60px;
+        border-radius: 0.5rem;
+        background-color: #1c1825;
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: skeleton-wave 1.5s infinite ease-in-out;
+        }
+    }
+
+    .infoWrapperTextSkeleton {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .nameSkeleton {
+            width: 180px;
+            height: 1.5rem;
+            background-color: #1c1825;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    transparent 100%
+                );
+                transform: translateX(-100%);
+                animation: skeleton-wave 1.5s infinite ease-in-out;
+            }
+        }
+
+        .artistSkeleton {
+            width: 120px;
+            height: 0.825rem;
+            background-color: #1c1825;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    transparent 100%
+                );
+                transform: translateX(-100%);
+                animation: skeleton-wave 1.5s infinite ease-in-out;
+            }
+        }
+    }
+}
+
+.reviewWrapperDesktopSkeleton {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.commentIconSkeleton {
+    width: 24px;
+    height: 24px;
+    background-color: #1c1825;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%
+        );
+        transform: translateX(-100%);
+        animation: skeleton-wave 1.5s infinite ease-in-out;
+    }
+}
+
+.baseReviewSkeleton {
+    width: 100px;
+    height: 20px;
+    background-color: #1c1825;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%
+        );
+        transform: translateX(-100%);
+        animation: skeleton-wave 1.5s infinite ease-in-out;
+    }
+}
+
+.optionBtnSkeleton {
+    width: 28px;
+    height: 28px;
+    background-color: #1c1825;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%
+        );
+        transform: translateX(-100%);
+        animation: skeleton-wave 1.5s infinite ease-in-out;
+    }
+}
+
+.reviewWrapperMobileSkeleton {
+    visibility: hidden;
+    display: none;
+}
+
+@keyframes skeleton-wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .itemSkeleton {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .reviewWrapperDesktopSkeleton {
+        visibility: hidden;
+        display: none;
+    }
+
+    .reviewWrapperMobileSkeleton {
+        display: flex;
+        justify-content: space-between;
+        visibility: visible;
+        width: 100%;
+        padding-left: 4.75rem;
+        align-items: center;
+
+        .optionsSkeleton {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 3rem;
+
+    .userWrapper {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 3rem;
+    }
+
+    .listsWrapper {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 3rem;
+    }
+}
+
+@media screen and (max-width: 48rem) {
+    .container {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 64rem) {
+    .container {
+        .userWrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .listsWrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+}

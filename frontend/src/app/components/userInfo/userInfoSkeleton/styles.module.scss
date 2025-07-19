@@ -1,0 +1,182 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    grid-column: span 4;
+
+    .imageSkeleton,
+    .nameSkeleton,
+    .idTextSkeleton,
+    .copyIconSkeleton,
+    .bioSkeleton {
+        background-color: #1c1825;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .imageSkeleton {
+        width: 192px;
+        height: 192px;
+        border-radius: 100%;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: skeleton-wave 1.5s infinite ease-in-out;
+        }
+    }
+
+    .infoWrapperSkeleton {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        flex-grow: 1;
+
+        .titleWrapperSkeleton {
+            display: flex;
+            flex-direction: column;
+
+            .nameSkeleton {
+                width: 70%;
+                height: 2rem;
+                margin-bottom: 0.5rem;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent 0%,
+                        rgba(255, 255, 255, 0.05) 50%,
+                        transparent 100%
+                    );
+                    transform: translateX(-100%);
+                    animation: skeleton-wave 1.5s infinite ease-in-out;
+                }
+            }
+
+            .idWrapperSkeleton {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+
+                .idTextSkeleton {
+                    width: 40%;
+                    height: 0.875rem;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(
+                            90deg,
+                            transparent 0%,
+                            rgba(255, 255, 255, 0.05) 50%,
+                            transparent 100%
+                        );
+                        transform: translateX(-100%);
+                        animation: skeleton-wave 1.5s infinite ease-in-out;
+                    }
+                }
+
+                .copyIconSkeleton {
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 100%;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(
+                            90deg,
+                            transparent 0%,
+                            rgba(255, 255, 255, 0.05) 50%,
+                            transparent 100%
+                        );
+                        transform: translateX(-100%);
+                        animation: skeleton-wave 1.5s infinite ease-in-out;
+                    }
+                }
+            }
+        }
+
+        .bioSkeleton {
+            width: 100%;
+            height: 4.5rem;
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.05) 50%,
+                    transparent 100%
+                );
+                transform: translateX(-100%);
+                animation: skeleton-wave 1.5s infinite ease-in-out;
+            }
+        }
+    }
+}
+
+@keyframes skeleton-wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media screen and (max-width: 64rem) {
+    .container {
+        grid-column: 1;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .imageSkeleton {
+            width: 7rem;
+            height: 7rem;
+        }
+    }
+}
+
+@media screen and (max-width: 48rem) {
+    .container {
+        .infoWrapperSkeleton {
+            .titleWrapperSkeleton {
+                .nameSkeleton {
+                    height: 1.5rem;
+                }
+            }
+
+            .bioSkeleton {
+                height: 3rem;
+            }
+        }
+    }
+}
