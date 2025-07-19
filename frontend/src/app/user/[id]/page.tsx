@@ -1,18 +1,20 @@
 "use client";
 
-import Error from "../components/base/error/error";
-import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
-import NavBar from "../components/navBar/navBar";
-import ReviewList from "../components/reviewList/reviewList";
-import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
-import UserInfo from "../components/userInfo/userInfo";
-import UserInfoSkeleton from "../components/userInfo/userInfoSkeleton/userInfoSkeleton";
-import { useProfile } from "../hooks/useProfile";
+import { useUser } from "@/app/hooks/useUser";
+import { useParams } from "next/navigation";
+import Error from "../../components/base/error/error";
+import FollowSkeleton from "../../components/follow/followSkeleton/followSkeleton";
+import NavBar from "../../components/navBar/navBar";
+import ReviewList from "../../components/reviewList/reviewList";
+import ReviewListSkeleton from "../../components/reviewList/reviewListSkeleton/reviewListSkeleton";
+import UserInfo from "../../components/userInfo/userInfo";
+import UserInfoSkeleton from "../../components/userInfo/userInfoSkeleton/userInfoSkeleton";
 import styles from "./styles.module.scss";
 
 export default function Profile() {
-    const { getProfile } = useProfile();
-    const { data: profile, isLoading, isError } = getProfile();
+    const { id } = useParams() as { id: string };
+    const { getUserById } = useUser();
+    const { data: user, isLoading, isError } = getUserById(id);
 
     return (
         <>
@@ -26,21 +28,21 @@ export default function Profile() {
                             {isLoading ? (
                                 <UserInfoSkeleton />
                             ) : (
-                                profile && (
+                                user && (
                                     <UserInfo
-                                        id={profile.id}
-                                        name={profile.name}
-                                        nickname={profile.nickname}
-                                        bio={profile.bio}
-                                        image={profile.image}
+                                        id={user.id}
+                                        name={user.name}
+                                        nickname={user.nickname}
+                                        bio={user.bio}
+                                        image={user.image}
                                     />
                                 )
                             )}
                             {isLoading ? (
                                 <FollowSkeleton />
                             ) : (
-                                profile && (
-                                    // <Follow network={profile.network} />}
+                                user && (
+                                    // <Follow network={user.network} />}
                                     <p>follow</p>
                                 )
                             )}
@@ -49,10 +51,10 @@ export default function Profile() {
                             {isLoading ? (
                                 <ReviewListSkeleton />
                             ) : (
-                                profile && (
+                                user && (
                                     <ReviewList
                                         title="Avaliações recentes"
-                                        reviews={profile.reviews}
+                                        reviews={user.reviews}
                                     />
                                 )
                             )}
@@ -60,8 +62,8 @@ export default function Profile() {
                             {isLoading ? (
                                 <ReviewListSkeleton />
                             ) : (
-                                profile && (
-                                    // <ListList title="Listas recentes" lists={profile.lists} />
+                                user && (
+                                    // <ListList title="Listas recentes" lists={user.lists} />
                                     <p>lists</p>
                                 )
                             )}

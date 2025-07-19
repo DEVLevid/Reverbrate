@@ -35,8 +35,8 @@ function ProfileContainer() {
                 image={profile.image}
               />
               <div className={styles.reviewsAndListWrapper}>
-                <div className={styles.reviews}><ReviewsCarousel reviews={profile.reviews} /></div>
-                <div className={styles.lists}><ListContainer /></div>
+                <div className={styles.reviews}></div>
+                <div className={styles.lists}></div>
               </div>
             </article>
           )}

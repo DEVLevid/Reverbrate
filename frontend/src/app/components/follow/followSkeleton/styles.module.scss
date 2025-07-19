@@ -1,0 +1,91 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: flex-start;
+    grid-column: span 2;
+
+    .wrapperSkeleton {
+        display: flex;
+        justify-content: center;
+        height: fit-content;
+        border-inline: 1px solid transparent;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 80%;
+        }
+    }
+
+    .titleSkeleton,
+    .valueSkeleton {
+        background-color: #1c1825;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: skeleton-wave 1.5s infinite ease-in-out;
+        }
+    }
+
+    .titleSkeleton {
+        width: 60px;
+        height: 18px;
+    }
+
+    .valueSkeleton {
+        width: 40px;
+        height: 16px;
+    }
+}
+
+@keyframes skeleton-wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media screen and (max-width: 64rem) {
+    .container {
+        grid-column: 1;
+    }
+}
+
+@media screen and (max-width: 48rem) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+
+        .wrapperSkeleton {
+            div {
+                .titleSkeleton {
+                    width: 50px;
+                    height: 16px;
+                }
+
+                .valueSkeleton {
+                    width: 30px;
+                    height: 14px;
+                }
+            }
+        }
+    }
+}
