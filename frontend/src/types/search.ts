@@ -32,3 +32,43 @@ export interface SearchParams {
       total?: number;
     };
   }
+
+  export interface ArtistItem {
+    id: string;
+    uri: string;
+    type: 'artist';
+    name: string;
+    cover: string;
+  }
+
+  export interface AlbumItem {
+    id: string;
+    uri: string;
+    type: 'album';
+    album_type: 'album' | 'single' | 'compilation';
+    name: string;
+    artist_name: string;
+    cover: string;
+  }
+
+  export interface ArtistsResponse {
+    artists: {
+      data: ArtistItem[];
+      limit?: number;
+      next?: any;
+      offset?: number;
+      previous?: any;
+      total?: number;
+    };
+  }
+
+  export interface AlbumsResponse {
+    albums: {
+      data: AlbumItem[];
+      limit?: number;
+      next?: any;
+      offset?: number;
+      previous?: any;
+      total?: number;
+    };
+  }
