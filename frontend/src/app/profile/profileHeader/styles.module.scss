@@ -1,0 +1,46 @@
+.profileHeaderContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .profileHeaderImage,
+    .profileHeaderImagePlaceholder {
+        border-radius: 100%;
+        width: 8rem;
+        height: 8rem;
+        aspect-ratio: 1;
+    }
+
+    .profileHeaderImagePlaceholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1C1825;
+    }
+
+    .profileHeaderText {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .profileHeaderName {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .profileHeaderEmail {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profileHeaderContainer {
+        padding-left: 2rem;
+
+        .profileHeaderImage {
+            width: 6rem;
+            height: 6rem;
+        }
+    }
+}

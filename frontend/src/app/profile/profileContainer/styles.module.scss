@@ -1,0 +1,30 @@
+.profileContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 100%;
+    width: 100%;
+    padding: 2rem 4rem;
+
+    .profileErrorMessage {
+        text-align: center;
+        grid-column: span 2;
+    }
+
+    .profileFirstWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profileContainer {
+        padding: 2rem 1rem;
+        grid-template-columns: repeat(1, 1fr);
+
+        .profileFirstWrapper {
+            gap: 2rem;
+        }
+    }
+}
