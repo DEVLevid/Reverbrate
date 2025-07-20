@@ -1,8 +1,8 @@
-import { ReviewsResponse } from '@/types/reviews';
-import { TrackWithReview } from '@/types/search';
-import { Pagination } from 'antd';
-import { useState } from 'react';
-import MusicItem from '../musicItem/musicItem';
+import { ReviewsResponse } from "@/types/reviews";
+import { TrackWithReview } from "@/types/search";
+import { Pagination } from "antd";
+import { useState } from "react";
+import MusicItem from "../musicItem/musicItem";
 import styles from "./styles.module.scss";
 
 interface ReviewListProps {
@@ -26,10 +26,12 @@ export default function ReviewList({ title, reviews }: ReviewListProps) {
         <div className={styles.container}>
             <h3>{title}</h3>
             <div className={styles.wrapper}>
-                {currentReviews.length <= 0 ?
-                    <i className={styles.noReviews}>Você ainda não possui avaliações...</i>
-                    :
-                    currentReviews.map(review => {
+                {currentReviews.length <= 0 ? (
+                    <i className={styles.noReviews}>
+                        Você ainda não possui avaliações...
+                    </i>
+                ) : (
+                    currentReviews.map((review) => {
                         const trackWithReview: TrackWithReview = {
                             artist_name: review.track_info.artist,
                             cover: review.track_info.cover,
@@ -38,15 +40,20 @@ export default function ReviewList({ title, reviews }: ReviewListProps) {
                             uri: "",
                             type: "track",
                             review: {
-                                rate: review.review.rate,
-                                comment: review.review.comment,
-                                created_at: review.review.created_at,
-                                updated_at: review.review.updated_at
-                            }
-                        }
-                        return <MusicItem key={trackWithReview.id} track={trackWithReview} />
+                                rate: review.rate,
+                                comment: review.comment,
+                                created_at: review.created_at,
+                                updated_at: review.updated_at,
+                            },
+                        };
+                        return (
+                            <MusicItem
+                                key={trackWithReview.id}
+                                track={trackWithReview}
+                            />
+                        );
                     })
-                }
+                )}
             </div>
             <Pagination
                 current={currentPage}

@@ -15,6 +15,8 @@ export default function Profile() {
     const { getProfile } = useProfile();
     const { data: profile, isLoading, isError } = getProfile();
 
+    console.log(profile)
+
     return (
         <>
             <NavBar />
