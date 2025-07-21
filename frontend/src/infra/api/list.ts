@@ -2,7 +2,7 @@ import { CreateListRequest, List, UpdateListRequest, EditListItemsRequest, ListR
 import { apiRequest } from "./config";
 
 export const listApi = {
-    getList: async (limit: 20, offset=0): Promise<List> => {
+    getList: async (limit: number = 20, offset: number = 0): Promise<ListResponse> => {
         return apiRequest<List>(`/lists?limit=${limit}&offset=${offset}`, {
             method: "GET",
         });
@@ -10,17 +10,17 @@ export const listApi = {
 
     getListById: async (id: string): Promise<List> => {
         return apiRequest<List>(`/lists/${id}`);
-    }, 
+    },
 
     createList: async (data: CreateListRequest): Promise<List> => {
-        return apiRequest<List>(`/list`, {
+        return apiRequest<List>(`/lists`, {
             method: "POST",
             body: JSON.stringify(data),
         });
     },
 
     updateList: async (id: string, data: UpdateListRequest): Promise<List> => {
-        return apiRequest<List> (`/lists/${id}`, {
+        return apiRequest<List>(`/lists/${id}`, {
             method: "PUT",
             body: JSON.stringify(data),
         });

@@ -1,41 +1,43 @@
-'use client'
+"use client";
 
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { ListsRoutesMock } from '../../infra/mock/lists/listsRoutesMock';
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   CreateListRequest,
   UpdateListRequest,
   EditListItemsRequest,
-} from '@/types/lists';
+} from "@/types/lists";
+import { listApi } from "@/infra/api/list";
 
 export function useLists() {
-  const fetchLists = (limit = 20, offset = 0) => useQuery({
-    queryKey: ['lists', { limit, offset }],
-    queryFn: () => ListsRoutesMock.getLists(limit, offset),
-  });
+  const fetchLists = (limit = 20, offset = 0) =>
+    useQuery({
+      queryKey: ["lists", { limit, offset }],
+      queryFn: () => listApi.getList(limit, offset),
+    });
 
-  const fetchListById = (id: string) => useQuery({
-    queryKey: ['lists', 'byId', id],
-    queryFn: () => ListsRoutesMock.getListById(id),
-    enabled: !!id,
-  });
+  const fetchListById = (id: string) =>
+    useQuery({
+      queryKey: ["lists", "byId", id],
+      queryFn: () => listApi.getListById(id),
+      enabled: !!id,
+    });
 
   const createListMutation = useMutation({
-    mutationFn: (data: CreateListRequest) => ListsRoutesMock.createList(data),
+    mutationFn: (data: CreateListRequest) => listApi.createList(data),
   });
 
   const updateListMutation = useMutation({
     mutationFn: ({ id, data }: { id: string; data: UpdateListRequest }) =>
-      ListsRoutesMock.updateList(id, data),
+      listApi.updateList(id, data),
   });
 
   const deleteListMutation = useMutation({
-    mutationFn: (id: string) => ListsRoutesMock.deleteList(id),
+    mutationFn: (id: string) => listApi.deleteList(id),
   });
 
   const editListItemsMutation = useMutation({
     mutationFn: ({ id, data }: { id: string; data: EditListItemsRequest }) =>
-      ListsRoutesMock.editListItems(id, data),
+      listApi.editListItems(id, data),
   });
 
   return {

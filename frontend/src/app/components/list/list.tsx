@@ -1,29 +1,41 @@
-'use client'
+"use client";
 
-import React from 'react'
-import CardList from './cardList/cardlist';
-import { useLists } from '@/app/hooks/useLists';
-import { Spin } from 'antd';
-import styles from './styles.module.scss';
-export default function List() {
-  const { fetchLists } = useLists();
-  const { data, isLoading, error } = fetchLists();
+import React, { useState } from "react";
+import CardList from "./cardList/cardlist";
+import styles from "./styles.module.scss";
+import { List as ListType } from "@/types/lists";
+import { PlusIcon } from "@phosphor-icons/react";
+import AddList from "./addList/addList";
+import { Button } from "antd";
 
-  if (isLoading) return <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 120 }}><Spin size="large" /></div>;
-  if (error) return <div>Erro ao carregar listas</div>;
+export interface ListProps {
+  title: string;
+  lists: ListType[];
+}
 
-  const lists = data?.data || [];
-
+export default function List({ title, lists }: ListProps) {
+  const [open, setOpen] = useState(false);
   return (
     <div className={styles.container}>
-      {lists.map((list) => (
-        <CardList
-          key={list.id}
-          listName={list.name}
-          userName="Usuário" 
-          listType={list.type}
-        />
-      ))}
+      <div className={styles.toolbar}>
+        <h3>{title}</h3>
+        <Button
+          className={styles.addListButton}
+          onClick={() => setOpen(true)}
+          icon={<PlusIcon size={24} color="white" />}
+        ></Button>
+        <AddList open={open} onCancel={() => setOpen(false)} />
+      </div>
+      <div className={styles.wrapper}>
+        {lists?.map((list) => (
+          <CardList
+            key={list.id}
+            listName={list.name}
+            userName="Usuário"
+            listType={list.type}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
