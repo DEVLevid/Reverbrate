@@ -1,18 +1,33 @@
 import React from 'react'
 import styles from './styles.module.scss';
 import { DotsThreeVertical, MusicNoteSimple, Playlist, PencilSimple, Trash } from '@phosphor-icons/react/ssr';
-import { Dropdown } from 'antd';
+import { Dropdown, message } from 'antd';
+import { useLists } from '@/app/hooks/useLists';
 
 interface CardListProps {
   listName: string;
   userName: string;
   listType: string;
+  listId: string;
 }
 
-export default function CardList({ listName, userName, listType }: CardListProps) {
+export default function CardList({ listName, userName, listType, listId }: CardListProps) {
   const truncateText = (text: string, maxLength: number = 20) => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + '...';
+  };
+
+  const { deleteListMutation } = useLists();
+
+  const handleDeleteList = async (listId: string) => {
+    deleteListMutation.mutate(listId, {
+      onSuccess: () => {
+        message.success('Lista deletada com sucesso');
+      },
+      onError: () => {
+        message.error('Erro ao deletar lista');
+      },
+    });
   };
 
   const menuItems = [
@@ -27,7 +42,7 @@ export default function CardList({ listName, userName, listType }: CardListProps
     {
       key: 'delete',
       label: (
-        <span style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#010101' }}>
+        <span style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#010101' }} onClick={() => handleDeleteList(listId)}>
           <Trash size={16} /> Excluir
         </span>
       ),

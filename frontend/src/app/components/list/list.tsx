@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import { List as ListType } from "@/types/lists";
 import { PlusIcon } from "@phosphor-icons/react";
 import AddList from "./addList/addList";
-import { Button, Pagination } from "antd";
+import { Pagination } from "antd";
 
 export interface ListProps {
   title: string | undefined;
@@ -47,6 +47,7 @@ export default function List({ title, lists }: ListProps) {
               listName={list.name}
               userName={list.created_by.name}
               listType={list.type}
+              listId={list.id}
             />
           ))
         )}
