@@ -1,7 +1,9 @@
 "use client";
 
 import Error from "../components/base/error/error";
+import Follow from "../components/follow/follow";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
+import ListList from "../components/listList/listList";
 import NavBar from "../components/navBar/navBar";
 import ReviewList from "../components/reviewList/reviewList";
 import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
@@ -13,6 +15,8 @@ import styles from "./styles.module.scss";
 export default function Profile() {
     const { getProfile } = useProfile();
     const { data: profile, isLoading, isError } = getProfile();
+
+    console.log(profile);
 
     return (
         <>
@@ -39,10 +43,7 @@ export default function Profile() {
                             {isLoading ? (
                                 <FollowSkeleton />
                             ) : (
-                                profile && (
-                                    // <Follow network={profile.network} />}
-                                    <p>follow</p>
-                                )
+                                profile && <Follow network={profile.network} />
                             )}
                         </section>
                         <section className={styles.listsWrapper}>
@@ -61,8 +62,10 @@ export default function Profile() {
                                 <ReviewListSkeleton />
                             ) : (
                                 profile && (
-                                    // <ListList title="Listas recentes" lists={profile.lists} />
-                                    <p>lists</p>
+                                    <ListList
+                                        title="Listas recentes"
+                                        lists={profile.lists}
+                                    />
                                 )
                             )}
                         </section>

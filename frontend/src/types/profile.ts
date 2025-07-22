@@ -1,11 +1,12 @@
+import { ListsResponse } from "./lists";
 import { ReviewsResponse } from "./reviews";
 
-// export interface Network {
-//     followers: number,
-//     following: number,
-//     reviews: number,
-//     lists: number
-// }
+export interface Network {
+    followers: number,
+    following: number,
+    reviews: number,
+    lists: number
+}
 
 export interface Profile {
     id: string;
@@ -15,6 +16,6 @@ export interface Profile {
     image: string;
     bio: string;
     reviews: ReviewsResponse;
-    // lists: ListsResponse;
-    // network: Network;
+    lists: ListsResponse;
+    network: Network;
 }

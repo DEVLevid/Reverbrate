@@ -1,5 +1,7 @@
 "use client";
 
+import Follow from "@/app/components/follow/follow";
+import ListList from "@/app/components/listList/listList";
 import { useUser } from "@/app/hooks/useUser";
 import { useParams } from "next/navigation";
 import Error from "../../components/base/error/error";
@@ -41,10 +43,7 @@ export default function Profile() {
                             {isLoading ? (
                                 <FollowSkeleton />
                             ) : (
-                                user && (
-                                    // <Follow network={user.network} />}
-                                    <p>follow</p>
-                                )
+                                user && <Follow network={user.network} />
                             )}
                         </section>
                         <section className={styles.listsWrapper}>
@@ -63,8 +62,10 @@ export default function Profile() {
                                 <ReviewListSkeleton />
                             ) : (
                                 user && (
-                                    // <ListList title="Listas recentes" lists={user.lists} />
-                                    <p>lists</p>
+                                    <ListList
+                                        title="Listas recentes"
+                                        lists={user.lists}
+                                    />
                                 )
                             )}
                         </section>

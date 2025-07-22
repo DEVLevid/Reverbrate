@@ -1,3 +1,5 @@
+import { ListsResponse } from "./lists";
+import { Network } from "./profile";
 import { ReviewsResponse } from "./reviews";
 
 export interface User {
@@ -8,4 +10,6 @@ export interface User {
     image: string;
     bio: string;
     reviews: ReviewsResponse;
+    lists: ListsResponse;
+    network: Network;
 }
