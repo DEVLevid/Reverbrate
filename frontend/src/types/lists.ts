@@ -55,7 +55,8 @@ export interface CreateListRequest {
 }
 
 export interface UpdateListRequest {
-  name: "string",
+  name: string;
+  type: ListType;
 }
 
 export interface ListResponse {

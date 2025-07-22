@@ -5,7 +5,7 @@ import CardList from "./cardList/cardList";
 import styles from "./styles.module.scss";
 import { List as ListType } from "@/types/lists";
 import { PlusIcon } from "@phosphor-icons/react";
-import AddList from "./addList/addList";
+import ListForm from "./listForm/listForm";
 import { Pagination } from "antd";
 
 export interface ListProps {
@@ -35,7 +35,7 @@ export default function List({ title, lists }: ListProps) {
           onClick={() => setOpen(true)}>
             <PlusIcon size={24} color="white" />
         </div>
-        <AddList open={open} onCancel={() => setOpen(false)} />
+        <ListForm open={open} onCancel={() => setOpen(false)} />
       </div>
       <div className={styles.wrapper}>
         {currentLists.length <= 0 ? (

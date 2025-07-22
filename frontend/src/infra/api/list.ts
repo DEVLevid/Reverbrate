@@ -21,7 +21,7 @@ export const listApi = {
 
     updateList: async (id: string, data: UpdateListRequest): Promise<List> => {
         return apiRequest<List>(`/lists/${id}`, {
-            method: "PUT",
+            method: "PATCH",
             body: JSON.stringify(data),
         });
     },
