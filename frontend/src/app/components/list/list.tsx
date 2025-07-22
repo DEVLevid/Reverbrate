@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import CardList from "./cardList/cardlist";
+import CardList from "./cardList/cardList";
 import styles from "./styles.module.scss";
 import { List as ListType } from "@/types/lists";
 import { PlusIcon } from "@phosphor-icons/react";
