@@ -3,7 +3,6 @@
 import Error from "../components/base/error/error";
 import Follow from "../components/follow/follow";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
-import ListList from "../components/listList/listList";
 import NavBar from "../components/navBar/navBar";
 import ReviewList from "../components/reviewList/reviewList";
 import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
@@ -12,11 +11,14 @@ import UserInfoSkeleton from "../components/userInfo/userInfoSkeleton/userInfoSk
 import { useProfile } from "../hooks/useProfile";
 import styles from "./styles.module.scss";
 import List from "../components/list/list";
+import { useLists } from "../hooks/useLists";
 import ListContainer from "./listContainer/listContainer";
 
 export default function Profile() {
   const { getProfile } = useProfile();
   const { data: profile, isLoading, isError } = getProfile();
+  const { fetchLists } = useLists();
+  const { data: list } = fetchLists();
 
   return (
     <>
@@ -48,7 +50,7 @@ export default function Profile() {
                 )
               )}
             </section>
-            <section className={styles.listsWrapper}>
+            <section className={styles.contentWrapper}>
               {isLoading ? (
                 <ReviewListSkeleton />
               ) : (

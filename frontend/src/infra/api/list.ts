@@ -1,9 +1,9 @@
-import { CreateListRequest, List, UpdateListRequest, EditListItemsRequest, ListResponse } from "@/types/lists";
+import { CreateListRequest, List, UpdateListRequest, EditListItemsRequest, ListResponse, ListsResponse } from "@/types/lists";
 import { apiRequest } from "./config";
 
 export const listApi = {
-    getList: async (limit: number = 20, offset: number = 0): Promise<ListResponse> => {
-        return apiRequest<List>(`/lists?limit=${limit}&offset=${offset}`, {
+    getList: async (limit: number = 20, offset: number = 0): Promise<ListsResponse> => {
+        return apiRequest<ListsResponse>(`/lists?limit=${limit}&offset=${offset}`, {
             method: "GET",
         });
     },

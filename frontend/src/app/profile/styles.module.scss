@@ -12,10 +12,11 @@
         gap: 3rem;
     }
 
-    .listsWrapper {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 3rem;
+    .contentWrapper {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        width: 100%;
     }
 }
 

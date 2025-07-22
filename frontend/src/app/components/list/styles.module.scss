@@ -1,8 +1,8 @@
 .container {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    grid-column: span 3;
+    align-items: center;
     
     h3 {
         font-size: 1.5rem;
@@ -10,29 +10,82 @@
         align-self: flex-start;
     }   
 
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-    }
-
     .toolbar {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        margin-bottom: 1rem;
     }
 
-    .addListButton {
-        background: none;
-        border: none;
+    .addBtn {
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        background-color: #181818;
     }
+    
+    .wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .listPagination {
+        margin-top: 24px;
+        text-align: center;
+    
+        :global(.ant-pagination-item),
+        :global(.ant-pagination-prev .ant-pagination-item-link),
+        :global(.ant-pagination-next .ant-pagination-item-link) {
+            background-color: #1c1825;
+            border: 1px solid #333;
+            border-radius: 4px;
+    
+            a {
+                color: #fff;
+            }
+    
+            &:hover {
+                background-color: #333;
+                border-color: #555;
+    
+                a {
+                    color: #fff;
+                }
+            }
+        }
+    
+        :global(.ant-pagination-item-active) {
+            background-color: #09080c;
+            border-color: #fff;
+    
+            a {
+                color: #fff;
+                font-weight: bold;
+            }
+    
+            &:hover {
+                background-color: #09080c;
+                border-color: #fff;
+    
+                a {
+                    color: #fff;
+                }
+            }
+        }
+    
+        :global(.ant-pagination-item-link .anticon) {
+            color: #fff;
+        }
+    
+        :global(.ant-pagination-disabled .ant-pagination-item-link) {
+            background-color: #09080c;
+            border-color: #09080c;
+            cursor: not-allowed;
+    
+            .anticon {
+                color: #555;
+            }
+        }
+    }
+    
 }

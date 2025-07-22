@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { Plus } from "@phosphor-icons/react/dist/ssr";
-import List from "@/app/components/list/list";
+import { useLists } from "@/app/hooks/useLists";
+import List from "../../components/list/list";
 
 export default function ListContainer() {
+  const { fetchLists } = useLists();
+  const { data: list } = fetchLists();
   return (
     <div className={styles.container}>
-      <div className={styles.titleContainer}>
-        <h1 className={styles.title}>Listas</h1>
-        <div className={styles.icon}>
-          <Plus size={28} />
-        </div>
-      </div>
-      <List title="Listas" lists={[]} />
+      <List title='Listas' lists={list?.data ?? []} />
     </div>
   );
 }
