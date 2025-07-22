@@ -12,7 +12,7 @@ export default function ListContainer() {
           <Plus size={28} />
         </div>
       </div>
-      <List />
+      <List title="Listas" lists={[]} />
     </div>
   );
 }

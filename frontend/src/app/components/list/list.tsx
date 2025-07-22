@@ -31,7 +31,7 @@ export default function List({ title, lists }: ListProps) {
           <CardList
             key={list.id}
             listName={list.name}
-            userName="Usuário"
+            userName={list.created_by.name}
             listType={list.type}
           />
         ))}

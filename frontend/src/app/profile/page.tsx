@@ -12,6 +12,7 @@ import UserInfoSkeleton from "../components/userInfo/userInfoSkeleton/userInfoSk
 import { useProfile } from "../hooks/useProfile";
 import styles from "./styles.module.scss";
 import List from "../components/list/list";
+import ListContainer from "./listContainer/listContainer";
 
 export default function Profile() {
   const { getProfile } = useProfile();
@@ -62,9 +63,7 @@ export default function Profile() {
               {isLoading ? (
                 <ReviewListSkeleton />
               ) : (
-                profile && (
-                  <ListList title="Listas recentes" lists={profile.lists} />
-                )
+                profile && <ListContainer />
               )}
             </section>
           </>

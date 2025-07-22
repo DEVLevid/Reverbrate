@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useLists } from "@/app/hooks/useLists";
 import { ListType } from "@/types/lists";
 import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface AddListProps {
   open: boolean;
@@ -16,16 +17,21 @@ export default function AddList({ open, onCancel }: AddListProps) {
   const [type, setType] = useState<ListType>("track");
   const [name, setName] = useState("");
   const { createListMutation } = useLists();
+  const queryClient = useQueryClient();
 
-  const handleSubmit = () => {
-    createListMutation.mutate(
+  const handleSubmit = async () => {
+    await createListMutation.mutateAsync(
       {
         name,
         type,
       },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
           toast.success("Lista criada com sucesso!");
+          await queryClient.invalidateQueries({ queryKey: ["lists"] });
+          await queryClient.invalidateQueries({ queryKey: ["profile"] });
+          setName("");
+          onCancel();
         },
         onError: () => {
           toast.error("Erro ao criar lista!");
