@@ -12,4 +12,5 @@ export interface User {
     reviews: ReviewsResponse;
     lists: ListsResponse;
     network: Network;
+    is_following: boolean;
 }

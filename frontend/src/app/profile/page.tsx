@@ -43,7 +43,7 @@ export default function Profile() {
                             {isLoading ? (
                                 <FollowSkeleton />
                             ) : (
-                                profile && <Follow network={profile.network} />
+                                profile && <Follow network={profile.network} hasFollow={false} />
                             )}
                         </section>
                         <section className={styles.listsWrapper}>
