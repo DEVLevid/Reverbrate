@@ -1,6 +1,9 @@
 "use client";
 
+import Follow from "@/app/components/follow/follow";
+import ListList from "@/app/components/listList/listList";
 import { useUser } from "@/app/hooks/useUser";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import Error from "../../components/base/error/error";
 import FollowSkeleton from "../../components/follow/followSkeleton/followSkeleton";
@@ -13,8 +16,17 @@ import styles from "./styles.module.scss";
 
 export default function Profile() {
     const { id } = useParams() as { id: string };
-    const { getUserById } = useUser();
-    const { data: user, isLoading, isError } = getUserById(id);
+
+    const queryClient = useQueryClient();
+    const { getUserById, updateFollow } = useUser(queryClient);
+    const { data: user, isLoading, isFetching, isError } = getUserById(id);
+    const { isPending } = updateFollow;
+
+    const handleFollow = async () => {
+        if (user) {
+            updateFollow.mutate(user.id);
+        }
+    };
 
     return (
         <>
@@ -42,8 +54,13 @@ export default function Profile() {
                                 <FollowSkeleton />
                             ) : (
                                 user && (
-                                    // <Follow network={user.network} />}
-                                    <p>follow</p>
+                                    <Follow
+                                        network={user.network}
+                                        hasFollow
+                                        isFollowing={user.is_following}
+                                        setFollow={handleFollow}
+                                        isLoading={isPending || isFetching}
+                                    />
                                 )
                             )}
                         </section>
@@ -63,8 +80,10 @@ export default function Profile() {
                                 <ReviewListSkeleton />
                             ) : (
                                 user && (
-                                    // <ListList title="Listas recentes" lists={user.lists} />
-                                    <p>lists</p>
+                                    <ListList
+                                        title="Listas recentes"
+                                        lists={user.lists}
+                                    />
                                 )
                             )}
                         </section>

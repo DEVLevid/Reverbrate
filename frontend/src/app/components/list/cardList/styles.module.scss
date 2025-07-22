@@ -15,7 +15,7 @@
         align-items: center;
         gap: 2rem;
 
-        .listContent{
+        .listContent {
             display: flex;
             flex-direction: column;
             gap: 0.2rem;
@@ -42,10 +42,10 @@
             border-radius: 1rem;
             padding: 3px 10px;
             margin-right: 2rem;
-    
+
             p {
                 font-size: 12px;
-    
+
             }
         }
 
@@ -54,11 +54,11 @@
             align-items: center;
             cursor: pointer;
         }
-    }  
+    }
 }
 
 .menuIcon :global(.ant-dropdown-menu-root) {
-  background-color: #7C6AA0 !important;
-  color: #fff !important;
-  border-radius: 8px;
+    background-color: #7C6AA0 !important;
+    color: #fff !important;
+    border-radius: 8px;
 }

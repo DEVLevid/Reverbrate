@@ -1,46 +1,52 @@
 export type ListType = 'track' | 'artist' | 'album';
 
 export interface TrackListItem {
-  id: string;
-  name: string;
-  cover: string;
-  uri: string;
+    id: string;
+    name: string;
+    cover: string;
+    uri: string;
 }
 
 export interface ArtistListItem {
-  id: string;
-  name: string;
-  cover: string;
-  uri: string;
+    id: string;
+    name: string;
+    cover: string;
+    uri: string;
 }
 
 export interface AlbumListItem {
-  id: string;
-  name: string;
-  cover: string;
-  artist_name: string;
-  uri: string;
+    id: string;
+    name: string;
+    cover: string;
+    artist_name: string;
+    uri: string;
 }
 
 export type ListItem = TrackListItem | ArtistListItem | AlbumListItem;
 
 export interface List {
-  id: string;
-  name: string;
-  type: ListType;
-  items: ListItem[];
-  created_at: string;
-  updated_at: string;
-  deleted_at: string | null;
+    id: string;
+    name: string;
+    type: ListType;
+    items: ListItem[];
+    created_at: string;
+    updated_at: string;
+    deleted_at: string | null;
+    createdBy: {
+        id: string;
+        name: string;
+        nickname: string;
+        image: string;
+    };
 }
 
 export interface ListsResponse {
-  data: List[];
-  limit: number;
-  next: string | null;
-  offset: number;
-  previous: string | null;
-  total: number;
+    data: List[];
+    limit: number;
+    next: string | null;
+    offset: number;
+    previous: string | null;
+    total: number;
 }
 
 export interface CreateListRequest {
@@ -58,7 +64,7 @@ export interface ListResponse {
     type: ListType;
     items: ListItem[];
     created_at: string;
-    updated_at: string; 
+    updated_at: string;
 }
 
 export interface EditListItemsRequest {

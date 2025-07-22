@@ -1,7 +1,9 @@
 "use client";
 
 import Error from "../components/base/error/error";
+import Follow from "../components/follow/follow";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
+import ListList from "../components/listList/listList";
 import NavBar from "../components/navBar/navBar";
 import ReviewList from "../components/reviewList/reviewList";
 import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
@@ -41,8 +43,7 @@ export default function Profile() {
                 <FollowSkeleton />
               ) : (
                 profile && (
-                  // <Follow network={profile.network} />}
-                  <p>follow</p>
+                  <Follow network={profile.network} hasFollow={false} />
                 )
               )}
             </section>
@@ -62,9 +63,7 @@ export default function Profile() {
                 <ReviewListSkeleton />
               ) : (
                 profile && (
-                  <>
-                    <List title="Listas" lists={profile.lists.data} />
-                  </>
+                  <ListList title="Listas recentes" lists={profile.lists} />
                 )
               )}
             </section>

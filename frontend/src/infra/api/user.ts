@@ -7,4 +7,10 @@ export const UserApi = {
             method: "GET",
         });
     },
+
+    updateFollow: async (id: string): Promise<void> => {
+        return apiRequest<void>(`/users/${id}/follow`, {
+            method: "PATCH",
+        });
+    },
 };
