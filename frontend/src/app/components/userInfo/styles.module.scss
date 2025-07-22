@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     gap: 2rem;
-    grid-column: span 4;
 
     .image {
         border-radius: 100%;
@@ -72,7 +71,6 @@
 
 @media screen and (max-width: 64rem) {
     .container {
-        grid-column: 1;
         align-items: flex-start;
         gap: 1rem;
 
