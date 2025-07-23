@@ -94,6 +94,7 @@ export default function listForm({ open, onCancel, initialName = '', initialType
             className={styles.formSelect}
             value={type}
             onChange={(e) => setType(e.target.value as ListType)}
+            disabled={mode === 'edit'}
           >
             <option value="track" className={styles.formSelectOption}>Músicas</option>
             <option value="album" className={styles.formSelectOption}>Albuns</option>
