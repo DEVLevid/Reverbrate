@@ -6,6 +6,7 @@ import { useSearchContext } from '../../../contexts/SearchContext';
 import SearchResults from '../searchResult/SearchResults';
 import RecentActivity from '../../recentActivity/recentActivity';
 import { ArtistItem, AlbumItem, TrackWithReview } from '@/types/search';
+import Rankings from '../../rankings/rankings';
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();
@@ -60,5 +61,10 @@ export default function SearchContainer() {
       </div>
     );
   }
-  return <RecentActivity />;
+  return (
+    <>
+      <RecentActivity />
+      <Rankings />
+    </>
+  );
 } 

@@ -12,7 +12,7 @@ interface MusicItemProps {
 export default function MusicItem({ track }: MusicItemProps) {
     return <Item>
         <div className={styles.infoWrapper}>
-            <Image src={track.cover} alt={"Capa do album da musica" + track.name} width={60} height={60} className={styles.image} />
+            <Image src={track.cover} alt={"Capa do album da musica" + track.name} width={50} height={50} className={styles.image} />
             <div className={styles.infoWrapperText}>
                 <h3>{track.name}</h3>
                 <p>{track.artist_name}</p>
