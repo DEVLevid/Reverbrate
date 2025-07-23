@@ -1,4 +1,4 @@
-import { User } from "@/types/user";
+import { User, UserSearchResponse, UserSearchResult } from "@/types/user";
 import { apiRequest } from "./config";
 
 export const UserApi = {
@@ -12,5 +12,11 @@ export const UserApi = {
         return apiRequest<void>(`/users/${id}/follow`, {
             method: "PATCH",
         });
+    },
+
+    searchUsers: async (query: string, limit = 20, offset = 0) => {
+        return apiRequest<{ data: UserSearchResult[]; limit: number; next: string | null; offset: number; previous: string | null; total: number }>(
+            `/users/search?query=${encodeURIComponent(query)}&limit=${limit}&offset=${offset}`
+        );
     },
 };
