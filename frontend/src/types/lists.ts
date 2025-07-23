@@ -32,6 +32,13 @@ export interface List {
     created_at: string;
     updated_at: string;
     deleted_at: string | null;
+    created_by: {
+        id: string;
+        name: string;
+        image: string;
+        nickname: string;
+    };
+    is_liked: boolean;
 }
 
 export interface ListsResponse {
@@ -49,7 +56,7 @@ export interface CreateListRequest {
 }
 
 export interface UpdateListRequest {
-    name: "string",
+    name: string;
 }
 
 export interface ListResponse {

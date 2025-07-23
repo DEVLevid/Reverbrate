@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .formInput,
+    .formSelect {
+        padding: 0.5rem;
+        border: 1px solid #ffffff !important;
+        border-radius: 8px;
+        background: #443C68 !important;
+        color: white;
+
+        &:hover,
+        &:focus {
+            border-color: #333;
+            box-shadow: none;
+        }
+        
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .formSelect {
+        padding: 1srem;
+        border: 1px solid #ffffff !important;
+        border-radius: 8px;
+        background: #443C68 !important;
+        color: white;
+    }
+}

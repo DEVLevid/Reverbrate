@@ -23,6 +23,26 @@
             opacity: 0.5;
         }
     }
+
+    .toolbar {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        .addListButton {
+            background-color: #09080c;
+            border: none;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: #333;
+                border-color: #555;
+            }
+        }
+    }
 }
 
 .listPagination {
