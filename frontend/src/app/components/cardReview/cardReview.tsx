@@ -3,17 +3,10 @@ import style from "./styles.module.scss";
 import CardBase from "../base/cardBase/cardBase";
 import { StarSelector } from "../base/starSelector/starSelector";
 import Image from "next/image";
+import { Review } from "@/types/reviews";
 
 interface CardReviewProps {
-  cover: string;
-  trackName: string;
-  artist: string;
-  rate: number;
-  comment: string;
-  reviewerImage: string;
-  reviewerName: string;
-  reviewerNickname: string;
-  createdAt: string;
+  review: Review;
 }
 
 function formatRelativeDate(dateString: string): string {
@@ -35,56 +28,48 @@ function formatRelativeDate(dateString: string): string {
 }
 
 export default function CardReview({
-  cover,
-  trackName,
-  artist,
-  rate,
-  comment,
-  reviewerImage,
-  reviewerName,
-  reviewerNickname,
-  createdAt,
+  review,
 }: CardReviewProps) {
   return (
     <CardBase>
       <div className={style.reviewContent}>
         <div className={style.trackContainer}>
           <div className={style.albumCoverContainer}>
-            <img src={cover} alt={trackName} className={style.albumCover} />
+            <img src={review.track_info.cover} alt={review.track_info.name} className={style.albumCover} />
           </div>
           <div className={style.trackInfoContainer}>
             <div className={style.trackInfo}>
-              <div className={style.name}>{trackName}</div>
-              <div className={style.artist}>{artist}</div>
+              <div className={style.name}>{review.track_info.name}</div>
+              <div className={style.artist}>{review.track_info.artist}</div>
             </div>
             <div className={style.starSelector}>
-              <StarSelector rating={rate} setRating={() => {}} disabled />
+              <StarSelector rating={review.rate} setRating={() => {}} disabled />
             </div>
           </div>
         </div>
         <div className={style.reviewerContainer}>
           <div className={style.reviewerImageContainer}>
             <Image
-              src={reviewerImage}
-              alt={reviewerName}
+              src={review.created_by.image}
+              alt={review.created_by.name}
               width={50}
               height={50}
             ></Image>
           </div>
           <div className={style.reviewerInfoContainer}>
             <div className={style.reviewerInfo}>
-              <div className={style.reviewerName}>{reviewerName}</div>
+              <div className={style.reviewerName}>{review.created_by.name}</div>
               <span>-</span>
-              <div className={style.reviewerNickname}>{reviewerNickname}</div>
+              <div className={style.reviewerNickname}>{review.created_by.nickname}</div>
             </div>
             <div className={style.reviewDate}>
-              {formatRelativeDate(createdAt)}
+              {formatRelativeDate(review.created_at)}
             </div>
           </div>
         </div>
         <div className={style.comment}>
           <i>
-            "{comment.length > 40 ? comment.slice(0, 30) + "..." : comment}"
+            "{review.comment.length > 40 ? review.comment.slice(0, 30) + "..." : review.comment}"
           </i>
         </div>
       </div>
