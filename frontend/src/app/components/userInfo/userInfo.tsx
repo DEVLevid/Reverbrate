@@ -4,6 +4,7 @@ import { Tooltip } from "antd";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import styles from "./styles.module.scss";
+import { useRouter } from 'next/navigation';
 
 interface UserInfoProps {
     id: string;
@@ -22,12 +23,14 @@ export default function UserInfo({ image, name, nickname, id, bio }: UserInfoPro
             toast.error("Não foi possível copiar esse ID");
         }
     }
+    const router = useRouter();
+    const goToProfile = () => router.push(`/user/${id}`);
     return (
         <div className={styles.container}>
-            <Image src={image} alt={"Imagem de perfil de " + name} width={192} height={192} className={styles.image} />
+            <Image src={image} alt={"Imagem de perfil de " + name} width={192} height={192} className={styles.image} onClick={goToProfile} style={{ cursor: 'pointer' }} />
             <div className={styles.infoWrapper}>
                 <div className={styles.titleWrapper}>
-                    <h3>{name}</h3>
+                    <h3 style={{ cursor: 'pointer' }} onClick={goToProfile}>{name}</h3>
                     <div className={styles.idWrapper}>
                         <span>{nickname.trim() + "#" + id}</span>
                         <button onClick={handleCopyID}>

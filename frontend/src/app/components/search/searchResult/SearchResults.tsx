@@ -9,11 +9,14 @@ import TracksResult from "./tracks/tracksResult";
 import BestResult from "./bestResult/bestResult";
 import AlbumsResult from "./albumResult/albumResult";
 import ArtistsResult from "./artistResult/artistResult";
+import UserResult from './userResult';
+import { UserSearchResult } from '@/types/user';
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];
   albums: AlbumItem[];
   artists: ArtistItem[];
+  users: UserSearchResult[];
   isLoading: boolean;
   error: Error | null;
   hasSearched: boolean;
@@ -23,6 +26,7 @@ export default function SearchResults({
   tracks,
   albums,
   artists,
+  users,
   isLoading,
   error,
   hasSearched,
@@ -66,6 +70,7 @@ export default function SearchResults({
   const otherTracks = tracks.length > 1 ? tracks.slice(1) : [];
   return (
     <div className={styles.container}>
+      <UserResult users={users} />
       <div className={styles.tracksAndBestResultContainer}>
         <div className={styles.bestResultContainer}>
           <h2 className={styles.title}>Melhor Resultado</h2>
