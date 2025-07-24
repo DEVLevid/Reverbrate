@@ -14,7 +14,7 @@ interface TracksResultProps {
 export default function TracksResult({ tracks }: TracksResultProps) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
   const [selectedTrack, setSelectedTrack] = useState<TrackWithReview | null>(
-    null
+    null,
   );
 
   return (

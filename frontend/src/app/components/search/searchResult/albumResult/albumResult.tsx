@@ -12,9 +12,9 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
   const [selectedAlbumId, setSelectedAlbumId] = useState<string | null>(null);
 
-  const menuItems: MenuProps['items'] = [
+  const menuItems: MenuProps["items"] = [
     {
-      key: 'add-to-list',
+      key: "add-to-list",
       label: (
         <span onClick={() => setAddToListModalOpen(true)}>
           Adicionar à lista
@@ -35,7 +35,11 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
         className={styles.albumList}
       >
         {albums.map((album) => (
-          <div key={album.id} className={styles.albumItem} onClick={() => redirect(`/album/${album.id}`)}>
+          <div
+            key={album.id}
+            className={styles.albumItem}
+            onClick={() => redirect(`/album/${album.id}`)}
+          >
             <div className={styles.coverContainer}>
               {album.cover ? (
                 <>
@@ -54,7 +58,10 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
                         if (open) setSelectedAlbumId(album.id);
                       }}
                     >
-                      <div className={styles.icon} onClick={e => e.stopPropagation()}>
+                      <div
+                        className={styles.icon}
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         <DotsThreeVertical size={32} color="white" />
                       </div>
                     </Dropdown>

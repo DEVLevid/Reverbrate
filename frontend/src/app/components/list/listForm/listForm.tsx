@@ -14,10 +14,17 @@ interface AddListProps {
   initialName?: string;
   initialType?: ListType;
   listId?: string;
-  mode?: 'add' | 'edit';
+  mode?: "add" | "edit";
 }
 
-export default function listForm({ open, onCancel, initialName = '', initialType = 'track', listId, mode = 'add' }: AddListProps) {
+export default function listForm({
+  open,
+  onCancel,
+  initialName = "",
+  initialType = "track",
+  listId,
+  mode = "add",
+}: AddListProps) {
   const [type, setType] = useState<ListType>(initialType);
   const [name, setName] = useState(initialName);
   const { createListMutation, updateListMutation } = useLists();
@@ -31,22 +38,25 @@ export default function listForm({ open, onCancel, initialName = '', initialType
   }, [open]);
 
   const handleSubmit = async () => {
-    if (mode === 'edit' && listId) {
-      console.log('Enviando para edição:', { id: listId, data: { name, type } });
+    if (mode === "edit" && listId) {
+      console.log("Enviando para edição:", {
+        id: listId,
+        data: { name, type },
+      });
       await updateListMutation.mutateAsync(
         { id: listId, data: { name, type } },
         {
           onSuccess: async () => {
-            toast.success('Lista editada com sucesso!');
+            toast.success("Lista editada com sucesso!");
             await queryClient.invalidateQueries({ queryKey: ["lists"] });
             await queryClient.invalidateQueries({ queryKey: ["profile"] });
-            setName('');
+            setName("");
             onCancel();
           },
           onError: () => {
-            toast.error('Erro ao editar lista!');
+            toast.error("Erro ao editar lista!");
           },
-        }
+        },
       );
     } else {
       await createListMutation.mutateAsync(
@@ -56,16 +66,16 @@ export default function listForm({ open, onCancel, initialName = '', initialType
         },
         {
           onSuccess: async () => {
-            toast.success('Lista criada com sucesso!');
+            toast.success("Lista criada com sucesso!");
             await queryClient.invalidateQueries({ queryKey: ["lists"] });
             await queryClient.invalidateQueries({ queryKey: ["profile"] });
-            setName('');
+            setName("");
             onCancel();
           },
           onError: () => {
-            toast.error('Erro ao criar lista!');
+            toast.error("Erro ao criar lista!");
           },
-        }
+        },
       );
     }
   };
@@ -74,9 +84,9 @@ export default function listForm({ open, onCancel, initialName = '', initialType
     <BaseModal
       open={open}
       onCancel={onCancel}
-      title={mode === 'edit' ? 'Editar lista' : 'Adicionar lista'}
+      title={mode === "edit" ? "Editar lista" : "Adicionar lista"}
       onOk={handleSubmit}
-      okText={mode === 'edit' ? 'Salvar' : 'Adicionar'}
+      okText={mode === "edit" ? "Salvar" : "Adicionar"}
     >
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formItem}>
@@ -94,11 +104,17 @@ export default function listForm({ open, onCancel, initialName = '', initialType
             className={styles.formSelect}
             value={type}
             onChange={(e) => setType(e.target.value as ListType)}
-            disabled={mode === 'edit'}
+            disabled={mode === "edit"}
           >
-            <option value="track" className={styles.formSelectOption}>Músicas</option>
-            <option value="album" className={styles.formSelectOption}>Albuns</option>
-            <option value="artist" className={styles.formSelectOption}>Artistas</option>
+            <option value="track" className={styles.formSelectOption}>
+              Músicas
+            </option>
+            <option value="album" className={styles.formSelectOption}>
+              Albuns
+            </option>
+            <option value="artist" className={styles.formSelectOption}>
+              Artistas
+            </option>
           </select>
         </div>
       </form>

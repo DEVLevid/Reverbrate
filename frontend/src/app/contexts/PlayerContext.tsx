@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 export interface TrackToPlay {
   uri: string;
@@ -14,7 +14,9 @@ interface PlayerContextProps {
 
 const PlayerContext = createContext<PlayerContextProps | undefined>(undefined);
 
-export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [currentTrack, setCurrentTrack] = useState<TrackToPlay | null>(null);
 
   const playTrack = (track: TrackToPlay) => {
@@ -30,6 +32,7 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
 export const usePlayer = () => {
   const context = useContext(PlayerContext);
-  if (!context) throw new Error('usePlayer must be used within a PlayerProvider');
+  if (!context)
+    throw new Error("usePlayer must be used within a PlayerProvider");
   return context;
-}; 
+};

@@ -4,10 +4,10 @@ import SearchContainer from "../components/search/searchContainer/SearchContaine
 export default async function Home() {
   return (
     <>
-      <NavBar/>
-      <main style={{ padding: '20px' }}>
+      <NavBar />
+      <main style={{ padding: "20px" }}>
         <SearchContainer />
       </main>
     </>
   );
-} 
+}

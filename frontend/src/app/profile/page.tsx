@@ -18,7 +18,7 @@ export default function Profile() {
   const queryClient = useQueryClient();
   const { getProfile } = useProfile(queryClient);
   const { fetchLists } = useLists();
-  
+
   const { data: profile, isLoading, isFetching, isError } = getProfile();
   const { data: list } = fetchLists();
 
@@ -69,7 +69,9 @@ export default function Profile() {
               {isLoading ? (
                 <ReviewListSkeleton />
               ) : (
-                profile && <List title="Listas" lists={list?.data ?? []} isEditable />
+                profile && (
+                  <List title="Listas" lists={list?.data ?? []} isEditable />
+                )
               )}
             </section>
           </>

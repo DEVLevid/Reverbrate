@@ -1,92 +1,91 @@
 .mainContainer {
-    width: 100%;
-    display: flex;
-    align-items: centerl;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: centerl;
+  justify-content: center;
 
-    .artistContainer {
+  .artistContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+
+    .artistHeader {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      .artistImage {
+        border-radius: 100%;
+      }
+
+      .artistHeaderWrapper {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem;
+        gap: 0.25rem;
 
-        .artistHeader {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-
-            .artistImage {
-                border-radius: 100%;
-            }
-
-            .artistHeaderWrapper {
-                display: flex;
-                flex-direction: column;
-                gap: 0.25rem;
-
-                span {
-                    color: #fff;
-                    opacity: 0.75;
-                }
-            }
+        span {
+          color: #fff;
+          opacity: 0.75;
         }
-
-        .artistTracksContainer {
-            margin-top: 4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            min-width: calc(768px - 4rem);
-
-            .musicListTitle {
-                font-size: 1.5rem;
-            }
-
-            .musicList {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                list-style: none;
-            }
-        }
+      }
     }
+
+    .artistTracksContainer {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      min-width: calc(768px - 4rem);
+
+      .musicListTitle {
+        font-size: 1.5rem;
+      }
+
+      .musicList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        list-style: none;
+      }
+    }
+  }
 }
 
-
 @media screen and (max-width: 768px) {
-    .mainContainer {
-        .artistContainer {
-            padding: 1.5rem;
+  .mainContainer {
+    .artistContainer {
+      padding: 1.5rem;
 
-            .artistHeader {
-                gap: 1rem;
+      .artistHeader {
+        gap: 1rem;
 
-                .artistImage {
-                    width: 6rem;
-                    height: 6rem;
-                }
-
-                .artistHeaderWrapper {
-                    span {
-                        font-size: 0.875rem;
-                    }
-
-                    h1 {
-                        font-size: 1.75rem;
-                    }
-                }
-            }
-
-            .artistTracksContainer {
-                margin-top: 3rem;
-                gap: 1rem;
-                min-width: auto;
-
-                .musicListTitle {
-                    font-size: 1.25rem;
-                }
-            }
+        .artistImage {
+          width: 6rem;
+          height: 6rem;
         }
+
+        .artistHeaderWrapper {
+          span {
+            font-size: 0.875rem;
+          }
+
+          h1 {
+            font-size: 1.75rem;
+          }
+        }
+      }
+
+      .artistTracksContainer {
+        margin-top: 3rem;
+        gap: 1rem;
+        min-width: auto;
+
+        .musicListTitle {
+          font-size: 1.25rem;
+        }
+      }
     }
+  }
 }

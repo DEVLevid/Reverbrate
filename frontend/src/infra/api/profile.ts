@@ -7,7 +7,7 @@ export const ProfileApi = {
       `/users/current?limit=${limit}&offset=${offset}`,
       {
         method: "GET",
-      }
+      },
     );
   },
 

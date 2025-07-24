@@ -1,121 +1,121 @@
 .signUpPage {
-    min-width: 100vw;
-    min-height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .signUpContainer {
+    padding: 2rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #1c1825;
+    border-radius: 1rem;
+    min-width: 34rem;
 
-    .signUpContainer {
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        background-color: #1C1825;
-        border-radius: 1rem;
-        min-width: 34rem;
+    .signUpHeader {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
 
-        .signUpHeader {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+      h3 {
+        font-size: 2rem;
+      }
 
-            h3 {
-                font-size: 2rem;
-            }
-
-            p {
-                opacity: 50%;
-            }
-        }
-
-        .form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-
-            .info {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-
-                span {
-                    font-size: 0.75rem;
-                    opacity: 50%;
-                }
-            }
-        }
-
-        .signUpBtn {
-            text-align: center;
-            color: #fff;
-            font-weight: bold;
-            background-color: #09080C;
-            border: none;
-            width: 100%;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-
-            &:hover {
-                opacity: 75%;
-            }
-
-            &:disabled {
-                opacity: 25%;
-                cursor: not-allowed;
-            }
-
-            & .loadingWrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                animation: spin 1s linear infinite;
-
-                @keyframes spin {
-                    to {
-                        transform: rotate(360deg);
-                    }
-                }
-            }
-        }
+      p {
+        opacity: 50%;
+      }
     }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        span {
+          font-size: 0.75rem;
+          opacity: 50%;
+        }
+      }
+    }
+
+    .signUpBtn {
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      background-color: #09080c;
+      border: none;
+      width: 100%;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 75%;
+      }
+
+      &:disabled {
+        opacity: 25%;
+        cursor: not-allowed;
+      }
+
+      & .loadingWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: spin 1s linear infinite;
+
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+  }
 }
 
 .spotifyName {
-    color: #1DB954;
-    font-weight: bold;
+  color: #1db954;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
-    .signUpPage {
-        padding: 2rem;
+  .signUpPage {
+    padding: 2rem;
 
-        .signUpContainer {
-            padding: 1.5rem;
-            min-width: 0px;
-            width: 100%;
+    .signUpContainer {
+      padding: 1.5rem;
+      min-width: 0px;
+      width: 100%;
 
-            .signUpHeader {
-                gap: 0.75rem;
+      .signUpHeader {
+        gap: 0.75rem;
 
-                h3 {
-                    font-size: 1.5rem;
-                }
-
-                p {
-                    font-size: 0.875rem;
-                }
-            }
-
-            .form {
-                .info {
-                    span {
-                        font-size: 0.75rem;
-                    }
-                }
-            }
+        h3 {
+          font-size: 1.5rem;
         }
+
+        p {
+          font-size: 0.875rem;
+        }
+      }
+
+      .form {
+        .info {
+          span {
+            font-size: 0.75rem;
+          }
+        }
+      }
     }
+  }
 }

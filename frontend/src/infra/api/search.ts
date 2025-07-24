@@ -1,10 +1,10 @@
-import { SearchParams, SearchResponse } from '@/types/search';
-import { apiRequest } from './config';
+import { SearchParams, SearchResponse } from "@/types/search";
+import { apiRequest } from "./config";
 
 export const SearchApi = {
   search: async (params: SearchParams): Promise<SearchResponse> => {
-    const { query, type = 'track', limit = 20, offset = 0 } = params;
-    
+    const { query, type = "track", limit = 20, offset = 0 } = params;
+
     const searchParams = new URLSearchParams({
       query,
       type,
@@ -16,4 +16,3 @@ export const SearchApi = {
   },
 };
 export type { SearchParams };
-

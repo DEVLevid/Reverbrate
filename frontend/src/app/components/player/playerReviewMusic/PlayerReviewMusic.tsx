@@ -11,7 +11,7 @@ function PlayerMusicReview() {
         key={index}
         size={20}
         weight="fill"
-        color={index < rating ? '#ffe100' : '#1c1825'}
+        color={index < rating ? "#ffe100" : "#1c1825"}
       />
     ));
   };

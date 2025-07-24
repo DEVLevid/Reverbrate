@@ -13,7 +13,11 @@ export default function BestResult({
     <div className={styles.bestResult}>
       <div className={styles.bestCoverContainer}>
         {track.cover ? (
-          <img src={track.cover} alt={track.name} className={styles.bestCover} />
+          <img
+            src={track.cover}
+            alt={track.name}
+            className={styles.bestCover}
+          />
         ) : (
           <div className={styles.placeholderCover}>
             <span>🎵</span>
@@ -29,7 +33,6 @@ export default function BestResult({
           <div className={styles.satarContainer}>
             <BaseReview track={track} />
           </div>
-      
         </div>
         {track.review && (
           <>

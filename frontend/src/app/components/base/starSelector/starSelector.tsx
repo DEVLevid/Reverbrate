@@ -26,7 +26,8 @@ export const StarSelector: React.FC<{
           role="button"
           aria-label={`Dar nota ${star}`}
           onKeyDown={(e: React.KeyboardEvent<HTMLSpanElement>) => {
-            if (!disabled && (e.key === "Enter" || e.key === " ")) setRating(star);
+            if (!disabled && (e.key === "Enter" || e.key === " "))
+              setRating(star);
           }}
         >
           <Star

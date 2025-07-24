@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import styles from './styles.module.scss';
-import { MagnifyingGlass, X, XCircle } from '@phosphor-icons/react/dist/ssr';
+import React, { useState } from "react";
+import styles from "./styles.module.scss";
+import { MagnifyingGlass, X, XCircle } from "@phosphor-icons/react/dist/ssr";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -36,8 +36,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
             aria-label="Limpar busca"
             className={styles.clearButton}
             onClick={() => {
-              setQuery('');
-              onSearch('');
+              setQuery("");
+              onSearch("");
             }}
             tabIndex={0}
           >
@@ -46,5 +46,5 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         )}
       </div>
     </div>
-  )
+  );
 }

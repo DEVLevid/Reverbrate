@@ -29,20 +29,32 @@ export default function SignupPage() {
   const handleSignUp = async () => {
     if (disabled) return;
 
-    await signUp.mutateAsync({
-      name: name,
-      nickname: nickname,
-      email: email,
-      bio: bio,
-    }, {
-      onError: (e) => {
-        if (e.message === "HTTP error! status: 400") {
-          toast.error(<p>O e-mail cadastrado deve ser o mesmo da sua conta <span className={styles.spotifyName}>Spotify®</span>.</p>)
-        } else {
-          toast.error(<p>Houve um erro ao tentar cadastrar. Tente novamente mais tarde.</p>)
-        }
-      }
-    });
+    await signUp.mutateAsync(
+      {
+        name: name,
+        nickname: nickname,
+        email: email,
+        bio: bio,
+      },
+      {
+        onError: (e) => {
+          if (e.message === "HTTP error! status: 400") {
+            toast.error(
+              <p>
+                O e-mail cadastrado deve ser o mesmo da sua conta{" "}
+                <span className={styles.spotifyName}>Spotify®</span>.
+              </p>,
+            );
+          } else {
+            toast.error(
+              <p>
+                Houve um erro ao tentar cadastrar. Tente novamente mais tarde.
+              </p>,
+            );
+          }
+        },
+      },
+    );
 
     redirect("/");
   };
@@ -93,14 +105,13 @@ export default function SignupPage() {
           onClick={handleSignUp}
           disabled={disabled}
         >
-          {
-            signUp.isPending ?
-              <div className={styles.loadingWrapper}>
-                <CircleNotchIcon size={24} />
-              </div>
-              :
-              "Confirmar cadastro"
-          }
+          {signUp.isPending ? (
+            <div className={styles.loadingWrapper}>
+              <CircleNotchIcon size={24} />
+            </div>
+          ) : (
+            "Confirmar cadastro"
+          )}
         </button>
       </section>
     </main>

@@ -1,4 +1,4 @@
-export type ListType = 'track' | 'artist' | 'album';
+export type ListType = "track" | "artist" | "album";
 
 export interface TrackListItem {
   id: string;
@@ -60,7 +60,7 @@ export interface UpdateListRequest {
 }
 
 export interface ListResponse {
-  id: string,
+  id: string;
   name: string;
   type: ListType;
   items: ListItem[];
@@ -69,6 +69,6 @@ export interface ListResponse {
 }
 
 export interface EditListItemsRequest {
-  operation: "add" | "remove",
-  item_id: string,
+  operation: "add" | "remove";
+  item_id: string;
 }

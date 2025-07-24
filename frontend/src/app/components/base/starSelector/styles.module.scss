@@ -1,22 +1,22 @@
 .stars {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-  }
-  
-  .star {
-    cursor: pointer;
-    transition: transform 0.1s;
-  }
-  
-  .star:hover {
-    transform: scale(1);
-  }
-  
-  .star.filled {
-    color: #FFD700;
-  }
-  
-  .star.unfilled {
-    color: #ccc;
-  }
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.star {
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.star:hover {
+  transform: scale(1);
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star.unfilled {
+  color: #ccc;
+}

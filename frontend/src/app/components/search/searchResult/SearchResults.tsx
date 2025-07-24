@@ -9,8 +9,8 @@ import TracksResult from "./tracks/tracksResult";
 import BestResult from "./bestResult/bestResult";
 import AlbumsResult from "./albumResult/albumResult";
 import ArtistsResult from "./artistResult/artistResult";
-import UserResult from './userResult';
-import { UserSearchResult } from '@/types/user';
+import UserResult from "./userResult";
+import { UserSearchResult } from "@/types/user";
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];

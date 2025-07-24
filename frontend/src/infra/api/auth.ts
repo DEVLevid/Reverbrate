@@ -16,5 +16,5 @@ export const AuthApi = {
       },
       body: JSON.stringify(data),
     });
-  }
+  },
 };

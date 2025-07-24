@@ -1,6 +1,6 @@
-import { Modal, List, Spin, message } from 'antd';
-import { useLists } from '@/app/hooks/useLists';
-import styles from './styles.module.scss';
+import { Modal, List, Spin, message } from "antd";
+import { useLists } from "@/app/hooks/useLists";
+import styles from "./styles.module.scss";
 
 interface AddListModalProps {
   open: boolean;
@@ -9,23 +9,28 @@ interface AddListModalProps {
   title?: string;
 }
 
-export default function AddListModal({ open, onClose, itemId, title = 'Adicionar à lista' }: AddListModalProps) {
+export default function AddListModal({
+  open,
+  onClose,
+  itemId,
+  title = "Adicionar à lista",
+}: AddListModalProps) {
   const { fetchLists, editListItemsMutation } = useLists();
   const { data, isLoading } = fetchLists();
 
   const handleAddToList = (listId: string) => {
     if (!itemId) return;
     editListItemsMutation.mutate(
-      { id: listId, data: { operation: 'add', item_id: itemId } },
+      { id: listId, data: { operation: "add", item_id: itemId } },
       {
         onSuccess: () => {
-          message.success('Música adicionada à lista!');
+          message.success("Música adicionada à lista!");
           onClose();
         },
         onError: () => {
-          message.error('Erro ao adicionar música à lista');
+          message.error("Erro ao adicionar música à lista");
         },
-      }
+      },
     );
   };
 
@@ -42,11 +47,11 @@ export default function AddListModal({ open, onClose, itemId, title = 'Adicionar
       ) : (
         <List
           dataSource={data?.data || []}
-          renderItem={list => (
+          renderItem={(list) => (
             <List.Item
               key={list.id}
               onClick={() => handleAddToList(list.id)}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             >
               {list.name}
             </List.Item>

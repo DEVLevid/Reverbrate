@@ -1,137 +1,137 @@
 .container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .imageWrapper {
+    position: relative;
+    width: 192px;
+    height: 192px;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    justify-content: center;
     align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .imageWrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
 
-    .imageWrapper {
-        position: relative;
-        width: 192px;
-        height: 192px;
-        border-radius: 100%;
-        overflow: hidden;
-        cursor: pointer;
-    }
+    .titleWrapper {
+      display: flex;
+      flex-direction: column;
 
-    .image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: 100%;
-    }
+      h3 {
+        font-size: 2rem;
+        font-weight: bold;
+      }
 
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+      .idWrapper {
         display: flex;
-        justify-content: center;
         align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-    }
+        gap: 0.5rem;
+        opacity: 0.5;
 
-    .imageWrapper:hover .overlay {
-        opacity: 1;
-    }
-
-    .infoWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        .titleWrapper {
-            display: flex;
-            flex-direction: column;
-
-            h3 {
-                font-size: 2rem;
-                font-weight: bold;
-            }
-
-            .idWrapper {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                opacity: 0.5;
-
-                span {
-                    font-size: 0.875rem;
-                    font-weight: bold;
-                }
-
-                button {
-                    background: none;
-                    border: none;
-                    padding: 0.15rem;
-                    border-radius: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #fff;
-                    cursor: pointer;
-                    transition: all 0.3s ease-in-out;
-
-                    &:hover {
-                        background-color: #fff;
-                        color: #09080c;
-                    }
-                }
-            }
+        span {
+          font-size: 0.875rem;
+          font-weight: bold;
         }
 
-        .bio {
-            display: -webkit-box;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: justify;
-        }
+        button {
+          background: none;
+          border: none;
+          padding: 0.15rem;
+          border-radius: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
 
-        .noBio {
-            opacity: 0.5;
+          &:hover {
+            background-color: #fff;
+            color: #09080c;
+          }
         }
+      }
     }
+
+    .bio {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: justify;
+    }
+
+    .noBio {
+      opacity: 0.5;
+    }
+  }
 }
 
 .formWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 @media screen and (max-width: 64rem) {
-    .container {
-        align-items: flex-start;
-        gap: 1rem;
+  .container {
+    align-items: flex-start;
+    gap: 1rem;
 
-        .imageWrapper {
-            width: 7rem;
-            height: 7rem;
-        }
+    .imageWrapper {
+      width: 7rem;
+      height: 7rem;
     }
+  }
 }
 
 @media screen and (max-width: 48rem) {
-    .container {
-        .infoWrapper {
-            .titleWrapper {
-                h3 {
-                    font-size: 1.5rem;
-                }
-            }
-
-            .bio {
-                font-size: 0.75rem;
-            }
-
-            .noBio {
-                font-size: 0.75rem;
-            }
+  .container {
+    .infoWrapper {
+      .titleWrapper {
+        h3 {
+          font-size: 1.5rem;
         }
+      }
+
+      .bio {
+        font-size: 0.75rem;
+      }
+
+      .noBio {
+        font-size: 0.75rem;
+      }
     }
+  }
 }

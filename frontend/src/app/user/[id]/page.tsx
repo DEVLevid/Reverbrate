@@ -84,9 +84,7 @@ export default function User() {
               {isLoading ? (
                 <ReviewListSkeleton />
               ) : (
-                user && (
-                  <List title="Listas" lists={user.lists.data} />
-                )
+                user && <List title="Listas" lists={user.lists.data} />
               )}
             </section>
           </>

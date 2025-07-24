@@ -46,7 +46,7 @@ const ProgressBar = ({ progress, onSeek, onDragUpdate }: ProgressBarProps) => {
         }
       }
     },
-    [isDragging, calculateProgress, onDragUpdate]
+    [isDragging, calculateProgress, onDragUpdate],
   );
 
   const handleMouseUp = useCallback(() => {

@@ -14,8 +14,8 @@ export const mockArtist = {
       cover: "https://i.scdn.co/image/ab67616d0000b27371d62ea7ea8a5be92d3c1f62",
       review: {
         rate: 4,
-        comment: "Som legal"
-      }
+        comment: "Som legal",
+      },
     },
     {
       id: "6dOtVTDdiauQNBQEDOtlAB",
@@ -25,9 +25,10 @@ export const mockArtist = {
       cover: "https://i.scdn.co/image/ab67616d0000b27371d62ea7ea8a5be92d3c1f62",
       review: {
         rate: 4,
-        comment: "Som legal"
-      }
-    }, {
+        comment: "Som legal",
+      },
+    },
+    {
       id: "6dOtVTDdiauQNBQEDOtlAB",
       uri: "spotify:track:6dOtVTDdiauQNBQEDOtlAB",
       name: "BIRDS OF A FEATHER",
@@ -35,8 +36,8 @@ export const mockArtist = {
       cover: "https://i.scdn.co/image/ab67616d0000b27371d62ea7ea8a5be92d3c1f62",
       review: {
         rate: 4,
-        comment: "Som legal"
-      }
+        comment: "Som legal",
+      },
     },
-  ]
-}
+  ],
+};

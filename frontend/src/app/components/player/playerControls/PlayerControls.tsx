@@ -55,7 +55,7 @@ function PlayerControls({
       });
     } else {
       console.warn(
-        "Objeto do player do Spotify não disponível ou sem método seek."
+        "Objeto do player do Spotify não disponível ou sem método seek.",
       );
     }
   };

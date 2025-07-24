@@ -1,85 +1,85 @@
 .container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: flex-start;
 
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        height: fit-content;
-        border-inline: 1px solid transparent;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    border-inline: 1px solid transparent;
 
-        div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+
+  .followBtn {
+    grid-column: 6;
+    border: none;
+    border-radius: 1rem;
+    background-color: #443c68;
+    padding: 1rem 0rem;
+    color: #fff;
+    font-weight: bold;
+    height: fit-content;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    & .loadingWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: spin 1s linear infinite;
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
         }
+      }
     }
 
-    .followBtn {
-        grid-column: 6;
-        border: none;
-        border-radius: 1rem;
-        background-color: #443c68;
-        padding: 1rem 0rem;
-        color: #fff;
-        font-weight: bold;
-        height: fit-content;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-
-        & .loadingWrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: spin 1s linear infinite;
-
-            @keyframes spin {
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-        }
-
-        &:hover {
-            opacity: 90%;
-        }
-
-        &:disabled {
-            cursor: not-allowed;
-        }
+    &:hover {
+      opacity: 90%;
     }
 
-    .leftDivider {
-        border-left-color: #fff;
+    &:disabled {
+      cursor: not-allowed;
     }
+  }
 
-    .rightDivider {
-        border-right: 2px solid #fff;
-    }
+  .leftDivider {
+    border-left-color: #fff;
+  }
+
+  .rightDivider {
+    border-right: 2px solid #fff;
+  }
 }
 
 @media screen and (max-width: 48rem) {
-    .container {
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 2rem;
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 2rem;
 
-        .wrapper {
-            div {
-                h4 {
-                    font-size: 0.875rem;
-                }
-
-                span {
-                    font-size: 0.75rem;
-                }
-            }
+    .wrapper {
+      div {
+        h4 {
+          font-size: 0.875rem;
         }
 
-        .followBtn {
-            border-radius: 0.5rem;
-            grid-column: span 4;
+        span {
+          font-size: 0.75rem;
         }
+      }
     }
+
+    .followBtn {
+      border-radius: 0.5rem;
+      grid-column: span 4;
+    }
+  }
 }

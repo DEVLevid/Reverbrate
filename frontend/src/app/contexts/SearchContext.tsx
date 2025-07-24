@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface SearchContextType {
   searchQuery: string;
@@ -10,7 +10,7 @@ interface SearchContextType {
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export function SearchProvider({ children }: { children: ReactNode }) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
@@ -22,7 +22,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 export function useSearchContext() {
   const context = useContext(SearchContext);
   if (context === undefined) {
-    throw new Error('useSearchContext must be used within a SearchProvider');
+    throw new Error("useSearchContext must be used within a SearchProvider");
   }
   return context;
-} 
+}

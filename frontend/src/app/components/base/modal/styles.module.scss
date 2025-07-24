@@ -1,12 +1,12 @@
 .customModal :global(.ant-modal-content) {
-  background: #1C1825;
+  background: #1c1825;
   color: white;
-  border: 1px solid #1C1825;
+  border: 1px solid #1c1825;
 }
 
 .customModal :global(.ant-modal-header),
 .customModal :global(.ant-modal-footer) {
-  background: #1C1825;
+  background: #1c1825;
 }
 
 .customModal :global(.ant-modal-header) {
@@ -36,16 +36,16 @@
 .customModal :global(.ant-modal-close),
 .customModal :global(.ant-modal-footer),
 .customModal :global(.ant-modal-header) {
-  border-color: #1C1825 !important;
-  background: #1C1825 !important;
-} 
+  border-color: #1c1825 !important;
+  background: #1c1825 !important;
+}
 
 .customModal :global(.ant-btn) {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 
 .customModal :global(.ant-btn-primary) {
-  background: #7C6AA0 !important;
-  border-color: #7C6AA0 !important;
+  background: #7c6aa0 !important;
+  border-color: #7c6aa0 !important;
   color: #fff !important;
 }

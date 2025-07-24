@@ -11,7 +11,7 @@ import PlayerControls from "./playerControls/PlayerControls";
 
 import PlayerMusicInfo from "./playerMusicInfo/PlayerMusicInfo";
 import PlayerMusicReview from "./playerReviewMusic/PlayerReviewMusic";
-import { usePlayer } from '@/app/contexts/PlayerContext';
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 const initialPlayerState = {
   is_paused: true,
@@ -67,9 +67,12 @@ function Player() {
   useEffect(() => {
     tokenMutation.mutate();
 
-    const interval = setInterval(() => {
-      tokenMutation.mutate();
-    }, 55 * 60 * 1000);
+    const interval = setInterval(
+      () => {
+        tokenMutation.mutate();
+      },
+      55 * 60 * 1000,
+    );
 
     return () => clearInterval(interval);
   }, []);
@@ -106,7 +109,7 @@ function Player() {
         "initialization_error",
         ({ message }: { message: string }) => {
           console.error("Falha ao inicializar o player:", message);
-        }
+        },
       );
       player.addListener(
         "authentication_error",
@@ -114,9 +117,9 @@ function Player() {
           console.error(
             "Falha na autenticação:",
             message,
-            "Verifique os escopos e a validade do token!"
+            "Verifique os escopos e a validade do token!",
           );
-        }
+        },
       );
       player.addListener(
         "account_error",
@@ -124,15 +127,15 @@ function Player() {
           console.error(
             "Erro de conta:",
             message,
-            "O usuário precisa de Spotify Premium?"
+            "O usuário precisa de Spotify Premium?",
           );
-        }
+        },
       );
       player.addListener(
         "playback_error",
         ({ message }: { message: string }) => {
           console.error("Erro de reprodução:", message);
-        }
+        },
       );
 
       player.addListener("ready", ({ device_id }: { device_id: string }) => {
@@ -147,7 +150,7 @@ function Player() {
           console.log("Dispositivo desconectado", device_id);
           setIsConnected(false);
           setShowPlayer(false);
-        }
+        },
       );
 
       player.addListener("player_state_changed", (playerState: any) => {
@@ -191,14 +194,17 @@ function Player() {
     if (!currentTrack || !state.player) return;
     // Tocar a música selecionada
     state.player._options.getOAuthToken((token: string) => {
-      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${state.player._options.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ uris: [currentTrack.uri] }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+      fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${state.player._options.id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ uris: [currentTrack.uri] }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
     });
   }, [currentTrack, state.player]);
 
