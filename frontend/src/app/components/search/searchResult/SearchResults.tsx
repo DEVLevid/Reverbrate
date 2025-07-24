@@ -3,14 +3,13 @@
 import React from "react";
 import { TrackWithReview, AlbumItem, ArtistItem } from "@/types/search";
 import styles from "./styles.module.scss";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import TracksResult from "./tracks/tracksResult";
 import BestResult from "./bestResult/bestResult";
 import AlbumsResult from "./albumResult/albumResult";
 import ArtistsResult from "./artistResult/artistResult";
-import UserResult from './userResult';
-import { UserSearchResult } from '@/types/user';
+import UserResult from "./userResult/userResult";
+import { UserSearchResult } from "@/types/user";
+import SearchResultsSkeleton from "./SearchResultsSkeleton";
 
 interface SearchResultsProps {
   tracks: TrackWithReview[];
@@ -35,20 +34,7 @@ export default function SearchResults({
     return <></>;
   }
   if (isLoading) {
-    return (
-      <div className={styles.container}>
-        <div className={styles.loading}>
-          <Spin
-            indicator={
-              <LoadingOutlined
-                style={{ fontSize: 40, color: "#7C6AA0" }}
-                spin
-              />
-            }
-          />
-        </div>
-      </div>
-    );
+    return <SearchResultsSkeleton />;
   }
   if (error) {
     return (
