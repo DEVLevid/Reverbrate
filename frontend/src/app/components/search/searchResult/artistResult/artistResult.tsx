@@ -3,10 +3,27 @@ import styles from './styles.module.scss';
 import { ArtistItem } from '@/types/search';
 import { Carousel } from 'antd';
 import { DotsThreeVertical, User } from "@phosphor-icons/react/dist/ssr";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import AddListModal from "@/app/components/list/addListModal/addListModal";
+import { useState } from "react";
+import { Dropdown, MenuProps } from "antd";
 
 export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
+  const [addToListModalOpen, setAddToListModalOpen] = useState(false);
+  const [selectedArtistId, setSelectedArtistId] = useState<string | null>(null);
   const router = useRouter();
+
+  const menuItems: MenuProps['items'] = [
+    {
+      key: 'add-to-list',
+      label: (
+        <span onClick={() => setAddToListModalOpen(true)}>
+          Adicionar à lista
+        </span>
+      ),
+    },
+  ];
+
     return (
       <div className={styles.container}>
         <h3>Artistas</h3>
@@ -19,9 +36,7 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
           className={styles.artistList}
         >
           {artists.map((artist) => (
-            <div key={artist.id} className={styles.artistItem} onClick={() => {
-              router.push(`/artist/${artist.id}`);
-            }}>
+            <div key={artist.id} className={styles.artistItem} onClick={() => redirect(`/artist/${artist.id}`)}>
               {artist.cover ? (
                 <div className={styles.coverMenuContainer}>
                   <img
@@ -29,9 +44,19 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
                     alt={artist.name}
                     className={styles.artistCover}
                   />
-                  <div className={styles.icon}>
-                    <DotsThreeVertical size={32} color="#fff" />
-                  </div>
+                  <Dropdown
+                    menu={{ items: menuItems }}
+                    trigger={["click"]}
+                    placement="bottomRight"
+                    arrow
+                    onOpenChange={(open: boolean) => {
+                      if (open) setSelectedArtistId(artist.id);
+                    }}
+                  >
+                    <div className={styles.icon} onClick={e => e.stopPropagation()}>
+                      <DotsThreeVertical size={32} color="#fff" />
+                    </div>
+                  </Dropdown>
                 </div>
               ) : (
                 <div className={styles.placeholderCover}>
@@ -46,6 +71,11 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
             </div>
           ))}
         </Carousel>
+        <AddListModal
+          open={addToListModalOpen}
+          onClose={() => setAddToListModalOpen(false)}
+          itemId={selectedArtistId}
+        />
       </div>
     );
 }

@@ -43,6 +43,8 @@ export async function apiRequest<T>(
     mode: 'cors',
   };
 
+
+
   // Merge headers properly
   const mergedOptions = {
     ...defaultOptions,
