@@ -19,3 +19,9 @@ export interface Profile {
     lists: ListsResponse;
     network: Network;
 }
+
+export interface UpdateProfileRequest {
+    name: string;
+    bio: string;
+    is_private: boolean;
+}

@@ -40,12 +40,28 @@ export default function SearchContainer() {
     offset: 0
   });
 
+  const {
+    data: userData,
+    isLoading: isLoadingUsers,
+    error: errorUsers
+  } = useQuery({
+    queryKey: ['userSearch', debouncedQuery, 20, 0],
+    queryFn: () => UserApi.searchUsers(debouncedQuery, 20, 0),
+    enabled: !!debouncedQuery,
+    retry: false,
+  });
+  function isApiError(error: unknown): error is { status: number } {
+    return typeof error === 'object' && error !== null && 'status' in error && typeof (error as any).status === 'number';
+  }
+
+  const users: UserSearchResult[] = isApiError(errorUsers) && errorUsers.status === 404 ? [] : (userData?.data || []);
+
   const tracks: TrackWithReview[] = tracksData?.tracks?.data || [];
   const albums: AlbumItem[] = albumsData?.albums?.data || [];
   const artists: ArtistItem[] = artistsData?.artists?.data || [];
 
-  const isLoading = isLoadingTracks || isLoadingAlbums || isLoadingArtists;
-  const error = errorTracks || errorAlbums || errorArtists || null;
+  const isLoading = isLoadingTracks || isLoadingAlbums || isLoadingArtists || isLoadingUsers;
+  const error = errorTracks || errorAlbums || errorArtists || (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) || null;
 
   if (!!debouncedQuery) {
     return (
@@ -54,6 +70,7 @@ export default function SearchContainer() {
           tracks={tracks}
           albums={albums}
           artists={artists}
+          users={users}
           isLoading={isLoading}
           error={error}
           hasSearched={!!debouncedQuery}
