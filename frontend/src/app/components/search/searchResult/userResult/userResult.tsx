@@ -1,5 +1,5 @@
-import UserInfo from "../../userInfo/userInfo";
-import styles from "./userResult.module.scss";
+import UserInfo from "@/app/components/userInfo/userInfo";
+import styles from "./styles.module.scss";
 import { UserSearchResult } from "@/types/user";
 
 interface UserResultProps {
@@ -19,8 +19,7 @@ export default function UserResult({ users }: UserResultProps) {
             name={user.name}
             nickname={user.nickname}
             image={user.image}
-            bio={""}
-          />
+            bio={""} isEditable={false}          />
         ))}
       </div>
     </div>
