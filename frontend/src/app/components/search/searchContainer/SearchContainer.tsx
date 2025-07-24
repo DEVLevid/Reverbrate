@@ -6,6 +6,9 @@ import { useSearchContext } from '../../../contexts/SearchContext';
 import SearchResults from '../searchResult/SearchResults';
 import RecentActivity from '../../recentActivity/recentActivity';
 import { ArtistItem, AlbumItem, TrackWithReview } from '@/types/search';
+import { UserSearchResult } from '@/types/user';
+import { useQuery } from '@tanstack/react-query';
+import { UserApi } from '@/infra/api/user';
 import Rankings from '../../rankings/rankings';
 
 export default function SearchContainer() {

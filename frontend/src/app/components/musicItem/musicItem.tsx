@@ -12,25 +12,7 @@ interface MusicItemProps {
   track: TrackWithReview;
 }
 export default function MusicItem({ track }: MusicItemProps) {
-    return <Item>
-        <div className={styles.infoWrapper}>
-            <Image src={track.cover} alt={"Capa do album da musica" + track.name} width={50} height={50} className={styles.image} />
-            <div className={styles.infoWrapperText}>
-                <h3>{track.name}</h3>
-                <p>{track.artist_name}</p>
-            </div>
-        </div>
-        <div className={styles.reviewWrapperDesktop}>
-            {track.review?.comment && (
-                <Tooltip title={"\"" + track.review.comment + "\""} placement="top" className={styles.commentIcon}>
-                    <TextAlignLeftIcon size={24} />
-                </Tooltip>
-            )}
-            <BaseReview track={track} />
-            <button className={styles.optionBtn}>
-                <DotsThreeIcon size={28} />
-            </button>
-        </div>
+  const [addToListModalOpen, setAddToListModalOpen] = useState(false);
 
   const menuItems = [
     {
