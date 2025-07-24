@@ -27,15 +27,17 @@ function formatRelativeDate(dateString: string): string {
   return date.toLocaleDateString("pt-BR");
 }
 
-export default function CardReview({
-  review,
-}: CardReviewProps) {
+export default function CardReview({ review }: CardReviewProps) {
   return (
     <CardBase>
       <div className={style.reviewContent}>
         <div className={style.trackContainer}>
           <div className={style.albumCoverContainer}>
-            <img src={review.track_info.cover} alt={review.track_info.name} className={style.albumCover} />
+            <img
+              src={review.track_info.cover}
+              alt={review.track_info.name}
+              className={style.albumCover}
+            />
           </div>
           <div className={style.trackInfoContainer}>
             <div className={style.trackInfo}>
@@ -43,7 +45,11 @@ export default function CardReview({
               <div className={style.artist}>{review.track_info.artist}</div>
             </div>
             <div className={style.starSelector}>
-              <StarSelector rating={review.rate} setRating={() => {}} disabled />
+              <StarSelector
+                rating={review.rate}
+                setRating={() => {}}
+                disabled
+              />
             </div>
           </div>
         </div>
@@ -60,7 +66,9 @@ export default function CardReview({
             <div className={style.reviewerInfo}>
               <div className={style.reviewerName}>{review.created_by.name}</div>
               <span>-</span>
-              <div className={style.reviewerNickname}>{review.created_by.nickname}</div>
+              <div className={style.reviewerNickname}>
+                {review.created_by.nickname}
+              </div>
             </div>
             <div className={style.reviewDate}>
               {formatRelativeDate(review.created_at)}
@@ -69,7 +77,11 @@ export default function CardReview({
         </div>
         <div className={style.comment}>
           <i>
-            "{review.comment.length > 40 ? review.comment.slice(0, 30) + "..." : review.comment}"
+            &quot;
+            {review.comment.length > 40
+              ? review.comment.slice(0, 30) + "..."
+              : review.comment}
+            &quot;
           </i>
         </div>
       </div>
