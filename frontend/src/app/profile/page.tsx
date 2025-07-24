@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import Error from "../components/base/error/error";
 import Follow from "../components/follow/follow";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
@@ -13,10 +14,10 @@ import { useProfile } from "../hooks/useProfile";
 import styles from "./styles.module.scss";
 
 export default function Profile() {
-    const { getProfile } = useProfile();
-    const { data: profile, isLoading, isError } = getProfile();
-
-    console.log(profile);
+    const queryClient = useQueryClient();
+    const { getProfile, updateProfile } = useProfile(queryClient);
+    
+    const { data: profile, isLoading, isFetching, isError } = getProfile();
 
     return (
         <>
@@ -37,6 +38,9 @@ export default function Profile() {
                                         nickname={profile.nickname}
                                         bio={profile.bio}
                                         image={profile.image}
+                                        isEditable
+                                        isFetching={isFetching}
+                                        updateHook={updateProfile}
                                     />
                                 )
                             )}

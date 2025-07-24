@@ -4,7 +4,7 @@ import Follow from "@/app/components/follow/follow";
 import ListList from "@/app/components/listList/listList";
 import { useUser } from "@/app/hooks/useUser";
 import { useQueryClient } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import Error from "../../components/base/error/error";
 import FollowSkeleton from "../../components/follow/followSkeleton/followSkeleton";
 import NavBar from "../../components/navBar/navBar";
@@ -13,14 +13,23 @@ import ReviewListSkeleton from "../../components/reviewList/reviewListSkeleton/r
 import UserInfo from "../../components/userInfo/userInfo";
 import UserInfoSkeleton from "../../components/userInfo/userInfoSkeleton/userInfoSkeleton";
 import styles from "./styles.module.scss";
+import { useProfile } from "@/app/hooks/useProfile";
 
 export default function Profile() {
     const { id } = useParams() as { id: string };
 
     const queryClient = useQueryClient();
     const { getUserById, updateFollow } = useUser(queryClient);
+
     const { data: user, isLoading, isFetching, isError } = getUserById(id);
     const { isPending } = updateFollow;
+
+    const {getProfile} = useProfile(queryClient);
+    const { data: profile } = getProfile();
+
+    if (user?.id === profile?.id) {
+        redirect("/profile")
+    }
 
     const handleFollow = async () => {
         if (user) {
@@ -47,6 +56,7 @@ export default function Profile() {
                                         nickname={user.nickname}
                                         bio={user.bio}
                                         image={user.image}
+                                        isEditable={false}
                                     />
                                 )
                             )}
