@@ -45,7 +45,23 @@ export default function SearchResults({
       </div>
     );
   }
-  if (tracks.length === 0 && hasSearched) {
+
+  const isUserSearch = users && tracks.length === 0 && albums.length === 0 && artists.length === 0;
+  if (isUserSearch && users.length === 0) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.empty}>Nenhum usuário encontrado</div>
+      </div>
+    );
+  }
+  if (isUserSearch && users.length > 0) {
+    return (
+      <div className={styles.container}>
+        <UserResult users={users} />
+      </div>
+    );
+  }
+  if (!isUserSearch && tracks.length === 0) {
     return (
       <div className={styles.container}>
         <div className={styles.empty}>Nenhuma música encontrada</div>

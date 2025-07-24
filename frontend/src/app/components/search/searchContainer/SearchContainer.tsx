@@ -24,12 +24,15 @@ export default function SearchContainer() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
+  const isUserSearch = debouncedQuery.startsWith("@") && debouncedQuery.length > 1;
+  const userQuery = isUserSearch ? debouncedQuery.slice(1) : "";
+
   const {
     data: tracksData,
     isLoading: isLoadingTracks,
     error: errorTracks,
   } = searchTracks({
-    query: debouncedQuery,
+    query: !isUserSearch ? debouncedQuery : "",
     type: "track",
     limit: 40,
     offset: 0,
@@ -40,7 +43,7 @@ export default function SearchContainer() {
     isLoading: isLoadingAlbums,
     error: errorAlbums,
   } = searchAlbums({
-    query: debouncedQuery,
+    query: !isUserSearch ? debouncedQuery : "",
     limit: 40,
     offset: 0,
   });
@@ -50,7 +53,7 @@ export default function SearchContainer() {
     isLoading: isLoadingArtists,
     error: errorArtists,
   } = searchArtists({
-    query: debouncedQuery,
+    query: !isUserSearch ? debouncedQuery : "",
     limit: 40,
     offset: 0,
   });
@@ -60,9 +63,9 @@ export default function SearchContainer() {
     isLoading: isLoadingUsers,
     error: errorUsers,
   } = useQuery({
-    queryKey: ["userSearch", debouncedQuery, 20, 0],
-    queryFn: () => UserApi.searchUsers(debouncedQuery, 20, 0),
-    enabled: !!debouncedQuery,
+    queryKey: ["userSearch", userQuery, 20, 0],
+    queryFn: () => UserApi.searchUsers(userQuery, 20, 0),
+    enabled: isUserSearch && !!userQuery,
     retry: false,
   });
   function isApiError(error: unknown): error is { status: number } {
@@ -74,23 +77,24 @@ export default function SearchContainer() {
     );
   }
 
-  const users: UserSearchResult[] =
-    isApiError(errorUsers) && errorUsers.status === 404
-      ? []
-      : userData?.data || [];
+  const users: UserSearchResult[] = isUserSearch
+    ? (isApiError(errorUsers) && errorUsers.status === 404
+        ? []
+        : userData?.data || [])
+    : [];
 
-  const tracks: TrackWithReview[] = tracksData?.tracks?.data || [];
-  const albums: AlbumItem[] = albumsData?.albums?.data || [];
-  const artists: ArtistItem[] = artistsData?.artists?.data || [];
+  const tracks: TrackWithReview[] = isUserSearch ? [] : tracksData?.tracks?.data || [];
+  const albums: AlbumItem[] = isUserSearch ? [] : albumsData?.albums?.data || [];
+  const artists: ArtistItem[] = isUserSearch ? [] : artistsData?.artists?.data || [];
 
   const isLoading =
-    isLoadingTracks || isLoadingAlbums || isLoadingArtists || isLoadingUsers;
+    isUserSearch
+      ? isLoadingUsers
+      : isLoadingTracks || isLoadingAlbums || isLoadingArtists || isLoadingUsers;
   const error =
-    errorTracks ||
-    errorAlbums ||
-    errorArtists ||
-    (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) ||
-    null;
+    isUserSearch
+      ? (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) || null
+      : errorTracks || errorAlbums || errorArtists || (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) || null;
 
   if (!!debouncedQuery) {
     return (

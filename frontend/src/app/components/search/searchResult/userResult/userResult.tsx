@@ -19,7 +19,7 @@ export default function UserResult({ users }: UserResultProps) {
             name={user.name}
             nickname={user.nickname}
             image={user.image}
-            bio={""} isEditable={false}          />
+            bio={user.bio} isEditable={false} />
         ))}
       </div>
     </div>

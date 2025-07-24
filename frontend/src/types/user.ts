@@ -21,6 +21,7 @@ export interface UserSearchResult {
   nickname: string;
   image: string;
   is_private: boolean;
+  bio: string;
 }
 
 export interface UserSearchResponse {
