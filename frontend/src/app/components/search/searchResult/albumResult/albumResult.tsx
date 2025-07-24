@@ -6,6 +6,7 @@ import { DotsThreeVertical } from "@phosphor-icons/react/dist/ssr";
 import AddListModal from "@/app/components/list/addListModal/addListModal";
 import { useState } from "react";
 import { Dropdown, MenuProps } from "antd";
+import { redirect } from "next/navigation";
 
 export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function AlbumsResult({ albums }: { albums: AlbumItem[] }) {
         className={styles.albumList}
       >
         {albums.map((album) => (
-          <div key={album.id} className={styles.albumItem}>
+          <div key={album.id} className={styles.albumItem} onClick={() => redirect(`/album/${album.id}`)}>
             <div className={styles.coverContainer}>
               {album.cover ? (
                 <>

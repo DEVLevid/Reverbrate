@@ -4,19 +4,23 @@ import { useQueryClient } from "@tanstack/react-query";
 import Error from "../components/base/error/error";
 import Follow from "../components/follow/follow";
 import FollowSkeleton from "../components/follow/followSkeleton/followSkeleton";
+import List from "../components/list/list";
 import NavBar from "../components/navBar/navBar";
 import ReviewList from "../components/reviewList/reviewList";
 import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/reviewListSkeleton";
 import UserInfo from "../components/userInfo/userInfo";
 import UserInfoSkeleton from "../components/userInfo/userInfoSkeleton/userInfoSkeleton";
+import { useLists } from "../hooks/useLists";
 import { useProfile } from "../hooks/useProfile";
-import ListContainer from "./listContainer/listContainer";
 import styles from "./styles.module.scss";
 
 export default function Profile() {
   const queryClient = useQueryClient();
   const { getProfile } = useProfile(queryClient);
+  const { fetchLists } = useLists();
+  
   const { data: profile, isLoading, isFetching, isError } = getProfile();
+  const { data: list } = fetchLists();
 
   return (
     <>
@@ -65,7 +69,7 @@ export default function Profile() {
               {isLoading ? (
                 <ReviewListSkeleton />
               ) : (
-                profile && <ListContainer />
+                profile && <List title="Listas" lists={list?.data ?? []} isEditable />
               )}
             </section>
           </>

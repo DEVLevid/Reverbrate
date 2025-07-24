@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modal, List, Spin, message } from 'antd';
 import { useLists } from '@/app/hooks/useLists';
 import styles from './styles.module.scss';
