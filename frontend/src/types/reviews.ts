@@ -1,9 +1,22 @@
+export interface ReviewCreatedBy {
+  id: string;
+  image: string;
+  name: string;
+  nickname: string;
+}
+
 export interface TrackInfo {
   id: string;
+  uri: string;
   cover: string;
-  isrc_id: string;
   name: string;
   artist: string;
+  isrc_id: string;
+  album_name: string;
+  album_uri: string;
+  artist_name: string;
+  artist_uri: string;
+  review: null | any; 
 }
 
 export interface TrackReview {
@@ -14,12 +27,12 @@ export interface TrackReview {
 }
 
 export interface Review {
-  id: string;
-  track_info: TrackInfo;
   rate: number;
   comment: string;
   created_at: string;
   updated_at: string;
+  created_by: ReviewCreatedBy;
+  track_info: TrackInfo;
 }
 
 export interface ReviewsResponse {
