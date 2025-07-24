@@ -12,13 +12,6 @@
 
     border-radius: 1rem;
 
-    .title {
-        font-size: 0.5rem;
-        font-weight: 400;
-        color: #fff;
-        margin-top: 2rem;
-    }
-
     .avaliators {
         display: grid;
         grid-template-columns: repeat(2, 3fr);
@@ -33,6 +26,7 @@
                 height: 50px;
                 border-radius: 8px;
                 background-color: #fff;
+                overflow: hidden;
             }
 
             .avaliatorInfo {
@@ -54,4 +48,8 @@
             }
         }
     }
+}
+
+.title {
+    margin-top: 2rem;
 }
