@@ -3,13 +3,14 @@ import styles from "./styles.module.scss";
 import { useRankings } from "@/app/hooks/useRankings";
 import { UserRanking } from "@/types/rankings";
 import Image from "next/image";
+import PopularAvaliatorsSkeleton from "./popularAvaliatorsSkeleton";
 
 export default function PopularAvaliators() {
   const { getUserRankings } = useRankings();
   const { data, isLoading, isError } = getUserRankings;
 
   if (isLoading) {
-    return <div>Carregando avaliadores...</div>;
+    return <PopularAvaliatorsSkeleton />;
   }
 
   if (isError) {
