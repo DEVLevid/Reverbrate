@@ -11,9 +11,10 @@ import { Pagination } from "antd";
 export interface ListProps {
   title: string | undefined;
   lists: ListType[];
+  isEditable?: boolean;
 }
 
-export default function List({ title, lists }: ListProps) {
+export default function List({ title, lists, isEditable = false }: ListProps) {
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 4;
@@ -30,11 +31,12 @@ export default function List({ title, lists }: ListProps) {
     <div className={styles.container}>
       <div className={styles.toolbar}>
         <h3>{title}</h3>
-        <div
-          className={styles.addBtn}
-          onClick={() => setOpen(true)}>
+        {isEditable && (
+          <div className={styles.addBtn} onClick={() => setOpen(true)}>
             <PlusIcon size={24} color="white" />
-        </div>
+          </div>
+        )}
+
         <ListForm open={open} onCancel={() => setOpen(false)} />
       </div>
       <div className={styles.wrapper}>
@@ -48,6 +50,7 @@ export default function List({ title, lists }: ListProps) {
               userName={list.created_by.name}
               listType={list.type}
               listId={list.id}
+              isEditable={isEditable}
             />
           ))
         )}

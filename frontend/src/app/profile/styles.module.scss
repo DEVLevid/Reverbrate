@@ -1,39 +1,29 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    max-height: calc(100vh - 5rem);
-    overflow: hidden;
-    padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-height: calc(100vh - 5rem);
+  padding: 3rem;
 
-    .userWrapper {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
-    }
-
-    .contentWrapper {
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
-        width: 100%;
-    }
+  .userWrapper,
+  .contentWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
 }
 
 @media screen and (max-width: 48rem) {
-    .container {
-        padding: 1rem;
-    }
+  .container {
+    padding: 1rem;
+  }
 }
 
 @media screen and (max-width: 64rem) {
-    .container {
-        .userWrapper {
-            grid-template-columns: 1fr;
-        }
-
-        .listsWrapper {
-            grid-template-columns: 1fr;
-        }
+  .container {
+    .userWrapper,
+    .contentWrapper {
+      grid-template-columns: 1fr;
     }
+  }
 }

@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import { ArtistItem } from '@/types/search';
 import { Carousel } from 'antd';
 import { DotsThreeVertical, User } from "@phosphor-icons/react/dist/ssr";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import AddListModal from "@/app/components/list/addListModal/addListModal";
 import { useState } from "react";
 import { Dropdown, MenuProps } from "antd";
@@ -36,7 +36,7 @@ export default function ArtistsResult({ artists }: { artists: ArtistItem[] }) {
           className={styles.artistList}
         >
           {artists.map((artist) => (
-            <div key={artist.id} className={styles.artistItem}>
+            <div key={artist.id} className={styles.artistItem} onClick={() => redirect(`/artist/${artist.id}`)}>
               {artist.cover ? (
                 <div className={styles.coverMenuContainer}>
                   <img
