@@ -50,15 +50,7 @@ export default function RecentActivity() {
           {reviews.map((review) => (
             <div key={review.track_info.id} className={style.carouselContent}>
               <CardReview
-                cover={review.track_info.cover}
-                trackName={review.track_info.name}
-                artist={review.track_info.artist}
-                rate={review.rate}
-                comment={review.comment}
-                reviewerImage={review.created_by.image}
-                reviewerName={review.created_by.name}
-                reviewerNickname={review.created_by.nickname}
-                createdAt={review.created_at}
+                review={review}
               />
             </div>
           ))}
