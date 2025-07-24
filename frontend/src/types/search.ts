@@ -25,11 +25,27 @@ export interface SearchParams {
   export interface SearchResponse {
     tracks: {
       data: TrackWithReview[];
-      limit?: number;
-      next?: any;
-      offset?: number;
-      previous?: any;
-      total?: number;
+      limit: number;
+      next: string | null;
+      offset: number;
+      previous: string | null;
+      total: number;
+    };
+    artists: {
+      data: ArtistItem[];
+      limit: number;
+      next: string | null;
+      offset: number;
+      previous: string | null;
+      total: number;
+    };
+    albums: {
+      data: AlbumItem[];
+      limit: number;
+      next: string | null;
+      offset: number;
+      previous: string | null;
+      total: number;
     };
   }
 

@@ -19,8 +19,13 @@ export function useUser(queryClient: QueryClient) {
         },
     });
 
+    const searchUsers = useMutation({
+        mutationFn: (query: string) => UserApi.searchUsers(query),
+    });
+
     return {
         getUserById,
         updateFollow,
+        searchUsers,
     };
 }

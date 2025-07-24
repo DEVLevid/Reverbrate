@@ -14,3 +14,20 @@ export interface User {
     network: Network;
     is_following: boolean;
 }
+
+export interface UserSearchResult {
+    id: string;
+    name: string;
+    nickname: string;
+    image: string;
+    is_private: boolean;
+}
+
+export interface UserSearchResponse {
+    data: UserSearchResult[];
+    total: number;
+    limit: number;
+    next?: boolean;
+    previous?: boolean;
+    offset: number;
+}

@@ -1,0 +1,19 @@
+.customModal {
+    :global(.ant-modal-content) {
+        background: #1C1825 !important;
+        color: #fff !important;
+        border: none !important;
+        transition: background 0.2s;
+      }
+      :global(.ant-modal-title),
+      :global(.ant-modal-header),
+      :global(.ant-modal-close-x),
+      :global(.ant-modal-body),
+      :global(.ant-list),
+      :global(.ant-list-item),
+      :global(.ant-list-item-meta-title),
+      :global(.ant-list-item-meta-description) {
+        color: #fff !important;
+        background-color: #1C1825!important;
+      }
+}
