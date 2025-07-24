@@ -10,16 +10,13 @@ import ReviewListSkeleton from "../components/reviewList/reviewListSkeleton/revi
 import UserInfo from "../components/userInfo/userInfo";
 import UserInfoSkeleton from "../components/userInfo/userInfoSkeleton/userInfoSkeleton";
 import { useProfile } from "../hooks/useProfile";
-import styles from "./styles.module.scss";
-import List from "../components/list/list";
-import { useLists } from "../hooks/useLists";
 import ListContainer from "./listContainer/listContainer";
+import styles from "./styles.module.scss";
 
 export default function Profile() {
-  const { getProfile } = useProfile();
-  const { data: profile, isLoading, isError } = getProfile();
-  const { fetchLists } = useLists();
-  const { data: list } = fetchLists();
+  const queryClient = useQueryClient();
+  const { getProfile } = useProfile(queryClient);
+  const { data: profile, isLoading, isFetching, isError } = getProfile();
 
   return (
     <>
@@ -40,9 +37,8 @@ export default function Profile() {
                     nickname={profile.nickname}
                     bio={profile.bio}
                     image={profile.image}
-                                        isEditable
-                                        isFetching={isFetching}
-                                        updateHook={updateProfile}
+                    isEditable
+                    isFetching={isFetching}
                   />
                 )
               )}
