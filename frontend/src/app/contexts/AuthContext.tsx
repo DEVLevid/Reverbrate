@@ -1,8 +1,10 @@
 import { AuthApi } from "@/infra/api/auth";
 import { redirect, usePathname } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const publicRoutes = ["/login", "/signup"];
+const queryClient = new QueryClient();
 
 interface AuthContextType {
   accessToken: string | null;
@@ -46,8 +48,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ accessToken, needsSignup }}>
-      {children}
-    </AuthContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContext.Provider value={{ accessToken, needsSignup }}>
+        {children}
+      </AuthContext.Provider>
+    </QueryClientProvider>
   );
 };

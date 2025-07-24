@@ -1,18 +1,45 @@
-import AddListModal from "@/app/components/list/addListModal/addListModal";
 import { TrackWithReview } from "@/types/search";
 import { DotsThreeIcon, TextAlignLeftIcon } from "@phosphor-icons/react";
-import { Dropdown, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import Image from "next/image";
-import { useState } from "react";
 import Item from "../base/item/item";
 import BaseReview from "../review/review";
 import styles from "./styles.module.scss";
+import { Dropdown } from "antd";
+import { useState } from "react";
+import { Modal, List, message, Spin } from "antd";
+import { useLists } from "@/app/hooks/useLists";
+import AddListModal from "@/app/components/list/addListModal/addListModal";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 interface MusicItemProps {
   track: TrackWithReview;
 }
+
 export default function MusicItem({ track }: MusicItemProps) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
+  const { fetchLists, editListItemsMutation } = useLists();
+  const { data, isLoading } = fetchLists();
+  const { playTrack } = usePlayer();
+
+  const handlePlayTrack = () => {
+    playTrack(track.id);
+  };
+
+  const handleAddToList = (listId: string) => {
+    editListItemsMutation.mutate(
+      { id: listId, data: { operation: "add", item_id: track.id } },
+      {
+        onSuccess: () => {
+          message.success("Música adicionada à lista!");
+          setAddToListModalOpen(false);
+        },
+        onError: () => {
+          message.error("Erro ao adicionar música à lista");
+        },
+      }
+    );
+  };
 
   const menuItems = [
     {
@@ -27,7 +54,7 @@ export default function MusicItem({ track }: MusicItemProps) {
 
   return (
     <Item>
-      <div className={styles.infoWrapper}>
+      <div className={styles.infoWrapper} onClick={handlePlayTrack}>
         <Image
           src={track.cover}
           alt={"Capa do album da musica" + track.name}
@@ -57,7 +84,10 @@ export default function MusicItem({ track }: MusicItemProps) {
           placement="bottomRight"
           arrow
         >
-          <button className={styles.optionBtn}>
+          <button
+            className={styles.optionBtn}
+            onClick={(e) => e.stopPropagation()} // Evita que o clique no botão propague para o Item
+          >
             <DotsThreeIcon size={28} />
           </button>
         </Dropdown>
@@ -81,7 +111,10 @@ export default function MusicItem({ track }: MusicItemProps) {
             placement="bottomRight"
             arrow
           >
-            <button className={styles.optionBtn}>
+            <button
+              className={styles.optionBtn}
+              onClick={(e) => e.stopPropagation()} // Evita que o clique no botão propague para o Item
+            >
               <DotsThreeIcon size={28} />
             </button>
           </Dropdown>

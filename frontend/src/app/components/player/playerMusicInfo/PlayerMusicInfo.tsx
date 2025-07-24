@@ -64,7 +64,13 @@ function PlayerMusicInfo({ title, artists, album }: PlayerMusicInfoProps) {
 
   return (
     <section className={styles.musicInfoContainer}>
-      <Image src={albumImageSrc} alt={album.name} className={styles.albumImage} width={60} height={60} />
+      <Image
+        src={albumImageSrc}
+        alt={album.name}
+        className={styles.albumImage}
+        width={60}
+        height={60}
+      />
       <div className={styles.musicInfoTextContainer}>
         <div className={styles.scrollWrapper}>
           <div

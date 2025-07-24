@@ -7,10 +7,12 @@ import { useReviews } from "../../hooks/useReviews";
 import { StarSelector } from "../base/starSelector/starSelector";
 import { Spin, Carousel } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 export default function RecentActivity() {
   const { fetchReviews } = useReviews();
   const { data, isLoading, error } = fetchReviews({ limit: 20, offset: 0 });
+  const { playTrack } = usePlayer();
 
   const reviews = data?.data || [];
   const chunkSize = 4;
@@ -50,8 +52,12 @@ export default function RecentActivity() {
           {slides.map((group, idx) => (
             <div key={idx}>
               <div className={style.carouselContent}>
-                {group.map((review) => (
-                  <CardBase key={review.id}>
+                {group.map((review, idx) => (
+                  <CardBase
+                    key={idx}
+                    onClick={() => playTrack(review.track_info.id)}
+                    className={style.cardBase}
+                  >
                     <div className={style.reviewContent}>
                       <div className={style.trackContainer}>
                         <img

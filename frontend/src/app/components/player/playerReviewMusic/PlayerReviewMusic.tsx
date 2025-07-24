@@ -1,26 +1,17 @@
-import { StarIcon } from "@phosphor-icons/react";
-
 import styles from "./styles.module.scss";
+import BaseReview from "../../review/review";
+import { TrackWithReview } from "@/types/search";
 
-function PlayerMusicReview() {
-  const rating = 3;
-
-  const renderStars = () => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <StarIcon
-        key={index}
-        size={20}
-        weight="fill"
-        color={index < rating ? '#ffe100' : '#1c1825'}
-      />
-    ));
-  };
-
+function PlayerMusicReview({ track }: { track: TrackWithReview }) {
   return (
     <section className={styles.musicReviewContainer}>
-      <span>Avalie</span>
+      <div className={styles.reviewHeader}>
+        <span className={styles.reviewTitle}>Avalie</span>
+      </div>
 
-      <div className={styles.starsContainer}>{renderStars()}</div>
+      <div className={styles.starsContainer}>
+        <BaseReview track={track} />
+      </div>
     </section>
   );
 }

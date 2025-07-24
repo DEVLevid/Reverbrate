@@ -1,91 +1,57 @@
+import { useState, useEffect } from "react";
 import styles from "./styles.module.scss";
+import { formatMillisecondsToMMSS } from "@/lib/utils";
 
 interface ProgressBarProps {
   progress: number;
-  onSeek: (progress: number) => void;
-  onDragUpdate?: (progress: number) => void;
+  duration: number;
+  onSeek: (position: number) => void;
 }
 
-import { useCallback, useEffect, useRef, useState } from "react";
-
-const ProgressBar = ({ progress, onSeek, onDragUpdate }: ProgressBarProps) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragProgress, setDragProgress] = useState(0);
-
-  const progressBarRef = useRef<HTMLDivElement>(null);
-
-  const displayProgress = isDragging ? dragProgress : progress;
-
-  const calculateProgress = useCallback((clientX: number) => {
-    if (progressBarRef.current) {
-      const bar = progressBarRef.current;
-      const { left, width } = bar.getBoundingClientRect();
-      let newProgress = ((clientX - left) / width) * 100;
-      newProgress = Math.max(0, Math.min(100, newProgress));
-      return newProgress;
-    }
-    return 0;
-  }, []);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    const newProgress = calculateProgress(e.clientX);
-    setDragProgress(newProgress);
-    if (onDragUpdate) {
-      onDragUpdate(newProgress);
-    }
-  };
-
-  const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (isDragging) {
-        const newProgress = calculateProgress(e.clientX);
-        setDragProgress(newProgress);
-        if (onDragUpdate) {
-          onDragUpdate(newProgress);
-        }
-      }
-    },
-    [isDragging, calculateProgress, onDragUpdate]
-  );
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-    if (onSeek) {
-      onSeek(dragProgress);
-    }
-  }, [dragProgress, onSeek]);
+function ProgressBar({ progress, duration, onSeek }: ProgressBarProps) {
+  const [displayProgress, setDisplayProgress] = useState(progress);
+  const [isSeeking, setIsSeeking] = useState(false);
 
   useEffect(() => {
-    if (isDragging) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    } else {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+    if (!isSeeking) {
+      setDisplayProgress(progress);
     }
+  }, [progress, isSeeking]);
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    setDisplayProgress(value);
+    setIsSeeking(true);
+  };
+
+  const handleSeek = () => {
+    setIsSeeking(false);
+    onSeek(displayProgress);
+  };
+
+  const progressPercent = (displayProgress / duration) * 100;
 
   return (
-    <div
-      ref={progressBarRef}
-      className={styles.progressBarContainer}
-      onMouseDown={handleMouseDown}
-      onTouchStart={(e) => handleMouseDown(e.touches[0] as any)}
-      onTouchMove={(e) => handleMouseMove(e.touches[0] as any)}
-      onTouchEnd={handleMouseUp}
-    >
-      <div
-        className={styles.progressBarFill}
-        style={{ width: `${displayProgress}%` }}
-      ></div>
+    <div className={styles.progressBarContainer}>
+      <span className={styles.time}>
+        {formatMillisecondsToMMSS(displayProgress)}
+      </span>
+      <input
+        type="range"
+        min={0}
+        max={duration}
+        value={displayProgress}
+        onChange={handleProgressChange}
+        onMouseUp={handleSeek}
+        onTouchEnd={handleSeek}
+        className={styles.progressBar}
+        style={
+          { "--progress-percent": `${progressPercent}%` } as React.CSSProperties
+        }
+      />
+      <span className={styles.time}>{formatMillisecondsToMMSS(duration)}</span>
     </div>
   );
-};
+}
 
 export default ProgressBar;
