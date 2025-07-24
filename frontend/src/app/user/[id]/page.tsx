@@ -14,92 +14,84 @@ import UserInfo from "../../components/userInfo/userInfo";
 import UserInfoSkeleton from "../../components/userInfo/userInfoSkeleton/userInfoSkeleton";
 import styles from "./styles.module.scss";
 import { useProfile } from "@/app/hooks/useProfile";
+import ListContainer from "@/app/profile/listContainer/listContainer";
 
 export default function Profile() {
-    const { id } = useParams() as { id: string };
+  const { id } = useParams() as { id: string };
 
-    const queryClient = useQueryClient();
-    const { getUserById, updateFollow } = useUser(queryClient);
+  const queryClient = useQueryClient();
+  const { getUserById, updateFollow } = useUser(queryClient);
 
-    const { data: user, isLoading, isFetching, isError } = getUserById(id);
-    const { isPending } = updateFollow;
+  const { data: user, isLoading, isFetching, isError } = getUserById(id);
+  const { isPending } = updateFollow;
 
-    const {getProfile} = useProfile(queryClient);
-    const { data: profile } = getProfile();
+  const { getProfile } = useProfile(queryClient);
+  const { data: profile } = getProfile();
 
-    if (user?.id === profile?.id) {
-        redirect("/profile")
+  const handleFollow = async () => {
+    if (user) {
+      updateFollow.mutate(user.id);
     }
+  };
 
-    const handleFollow = async () => {
-        if (user) {
-            updateFollow.mutate(user.id);
-        }
-    };
+  return (
+    <>
+      <NavBar />
+      <main className={styles.container}>
+        {isError ? (
+          <Error />
+        ) : (
+          <>
+            <section className={styles.userWrapper}>
+              {isLoading ? (
+                <UserInfoSkeleton />
+              ) : (
+                user && (
+                  <UserInfo
+                    id={user.id}
+                    name={user.name}
+                    nickname={user.nickname}
+                    bio={user.bio}
+                    image={user.image}
+                    isEditable={false}
+                  />
+                )
+              )}
+              {isLoading ? (
+                <FollowSkeleton />
+              ) : (
+                user && (
+                  <Follow
+                    network={user.network}
+                    hasFollow
+                    isFollowing={user.is_following}
+                    setFollow={handleFollow}
+                    isLoading={isPending || isFetching}
+                  />
+                )
+              )}
+            </section>
+            <section className={styles.listsWrapper}>
+              {isLoading ? (
+                <ReviewListSkeleton />
+              ) : (
+                user && (
+                  <ReviewList
+                    title="Avaliações recentes"
+                    reviews={user.reviews}
+                  />
+                )
+              )}
 
-    return (
-        <>
-            <NavBar />
-            <main className={styles.container}>
-                {isError ? (
-                    <Error />
-                ) : (
-                    <>
-                        <section className={styles.userWrapper}>
-                            {isLoading ? (
-                                <UserInfoSkeleton />
-                            ) : (
-                                user && (
-                                    <UserInfo
-                                        id={user.id}
-                                        name={user.name}
-                                        nickname={user.nickname}
-                                        bio={user.bio}
-                                        image={user.image}
-                                        isEditable={false}
-                                    />
-                                )
-                            )}
-                            {isLoading ? (
-                                <FollowSkeleton />
-                            ) : (
-                                user && (
-                                    <Follow
-                                        network={user.network}
-                                        hasFollow
-                                        isFollowing={user.is_following}
-                                        setFollow={handleFollow}
-                                        isLoading={isPending || isFetching}
-                                    />
-                                )
-                            )}
-                        </section>
-                        <section className={styles.listsWrapper}>
-                            {isLoading ? (
-                                <ReviewListSkeleton />
-                            ) : (
-                                user && (
-                                    <ReviewList
-                                        title="Avaliações recentes"
-                                        reviews={user.reviews}
-                                    />
-                                )
-                            )}
-
-                            {isLoading ? (
-                                <ReviewListSkeleton />
-                            ) : (
-                                user && (
-                                    <ListList
-                                        title="Listas recentes"
-                                        lists={user.lists}
-                                    />
-                                )
-                            )}
-                        </section>
-                    </>
-                )}
-            </main>
-        </>
-    );
+              {isLoading ? (
+                <ReviewListSkeleton />
+              ) : (
+                profile && <ListContainer />
+              )}
+            </section>
+          </>
+        )}
+      </main>
+    </>
+  );
 }
