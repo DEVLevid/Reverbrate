@@ -7,7 +7,8 @@ export const StarSelector: React.FC<{
   setRating: (value: number) => void;
   disabled?: boolean;
   disableHover?: boolean;
-}> = ({ rating, setRating, disabled, disableHover }) => {
+  size?: number;
+}> = ({ rating, setRating, disabled, disableHover, size }) => {
   const [hover, setHover] = useState(0);
   return (
     <div className={styles.stars}>
@@ -30,7 +31,7 @@ export const StarSelector: React.FC<{
           }}
         >
           <Star
-            size={22}
+            size={size || 22}
             weight={(hover || rating) >= star ? "fill" : "regular"}
             color={(hover || rating) >= star ? "#FFD700" : "#ccc"}
           />

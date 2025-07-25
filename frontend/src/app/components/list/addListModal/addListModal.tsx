@@ -1,6 +1,7 @@
 import { Modal, List, Spin, message } from 'antd';
 import { useLists } from '@/app/hooks/useLists';
 import styles from './styles.module.scss';
+import { Playlist } from '@phosphor-icons/react/dist/ssr';
 
 interface AddListModalProps {
   open: boolean;
@@ -46,12 +47,12 @@ export default function AddListModal({ open, onClose, itemId, title = 'Adicionar
             <List.Item
               key={list.id}
               onClick={() => handleAddToList(list.id)}
-              style={{ cursor: 'pointer' }}
+              className={styles.listItem}
             >
-              {list.name}
+              <Playlist size={24} />{list.name}
             </List.Item>
           )}
-          className="listModal"
+          className={styles.listModal}
         />
       )}
     </Modal>
