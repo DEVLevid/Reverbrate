@@ -28,7 +28,6 @@ function Player({
         setToken(data.access_token);
       },
     });
-    console.log("Player: Token:", token);
   }, []);
 
   const { state, isConnected, showPlayer, dispatch } = useSpotifyPlayer({
@@ -89,6 +88,7 @@ function Player({
             title={state.current_track.name}
             artists={state.current_track.artists}
             album={state.current_track.album}
+            track={review}
           />
           <PlayerControls
             progress={state.progress}
@@ -96,6 +96,7 @@ function Player({
             dispatchFn={dispatch}
             player={state.player}
             isPaused={state.is_paused}
+            track={review}
           />
           <PlayerMusicReview track={review} />
         </>

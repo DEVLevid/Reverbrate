@@ -77,7 +77,7 @@ export function useSpotifyPlayer({ token }: UseSpotifyPlayerProps) {
   const [isSDKLoaded, setIsSDKLoaded] = useState(false);
   const MAX_RECONNECT_ATTEMPTS = 5;
   const RECONNECT_INTERVAL = 3000;
-  const { currentTrack } = usePlayer();
+  const { currentTrack, nextTrack } = usePlayer();
 
   const checkSDKAvailable = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -154,16 +154,30 @@ export function useSpotifyPlayer({ token }: UseSpotifyPlayerProps) {
           }
         );
 
-        player.addListener("player_state_changed", (state: any) => {
+        player.addListener("player_state_changed", async (state: any) => {
           if (!state) return;
+
+          const currentTrack = state.track_window.current_track;
+          const position = state.position;
+          const duration = state.duration;
+          const isPaused = state.paused;
 
           dispatch({
             type: "SET_TRACK",
-            payload: state.track_window.current_track,
+            payload: currentTrack,
           });
-          dispatch({ type: state.paused ? "PAUSE" : "PLAY" });
-          dispatch({ type: "SET_PROGRESS", payload: state.position });
-          dispatch({ type: "SET_DURATION", payload: state.duration });
+          dispatch({ type: isPaused ? "PAUSE" : "PLAY" });
+          dispatch({ type: "SET_PROGRESS", payload: position });
+          dispatch({ type: "SET_DURATION", payload: duration });
+
+          // Se a música está próxima do fim (menos de 1 segundo) ou terminou
+          if (
+            duration > 0 &&
+            (position >= duration - 1000 || position === 0) &&
+            isPaused
+          ) {
+            await nextTrack();
+          }
         });
       };
 
@@ -246,8 +260,7 @@ export function useSpotifyPlayer({ token }: UseSpotifyPlayerProps) {
 
     try {
       await state.player.togglePlay();
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleNextTrack = async () => {
@@ -289,11 +302,9 @@ export function useSpotifyPlayer({ token }: UseSpotifyPlayerProps) {
               }
             }, 500);
           })
-          .catch((error) => {
-          });
+          .catch((error) => {});
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handlePreviousTrack = async () => {
@@ -331,29 +342,39 @@ export function useSpotifyPlayer({ token }: UseSpotifyPlayerProps) {
               dispatch({ type: "SET_DURATION", payload: newState.duration });
             }
           })
-          .catch((error) => {
-          });
+          .catch((error) => {});
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
     if (state.is_active && !state.is_paused) {
-      interval = setInterval(() => {
-        dispatch({
-          type: "SET_PROGRESS",
-          payload: Math.min(state.progress + 1000, state.duration),
-        });
+      interval = setInterval(async () => {
+        // Pega o estado atual do player para ter informações mais precisas
+        if (state.player) {
+          const currentState = await state.player.getCurrentState();
+          if (currentState) {
+            const { position, duration, paused } = currentState;
+            dispatch({
+              type: "SET_PROGRESS",
+              payload: position,
+            });
+
+            // Se a música está próxima do fim (menos de 1 segundo) ou terminou
+            if (duration > 0 && position >= duration - 1000) {
+              await nextTrack();
+            }
+          }
+        }
       }, 1000);
     }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [state.is_active, state.is_paused, state.progress, state.duration]);
+  }, [state.is_active, state.is_paused, state.player, nextTrack]);
 
   useEffect(() => {
     if (

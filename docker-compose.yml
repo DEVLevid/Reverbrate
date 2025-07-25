@@ -10,6 +10,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./config/database/init.sql:/docker-entrypoint-initdb.d
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    
 
 volumes:
   postgres_data:

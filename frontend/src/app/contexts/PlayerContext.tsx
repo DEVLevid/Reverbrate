@@ -1,8 +1,11 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import Player from "../components/player/player";
-import { TrackWithReview } from "@/types/search";
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TracksApi } from "@/infra/api/tracks";
+import { TrackWithReview } from "@/types/search";
+import Player from "../components/player/player";
+import styles from "@/styles/playerProvider.module.scss";
 
 export interface TrackToPlay {
   uri: string;
@@ -19,9 +22,13 @@ interface PlayerContextProps {
   currentTrack: TrackToPlay | null;
   currentReview: TrackWithReview | null;
   playTrack: (id: string) => void;
+  nextTrack: () => void;
+  previousTrack: () => void;
 }
 
-const PlayerContext = createContext<PlayerContextProps | undefined>(undefined);
+export const PlayerContext = createContext<PlayerContextProps | undefined>(
+  undefined
+);
 
 export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -38,8 +45,38 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     enabled: !!trackId,
   });
 
+  const { data: nextTrackData, refetch: refetchNextTrack } = useQuery({
+    queryKey: ["tracks", trackId, "next"],
+    queryFn: () => (trackId ? TracksApi.getNextTrack(trackId) : null),
+    enabled: false,
+  });
+
+  const { data: previousTrackData, refetch: refetchPreviousTrack } = useQuery({
+    queryKey: ["tracks", trackId, "previous"],
+    queryFn: () => (trackId ? TracksApi.getPreviousTrack(trackId) : null),
+    enabled: false,
+  });
+
   const playTrack = (id: string) => {
     setTrackId(id);
+  };
+
+  const nextTrack = async () => {
+    if (trackId) {
+      const { data } = await refetchNextTrack();
+      if (data) {
+        setTrackId(data.id);
+      }
+    }
+  };
+
+  const previousTrack = async () => {
+    if (trackId) {
+      const { data } = await refetchPreviousTrack();
+      if (data) {
+        setTrackId(data.id);
+      }
+    }
   };
 
   useEffect(() => {
@@ -59,8 +96,16 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [track]);
 
   return (
-    <PlayerContext.Provider value={{ currentTrack, currentReview, playTrack }}>
-      {children}
+    <PlayerContext.Provider
+      value={{
+        currentTrack,
+        currentReview,
+        playTrack,
+        nextTrack,
+        previousTrack,
+      }}
+    >
+      <div className={styles.providerContainer}>{children}</div>
       {currentTrack && currentReview && (
         <Player currentTrack={currentTrack} review={currentReview} />
       )}
@@ -68,9 +113,9 @@ export const PlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const usePlayer = () => {
+export function usePlayer() {
   const context = useContext(PlayerContext);
   if (!context)
     throw new Error("usePlayer must be used within a PlayerProvider");
   return context;
-};
+}

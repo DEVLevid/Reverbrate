@@ -3,6 +3,9 @@ import { PlayerAction } from "@/app/hooks/useSpotifyPlayer";
 import ProgressBar from "../progressBar/ProgressBar";
 import styles from "./styles.module.scss";
 import { SkipBack, SkipForward, Play, Pause } from "@phosphor-icons/react";
+import BaseReview from "../../review/review";
+import { TrackWithReview } from "@/types/search";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 interface PlayerControlsProps {
   progress: number;
@@ -10,6 +13,7 @@ interface PlayerControlsProps {
   dispatchFn: React.Dispatch<PlayerAction>;
   player: any;
   isPaused: boolean;
+  track: TrackWithReview;
 }
 
 function PlayerControls({
@@ -18,19 +22,29 @@ function PlayerControls({
   dispatchFn,
   player,
   isPaused,
+  track,
 }: PlayerControlsProps) {
+  const { nextTrack, previousTrack } = usePlayer();
+
   const handleSeek = async (position: number) => {
     await player.seek(position);
     dispatchFn({ type: "SET_PROGRESS", payload: position });
   };
 
+  const handleNextTrack = async () => {
+    await player.nextTrack();
+    await nextTrack();
+  };
+
+  const handlePreviousTrack = async () => {
+    await player.previousTrack();
+    await previousTrack();
+  };
+
   return (
     <div className={styles.playerControlContainer}>
       <div className={styles.controlsWrapper}>
-        <button
-          className={styles.skipButton}
-          onClick={() => player.previousTrack()}
-        >
+        <button className={styles.skipButton} onClick={handlePreviousTrack}>
           <SkipBack size={20} weight="fill" />
         </button>
         <button
@@ -46,10 +60,7 @@ function PlayerControls({
             <Pause size={24} weight="fill" />
           )}
         </button>
-        <button
-          className={styles.skipButton}
-          onClick={() => player.nextTrack()}
-        >
+        <button className={styles.skipButton} onClick={handleNextTrack}>
           <SkipForward size={20} weight="fill" />
         </button>
       </div>
@@ -59,6 +70,9 @@ function PlayerControls({
           duration={duration}
           onSeek={handleSeek}
         />
+      </div>
+      <div className={styles.reviewContainer}>
+        <BaseReview track={track} />
       </div>
     </div>
   );

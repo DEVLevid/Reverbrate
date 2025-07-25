@@ -78,6 +78,10 @@
       color: #a7a7a7;
     }
   }
+
+  .reviewContainer {
+    display: none;
+  }
 }
 
 @keyframes rotateIn {
@@ -88,5 +92,12 @@
   to {
     transform: translate(-50%, -50%) rotate(0deg) scale(1);
     opacity: 1;
+  }
+}
+
+
+@media screen and (max-width: 48rem) {
+  .reviewContainer {
+    display: block !important;
   }
 }
