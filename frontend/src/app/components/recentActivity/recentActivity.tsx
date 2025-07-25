@@ -36,6 +36,10 @@ export default function RecentActivity() {
           slidesToScroll={1}
           responsive={[
             {
+              breakpoint: 1980,
+              settings: { slidesToShow: 5 },
+            },
+            {
               breakpoint: 1200,
               settings: { slidesToShow: 3 },
             },
