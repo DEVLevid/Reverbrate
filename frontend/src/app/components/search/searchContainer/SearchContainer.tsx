@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useSearch } from '../../../hooks/useSearch';
-import { useSearchContext } from '../../../contexts/SearchContext';
-import SearchResults from '../searchResult/SearchResults';
-import RecentActivity from '../../recentActivity/recentActivity';
-import { ArtistItem, AlbumItem, TrackWithReview } from '@/types/search';
-import { UserSearchResult } from '@/types/user';
-import { useQuery } from '@tanstack/react-query';
-import { UserApi } from '@/infra/api/user';
-import Rankings from '../../rankings/rankings';
-import PopularAvaliators from '../../popularAvaliators/popularAvaliators';
+import { useState, useEffect } from "react";
+import { useSearch } from "../../../hooks/useSearch";
+import { useSearchContext } from "../../../contexts/SearchContext";
+import SearchResults from "../searchResult/SearchResults";
+import RecentActivity from "../../recentActivity/recentActivity";
+import { ArtistItem, AlbumItem, TrackWithReview } from "@/types/search";
+import { UserSearchResult } from "@/types/user";
+import { useQuery } from "@tanstack/react-query";
+import { UserApi } from "@/infra/api/user";
+import Rankings from "../../rankings/rankings";
+import PopularAvaliators from "../../popularAvaliators/popularAvaliators";
+import styles from "./styles.module.scss";
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();
-  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const { searchTracks, searchAlbums, searchArtists } = useSearch();
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedQuery(searchQuery);
@@ -25,52 +26,78 @@ export default function SearchContainer() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { data: tracksData, isLoading: isLoadingTracks, error: errorTracks } = searchTracks({
+  const {
+    data: tracksData,
+    isLoading: isLoadingTracks,
+    error: errorTracks,
+  } = searchTracks({
     query: debouncedQuery,
-    type: 'track',
+    type: "track",
     limit: 40,
-    offset: 0
+    offset: 0,
   });
 
-  const { data: albumsData, isLoading: isLoadingAlbums, error: errorAlbums } = searchAlbums({
+  const {
+    data: albumsData,
+    isLoading: isLoadingAlbums,
+    error: errorAlbums,
+  } = searchAlbums({
     query: debouncedQuery,
     limit: 40,
-    offset: 0
+    offset: 0,
   });
 
-  const { data: artistsData, isLoading: isLoadingArtists, error: errorArtists } = searchArtists({
+  const {
+    data: artistsData,
+    isLoading: isLoadingArtists,
+    error: errorArtists,
+  } = searchArtists({
     query: debouncedQuery,
     limit: 40,
-    offset: 0
+    offset: 0,
   });
 
   const {
     data: userData,
     isLoading: isLoadingUsers,
-    error: errorUsers
+    error: errorUsers,
   } = useQuery({
-    queryKey: ['userSearch', debouncedQuery, 20, 0],
+    queryKey: ["userSearch", debouncedQuery, 20, 0],
     queryFn: () => UserApi.searchUsers(debouncedQuery, 20, 0),
     enabled: !!debouncedQuery,
     retry: false,
   });
   function isApiError(error: unknown): error is { status: number } {
-    return typeof error === 'object' && error !== null && 'status' in error && typeof (error as any).status === 'number';
+    return (
+      typeof error === "object" &&
+      error !== null &&
+      "status" in error &&
+      typeof (error as any).status === "number"
+    );
   }
 
-  const users: UserSearchResult[] = isApiError(errorUsers) && errorUsers.status === 404 ? [] : (userData?.data || []);
+  const users: UserSearchResult[] =
+    isApiError(errorUsers) && errorUsers.status === 404
+      ? []
+      : userData?.data || [];
 
   const tracks: TrackWithReview[] = tracksData?.tracks?.data || [];
   const albums: AlbumItem[] = albumsData?.albums?.data || [];
   const artists: ArtistItem[] = artistsData?.artists?.data || [];
 
-  const isLoading = isLoadingTracks || isLoadingAlbums || isLoadingArtists || isLoadingUsers;
-  const error = errorTracks || errorAlbums || errorArtists || (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) || null;
+  const isLoading =
+    isLoadingTracks || isLoadingAlbums || isLoadingArtists || isLoadingUsers;
+  const error =
+    errorTracks ||
+    errorAlbums ||
+    errorArtists ||
+    (isApiError(errorUsers) && errorUsers.status !== 404 ? errorUsers : null) ||
+    null;
 
   if (!!debouncedQuery) {
     return (
       <div>
-        <SearchResults 
+        <SearchResults
           tracks={tracks}
           albums={albums}
           artists={artists}
@@ -83,10 +110,16 @@ export default function SearchContainer() {
     );
   }
   return (
-    <>
+    <div className={styles.searchContainer}>
       <RecentActivity />
-      <Rankings />
-      <PopularAvaliators />
-    </>
+      <div className={styles.rankingsContainer}>
+        <div className={styles.rankings}>
+          <Rankings />
+        </div>
+        <div className={styles.popularAvaliators}>
+          <PopularAvaliators />
+        </div>
+      </div>
+    </div>
   );
-} 
+}

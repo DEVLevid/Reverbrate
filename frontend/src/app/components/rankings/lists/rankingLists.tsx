@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles.module.scss';
 import CardList from '../../list/cardList/cardList';
 import { top5Lists } from '@/infra/mock/ranking/lists';
+import { ListType } from '@/types/lists';
 
 export default function RankingLists() {
   return (
@@ -14,10 +15,9 @@ export default function RankingLists() {
           {top5Lists.map((list, idx) => (
             <div className={styles.list} key={idx}>
               <CardList 
-                listName={list.listName} 
-                userName={list.userName} 
-                listType={list.listType} 
-              />
+                listName={list.listName}
+                userName={list.userName}
+                listType={list.listType as ListType} listId={''}              />
             </div>
           ))}
         </div>
