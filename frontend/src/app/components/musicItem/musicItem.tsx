@@ -41,6 +41,11 @@ export default function MusicItem({ track }: MusicItemProps) {
           <p>{track.artist_name}</p>
         </div>
       </div>
+      <div className={styles.reviewersWrapperMobile}>
+        {track.network && (
+          <TrackReviewersOverlap trackNetworks={track.network} />
+        )}
+      </div>
       <div className={styles.reviewWrapperDesktop}>
         {track.review?.comment && (
           <Tooltip
@@ -52,7 +57,11 @@ export default function MusicItem({ track }: MusicItemProps) {
           </Tooltip>
         )}
         <BaseReview track={track} />
-        {track.network && <TrackReviewersOverlap trackNetworks={track.network} />}
+        <div className={styles.reviewersWrapperDesktop}>
+          {track.network && (
+            <TrackReviewersOverlap trackNetworks={track.network} />
+          )}
+        </div>
         <Dropdown
           menu={{ items: menuItems }}
           trigger={["click"]}

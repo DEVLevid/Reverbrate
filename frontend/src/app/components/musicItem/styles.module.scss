@@ -1,95 +1,117 @@
 .infoWrapper {
+  display: flex;
+  gap: 1rem;
+
+  .image {
+    border-radius: 0.5rem;
+  }
+
+  .infoWrapperText {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.825rem;
+      opacity: 0.75;
+    }
+  }
+}
+
+.reviewWrapperMobile {
+  visibility: hidden;
+  display: none;
+}
+
+.reviewWrapperDesktop {
+  display: flex;
+  visibility: visible;
+  align-items: center;
+  gap: 1rem;
+
+  .optionBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+  }
+}
+
+.reviewersWrapperMobile {
+  visibility: hidden;
+  display: none;
+  padding-left: 0;
+}
+
+.reviewersWrapperDesktop {
+  display: flex;
+  visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+  .infoWrapper {
     display: flex;
     gap: 1rem;
 
     .image {
-        border-radius: 0.5rem;
+      border-radius: 0.5rem;
     }
 
     .infoWrapperText {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
 
-        h3 {
-            font-size: 1.15rem;
-        }
-
-        p {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.825rem;
-            opacity: 0.75;
-        }
+      p {
+        font-size: 0.825rem;
+        opacity: 0.75;
+      }
     }
-}
+  }
 
-.reviewWrapperMobile {
+  .reviewWrapperDesktop {
     visibility: hidden;
     display: none;
-}
+  }
 
-.reviewWrapperDesktop {
+  .reviewWrapperMobile {
     display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
     visibility: visible;
+    width: 100%;
+    padding-left: 4.75rem;
     align-items: center;
-    gap: 1rem;
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
     .optionBtn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
     }
-}
+  }
 
-@media screen and (max-width: 768px) {
-    .infoWrapper {
-        display: flex;
-        gap: 1rem;
+  .reviewersWrapperDesktop {
+    visibility: hidden;
+    display: none;
+  }
 
-        .image {
-            border-radius: 0.5rem;
-        }
-
-        .infoWrapperText {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            p {
-                font-size: 0.825rem;
-                opacity: 0.75;
-            }
-        }
-    }
-
-    .reviewWrapperDesktop {
-        visibility: hidden;
-        display: none;
-    }
-
-    .reviewWrapperMobile {
-        display: flex;
-        justify-content: space-between;
-        visibility: visible;
-        width: 100%;
-        padding-left: 4.75rem;
-        align-items: center;
-
-        .options {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .optionBtn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #fff;
-        }
-    }
-
+  .reviewersWrapperMobile {
+    display: flex;
+    visibility: visible;
+    padding-left: 4.75rem;
+  }
 }

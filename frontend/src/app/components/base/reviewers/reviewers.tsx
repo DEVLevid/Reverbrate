@@ -27,7 +27,7 @@ export default function TrackReviewersOverlap({
                 <h3>
                   <strong>Usuário: </strong> {network.created_by.name}
                 </h3>
-                <p style={{ display: "flex", gap: "0.5rem" }}>
+                <p className={styles.starContainer}>
                   <strong>Nota: </strong>{" "}
                   <StarSelector
                     rating={network.rate}
