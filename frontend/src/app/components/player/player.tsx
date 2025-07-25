@@ -29,7 +29,6 @@ const initialPlayerState = {
   duration: 0,
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const playerReducer = (prevState: any, action: any) => {
   switch (action.type) {
     case "SET_PLAYER":
