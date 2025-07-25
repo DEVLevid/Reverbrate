@@ -10,6 +10,7 @@ import { UserSearchResult } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
 import { UserApi } from '@/infra/api/user';
 import Rankings from '../../rankings/rankings';
+import PopularAvaliators from '../../popularAvaliators/popularAvaliators';
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();
@@ -85,6 +86,7 @@ export default function SearchContainer() {
     <>
       <RecentActivity />
       <Rankings />
+      <PopularAvaliators />
     </>
   );
 } 
