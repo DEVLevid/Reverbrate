@@ -1,45 +1,50 @@
-'use client';
+"use client";
 
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { ReviewRoutesMock } from '../../infra/mock/review/ReviewRoutesMock';
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   CreateReviewRequest,
   UpdateReviewRequest,
   ReviewListRequest,
   ReviewByTrackRequest,
-} from '../../types/reviews';
+} from "../../types/reviews";
+import { ReviewsApi } from "@/infra/api/review";
 
 export function useReviews() {
-  const fetchReviews = (request: ReviewListRequest) => useQuery({
-    queryKey: ['reviews', request],
-    queryFn: () => ReviewRoutesMock.getReviews(request.limit || 20, request.offset || 0),
-  });
+  const fetchReviews = (request: ReviewListRequest) =>
+    useQuery({
+      queryKey: ["reviews", request],
+      queryFn: () =>
+        ReviewsApi.getReviews(request.limit || 20, request.offset || 0),
+    });
 
-  const fetchReviewsById = (id: string) => useQuery({
-    queryKey: ['reviews', 'byId', id],
-    queryFn: () => ReviewRoutesMock.getReviewById(id),
-  });
+  const fetchReviewsById = (id: string) =>
+    useQuery({
+      queryKey: ["reviews", "byId", id],
+      queryFn: () => ReviewsApi.getReviewById(id),
+    });
 
-  const fetchReviewsByTrackId = (request: ReviewByTrackRequest) => useQuery({
-    queryKey: ['reviews', 'byTrack', request],
-    queryFn: () => ReviewRoutesMock.getReviewsByTrackId(
-      request.trackId, 
-      request.limit || 20, 
-      request.offset || 0
-    ),
-  });
+  const fetchReviewsByTrackId = (request: ReviewByTrackRequest) =>
+    useQuery({
+      queryKey: ["reviews", "byTrack", request],
+      queryFn: () =>
+        ReviewsApi.getReviewsByTrackId(
+          request.trackId,
+          request.limit || 20,
+          request.offset || 0
+        ),
+    });
 
   const createReviewMutation = useMutation({
-    mutationFn: (data: CreateReviewRequest) => ReviewRoutesMock.createReview(data),
+    mutationFn: (data: CreateReviewRequest) => ReviewsApi.createReview(data),
   });
 
   const updateReviewMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdateReviewRequest }) => 
-      ReviewRoutesMock.updateReview(id, data),
+    mutationFn: ({ id, data }: { id: string; data: UpdateReviewRequest }) =>
+      ReviewsApi.updateReview(id, data),
   });
 
   const deleteReviewMutation = useMutation({
-    mutationFn: (id: string) => ReviewRoutesMock.deleteReview(id),
+    mutationFn: (id: string) => ReviewsApi.deleteReview(id),
   });
 
   return {
@@ -48,6 +53,6 @@ export function useReviews() {
     fetchReviewsByTrackId,
     createReviewMutation,
     updateReviewMutation,
-    deleteReviewMutation
+    deleteReviewMutation,
   };
 }

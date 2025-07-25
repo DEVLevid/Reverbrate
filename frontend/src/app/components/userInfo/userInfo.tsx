@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Input from "../base/input/input";
 import BaseModal from "../base/modal/baseModal";
 import styles from "./styles.module.scss";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 interface UserInfoProps {
   id: string;
@@ -16,7 +16,7 @@ interface UserInfoProps {
   nickname: string;
   bio: string;
   image: string;
-  isEditable: boolean;
+  isEditable?: boolean;
   isFetching?: boolean;
 }
 
@@ -26,7 +26,7 @@ export default function UserInfo({
   nickname,
   id,
   bio,
-  isEditable,
+  isEditable = false,
   isFetching = false,
 }: UserInfoProps) {
   const queryClient = useQueryClient();
@@ -79,8 +79,8 @@ export default function UserInfo({
     }
   };
 
-    const router = useRouter();
-    const goToProfile = () => router.push(`/user/${id}`);
+  const router = useRouter();
+  const goToProfile = () => router.push(`/user/${id}`);
   return (
     <div className={styles.container}>
       <div
@@ -95,7 +95,9 @@ export default function UserInfo({
           width={192}
           height={192}
           className={styles.image}
-        onClick={goToProfile} style={{ cursor: 'pointer' }} />
+          onClick={goToProfile}
+          style={{ cursor: "pointer" }}
+        />
         {isHovered && (
           <div className={styles.overlay}>
             <PencilSimpleLineIcon size={32} color="#FFF" />
@@ -105,7 +107,9 @@ export default function UserInfo({
 
       <div className={styles.infoWrapper}>
         <div className={styles.titleWrapper}>
-          <h3 style={{ cursor: 'pointer' }} onClick={goToProfile}>{name}</h3>
+          <h3 style={{ cursor: "pointer" }} onClick={goToProfile}>
+            {name}
+          </h3>
           <div className={styles.idWrapper}>
             <span>{nickname.trim() + "#" + id}</span>
             <button onClick={handleCopyID}>

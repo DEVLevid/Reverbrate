@@ -46,7 +46,7 @@ export function useLists() {
   const deleteListMutation = useMutation({
     mutationFn: (id: string) => listApi.deleteList(id),
     onSuccess: () => {
-      useQueryClient().invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: ["list_profile"],
       });
     },

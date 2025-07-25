@@ -37,13 +37,10 @@ export async function apiRequest<T>(
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Access-Control-Allow-Origin': process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://127.0.0.1:3000',
     },
     credentials: 'include',
     mode: 'cors',
   };
-
-
 
   // Merge headers properly
   const mergedOptions = {
