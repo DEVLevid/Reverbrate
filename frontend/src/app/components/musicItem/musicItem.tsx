@@ -7,6 +7,7 @@ import { useState } from "react";
 import Item from "../base/item/item";
 import BaseReview from "../review/review";
 import styles from "./styles.module.scss";
+import TrackReviewersOverlap from "../base/reviewers/reviewers";
 
 interface MusicItemProps {
   track: TrackWithReview;
@@ -51,6 +52,7 @@ export default function MusicItem({ track }: MusicItemProps) {
           </Tooltip>
         )}
         <BaseReview track={track} />
+        {track.network && <TrackReviewersOverlap trackNetworks={track.network} />}
         <Dropdown
           menu={{ items: menuItems }}
           trigger={["click"]}
