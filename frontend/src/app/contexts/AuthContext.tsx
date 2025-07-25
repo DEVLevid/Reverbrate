@@ -21,10 +21,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (publicRoutes.includes(pathname)) {
+      setLoading(false);
+      return;
+    }
+
     AuthApi.token()
       .then(({ access_token, needs_signup }) => {
         setAccessToken(access_token);
         setNeedsSignup(needs_signup);
+      })
+      .catch(() => {
+        redirect("/login");
       })
       .finally(() => setLoading(false));
   }, [pathname]);
