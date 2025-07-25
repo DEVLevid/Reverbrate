@@ -45,6 +45,7 @@ export default function ReviewList({ title, reviews }: ReviewListProps) {
                 created_at: review.created_at,
                 updated_at: review.updated_at,
               },
+              network: []
             };
             return (
               <MusicItem key={trackWithReview.id} track={trackWithReview} />

@@ -7,11 +7,13 @@ import { useState } from "react";
 import Item from "../base/item/item";
 import BaseReview from "../review/review";
 import styles from "./styles.module.scss";
+import TrackReviewersOverlap from "../base/reviewers/reviewers";
 
 interface MusicItemProps {
   track: TrackWithReview;
+  variant?: "primary" | "secondary";
 }
-export default function MusicItem({ track }: MusicItemProps) {
+export default function MusicItem({ track, variant = "primary" }: MusicItemProps) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
 
   const menuItems = [
@@ -26,7 +28,7 @@ export default function MusicItem({ track }: MusicItemProps) {
   ];
 
   return (
-    <Item>
+    <Item variant={variant}>
       <div className={styles.infoWrapper}>
         <Image
           src={track.cover}
@@ -40,6 +42,11 @@ export default function MusicItem({ track }: MusicItemProps) {
           <p>{track.artist_name}</p>
         </div>
       </div>
+      <div className={styles.reviewersWrapperMobile}>
+        {track.network && (
+          <TrackReviewersOverlap trackNetworks={track.network} />
+        )}
+      </div>
       <div className={styles.reviewWrapperDesktop}>
         {track.review?.comment && (
           <Tooltip
@@ -51,6 +58,11 @@ export default function MusicItem({ track }: MusicItemProps) {
           </Tooltip>
         )}
         <BaseReview track={track} />
+        <div className={styles.reviewersWrapperDesktop}>
+          {track.network && (
+            <TrackReviewersOverlap trackNetworks={track.network} />
+          )}
+        </div>
         <Dropdown
           menu={{ items: menuItems }}
           trigger={["click"]}

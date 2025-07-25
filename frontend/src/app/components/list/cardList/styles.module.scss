@@ -20,6 +20,11 @@
             flex-direction: column;
             gap: 0.2rem;
 
+            h3 {
+                font-size: 1.25rem;
+                cursor: pointer;
+            }
+
             p {
                 opacity: 80%;
                 font-size: 12px;

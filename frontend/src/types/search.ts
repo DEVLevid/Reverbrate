@@ -1,3 +1,5 @@
+import { TrackInfo } from "./reviews";
+
 export interface SearchParams {
     query: string;
     type?: 'track' | 'artist' | 'album';
@@ -12,6 +14,19 @@ export interface SearchParams {
     updated_at: string;
   }
   
+export interface TrackNetwork {
+  rate: number;
+  comment: string;
+  created_at: string;
+  updated_at: string;
+  track_info: TrackInfo;
+  created_by: {
+    id: string;
+    name: string;
+    image: string;
+  };
+}
+  
   export interface TrackWithReview {
     id: string;
     name: string;
@@ -20,6 +35,7 @@ export interface SearchParams {
     type: string;
     uri: string;
     review: Review | null;
+    network: TrackNetwork[];
   }
   
   export interface SearchResponse {

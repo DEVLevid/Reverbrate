@@ -1,18 +1,18 @@
-import React from "react";
-import styles from "./styles.module.scss";
+import { useLists } from "@/app/hooks/useLists";
+import { ListType } from "@/types/lists";
 import {
   DotsThreeVertical,
   MusicNoteSimple,
-  Playlist,
   PencilSimple,
+  Playlist,
   Trash,
 } from "@phosphor-icons/react/ssr";
 import { Dropdown } from "antd";
-import { useLists } from "@/app/hooks/useLists";
-import AddList from "../listForm/listForm";
-import { useState } from "react";
-import { ListType } from "@/types/lists";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import ViewListModal from "../viewListModal/viewListModal";
+import AddList from "../listForm/listForm";
+import styles from "./styles.module.scss";
 interface CardListProps {
   listName: string;
   userName: string;
@@ -28,6 +28,7 @@ export default function CardList({
   listId,
   isEditable = false,
 }: CardListProps) {
+  const [ViewListModalOpen, setViewListModalOpen] = useState(false);
   const truncateText = (text: string, maxLength: number = 20) => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + "...";
@@ -93,7 +94,9 @@ export default function CardList({
         <div className={styles.nameAndIconContainer}>
           <Playlist size={32} />
           <div className={styles.listContent}>
-            <h3>{truncateText(listName)}</h3>
+            <h3 onClick={() => setViewListModalOpen(true)}>
+              {truncateText(listName)}
+            </h3>
             <p>por {userName}</p>
           </div>
         </div>
@@ -128,6 +131,11 @@ export default function CardList({
         initialType={listType}
         listId={listId}
         mode="edit"
+      />
+      <ViewListModal
+        open={ViewListModalOpen}
+        onClose={() => setViewListModalOpen(false)}
+        listId={listId}
       />
     </>
   );
