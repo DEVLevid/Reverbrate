@@ -22,6 +22,6 @@ export function useAuth() {
 
   return {
     tokenMutation,
-    signUp
+    signUp,
   };
 }

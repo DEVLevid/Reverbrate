@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { TrackWithReview } from "@/types/search";
 import BaseReview from "@/app/components/review/review";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 export default function BestResult({
   track,
@@ -9,11 +10,16 @@ export default function BestResult({
   track: TrackWithReview | null;
 }) {
   if (!track) return null;
+  const { playTrack } = usePlayer();
   return (
-    <div className={styles.bestResult}>
+    <div className={styles.bestResult} onClick={() => playTrack(track.id)}>
       <div className={styles.bestCoverContainer}>
         {track.cover ? (
-          <img src={track.cover} alt={track.name} className={styles.bestCover} />
+          <img
+            src={track.cover}
+            alt={track.name}
+            className={styles.bestCover}
+          />
         ) : (
           <div className={styles.placeholderCover}>
             <span>🎵</span>
@@ -29,7 +35,6 @@ export default function BestResult({
           <div className={styles.satarContainer}>
             <BaseReview track={track} />
           </div>
-      
         </div>
         {track.review && (
           <>
