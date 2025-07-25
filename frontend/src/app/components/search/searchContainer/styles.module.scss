@@ -1,0 +1,16 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+
+  .rankingsContainer {
+    display: flex;  
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12rem;
+    margin: 2rem;
+
+    .rankings {
+        width: 65%;
+    }
+  }
+}
