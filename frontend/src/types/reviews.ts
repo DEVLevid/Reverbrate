@@ -16,7 +16,7 @@ export interface TrackInfo {
   album_uri: string;
   artist_name: string;
   artist_uri: string;
-  review: null | any; 
+  review: null | any;
 }
 
 export interface TrackReview {
