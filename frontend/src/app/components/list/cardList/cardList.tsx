@@ -7,11 +7,12 @@ import {
   PencilSimple,
   Trash,
 } from "@phosphor-icons/react/ssr";
-import { Dropdown, message } from "antd";
+import { Dropdown } from "antd";
 import { useLists } from "@/app/hooks/useLists";
 import AddList from "../listForm/listForm";
 import { useState } from "react";
 import { ListType } from "@/types/lists";
+import toast from "react-hot-toast";
 interface CardListProps {
   listName: string;
   userName: string;
@@ -37,10 +38,10 @@ export default function CardList({
   const handleDeleteList = async (listId: string) => {
     await deleteListMutation.mutateAsync(listId, {
       onSuccess: () => {
-        message.success("Lista deletada com sucesso");
+        toast.success("Lista deletada com sucesso");
       },
       onError: () => {
-        message.error("Erro ao deletar lista");
+        toast.error("Erro ao deletar lista");
       },
     });
   };
