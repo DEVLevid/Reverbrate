@@ -9,6 +9,7 @@ import { ArtistItem, AlbumItem, TrackWithReview } from '@/types/search';
 import { UserSearchResult } from '@/types/user';
 import { useQuery } from '@tanstack/react-query';
 import { UserApi } from '@/infra/api/user';
+import PopularAvaliators from '../../popularAvaliators/popularAvaliators';
 
 export default function SearchContainer() {
   const { searchQuery } = useSearchContext();
@@ -80,5 +81,10 @@ export default function SearchContainer() {
       </div>
     );
   }
-  return <RecentActivity />;
+  return (
+    <>
+      <RecentActivity />
+      <PopularAvaliators />
+    </>
+  );
 } 
