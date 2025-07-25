@@ -11,8 +11,9 @@ import TrackReviewersOverlap from "../base/reviewers/reviewers";
 
 interface MusicItemProps {
   track: TrackWithReview;
+  variant: "primary" | "secondary";
 }
-export default function MusicItem({ track }: MusicItemProps) {
+export default function MusicItem({ track, variant = "primary" }: MusicItemProps) {
   const [addToListModalOpen, setAddToListModalOpen] = useState(false);
 
   const menuItems = [
@@ -27,7 +28,7 @@ export default function MusicItem({ track }: MusicItemProps) {
   ];
 
   return (
-    <Item>
+    <Item variant={variant}>
       <div className={styles.infoWrapper}>
         <Image
           src={track.cover}
