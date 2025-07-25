@@ -34,6 +34,9 @@ export default function ReviewList({ title, reviews }: ReviewListProps) {
           currentReviews.map((review) => {
             const trackWithReview: TrackWithReview = {
               artist_name: review.track_info.artist,
+              artist_uri: "",
+              album_name: "",
+              album_uri: "",
               cover: review.track_info.cover,
               id: review.track_info.id,
               name: review.track_info.name,
@@ -45,7 +48,7 @@ export default function ReviewList({ title, reviews }: ReviewListProps) {
                 created_at: review.created_at,
                 updated_at: review.updated_at,
               },
-              network: []
+              network: [],
             };
             return (
               <MusicItem key={trackWithReview.id} track={trackWithReview} />
