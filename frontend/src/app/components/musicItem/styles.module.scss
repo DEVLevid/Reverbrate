@@ -1,95 +1,118 @@
 .infoWrapper {
+  display: flex;
+  gap: 1rem;
+
+  .image {
+    border-radius: 0.5rem;
+  }
+
+  .infoWrapperText {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
 
-    .image {
-        border-radius: 8px;
+    h3 {
+      font-size: 1.15rem;
     }
 
-    .infoWrapperText {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        h3 {
-            font-size: 1.5rem;
-        }
-
-        p {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.825rem;
-            opacity: 0.75;
-        }
+    p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.825rem;
+      opacity: 0.75;
     }
+  }
 }
 
 .reviewWrapperMobile {
-    visibility: hidden;
-    display: none;
+  visibility: hidden;
+  display: none;
 }
 
 .reviewWrapperDesktop {
-    display: flex;
-    visibility: visible;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  visibility: visible;
+  align-items: center;
+  gap: 1rem;
 
-    .optionBtn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #fff;
-    }
+  .optionBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+  }
+}
+
+.reviewersWrapperMobile {
+  visibility: hidden;
+  display: none;
+  padding-left: 0;
+}
+
+.reviewersWrapperDesktop {
+  display: flex;
+  visibility: visible;
 }
 
 @media screen and (max-width: 768px) {
-    .infoWrapper {
-        display: flex;
-        gap: 1rem;
+  .infoWrapper {
+    display: flex;
+    gap: 1rem;
+    cursor: pointer;
 
-        .image {
-            border-radius: 0.5rem;
-        }
-
-        .infoWrapperText {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-
-            p {
-                font-size: 0.825rem;
-                opacity: 0.75;
-            }
-        }
+    .image {
+      border-radius: 0.5rem;
     }
 
-    .reviewWrapperDesktop {
-        visibility: hidden;
-        display: none;
+    .infoWrapperText {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      p {
+        font-size: 0.825rem;
+        opacity: 0.75;
+      }
+    }
+  }
+
+  .reviewWrapperDesktop {
+    visibility: hidden;
+    display: none;
+  }
+
+  .reviewWrapperMobile {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    visibility: visible;
+    width: 100%;
+    padding-left: 4.75rem;
+    align-items: center;
+
+    .options {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
-    .reviewWrapperMobile {
-        display: flex;
-        justify-content: space-between;
-        visibility: visible;
-        width: 100%;
-        padding-left: 4.75rem;
-        align-items: center;
-
-        .options {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .optionBtn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #fff;
-        }
+    .optionBtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #fff;
     }
+  }
 
+  .reviewersWrapperDesktop {
+    visibility: hidden;
+    display: none;
+  }
+
+  .reviewersWrapperMobile {
+    display: flex;
+    visibility: visible;
+    padding-left: 4.75rem;
+  }
 }

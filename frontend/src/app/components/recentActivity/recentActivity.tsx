@@ -6,10 +6,12 @@ import { useReviews } from "../../hooks/useReviews";
 import { Carousel } from "antd";
 import RecentActivitySkeleton from "./RecentActivitySkeleton";
 import CardReview from "../cardReview/cardReview";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 export default function RecentActivity() {
   const { fetchReviews } = useReviews();
   const { data, isLoading, error } = fetchReviews({ limit: 20, offset: 0 });
+  const { playTrack } = usePlayer();
 
   const reviews = data?.data || [];
   const chunkSize = 5;
@@ -50,7 +52,11 @@ export default function RecentActivity() {
           ]}
         >
           {reviews.map((review) => (
-            <div key={review.track_info.id} className={style.carouselContent}>
+            <div
+              key={review.track_info.id}
+              className={style.carouselContent}
+              onClick={() => playTrack(review.track_info.id)}
+            >
               <CardReview review={review} />
             </div>
           ))}

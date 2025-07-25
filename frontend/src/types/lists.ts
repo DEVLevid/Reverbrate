@@ -1,3 +1,5 @@
+import { TrackWithReview } from "./search";
+
 export type ListType = 'track' | 'artist' | 'album';
 
 export interface TrackListItem {
@@ -22,7 +24,7 @@ export interface AlbumListItem {
   uri: string;
 }
 
-export type ListItem = TrackListItem | ArtistListItem | AlbumListItem;
+export type ListItem = TrackWithReview | ArtistListItem | AlbumListItem;
 
 export interface List {
   id: string;

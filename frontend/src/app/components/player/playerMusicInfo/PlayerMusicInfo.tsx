@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import BaseReview from "../../review/review";
+import { TrackWithReview } from "@/types/search";
 
 interface ArtistInfoProps {
   uri: string;
@@ -18,11 +20,17 @@ interface PlayerMusicInfoProps {
   title: string;
   artists: ArtistInfoProps[];
   album: AlbumInfoProps;
+  track: TrackWithReview;
 }
 
 const SPEED_PIXELS_PER_SECOND = 40;
 
-function PlayerMusicInfo({ title, artists, album }: PlayerMusicInfoProps) {
+function PlayerMusicInfo({
+  title,
+  artists,
+  album,
+  track,
+}: PlayerMusicInfoProps) {
   const artistNames = artists.map((artist) => artist.name).join(", ");
   const albumImageSrc =
     album.images.length > 0 ? album.images[0].url : "https://placehold.co/60";
@@ -64,7 +72,13 @@ function PlayerMusicInfo({ title, artists, album }: PlayerMusicInfoProps) {
 
   return (
     <section className={styles.musicInfoContainer}>
-      <Image src={albumImageSrc} alt={album.name} className={styles.albumImage} width={60} height={60} />
+      <Image
+        src={albumImageSrc}
+        alt={album.name}
+        className={styles.albumImage}
+        width={60}
+        height={60}
+      />
       <div className={styles.musicInfoTextContainer}>
         <div className={styles.scrollWrapper}>
           <div

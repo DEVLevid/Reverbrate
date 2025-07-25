@@ -153,7 +153,10 @@
   }
 }
 
-// SKELETON STYLES
+.cardBase {
+    cursor: pointer;
+}
+
 .skeletonContainer {
   display: flex;
   gap: 2rem;

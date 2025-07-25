@@ -1,113 +1,80 @@
-import {
-  PauseIcon,
-  PlayIcon,
-  SkipBackIcon,
-  SkipForwardIcon,
-} from "@phosphor-icons/react";
-import { ActionDispatch, useEffect, useState } from "react";
-
-import { formatMillisecondsToMMSS } from "@/lib/utils";
+"use client";
+import { PlayerAction } from "@/app/hooks/useSpotifyPlayer";
 import ProgressBar from "../progressBar/ProgressBar";
 import styles from "./styles.module.scss";
+import { SkipBack, SkipForward, Play, Pause } from "@phosphor-icons/react";
+import BaseReview from "../../review/review";
+import { TrackWithReview } from "@/types/search";
+import { usePlayer } from "@/app/contexts/PlayerContext";
 
 interface PlayerControlsProps {
   progress: number;
-  dispatchFn: ActionDispatch<[action: { type: string; payload?: number }]>;
   duration: number;
-  player: {
-    previousTrack: () => void;
-    nextTrack: () => void;
-    togglePlay: () => void;
-    seek?: (ms: number) => Promise<void>;
-  };
+  dispatchFn: React.Dispatch<PlayerAction>;
+  player: any;
   isPaused: boolean;
+  track: TrackWithReview;
 }
 
 function PlayerControls({
   progress,
-  dispatchFn,
   duration,
+  dispatchFn,
   player,
   isPaused,
+  track,
 }: PlayerControlsProps) {
-  const [displayProgressMs, setDisplayProgressMs] = useState(progress);
-  const [isSeeking, setIsSeeking] = useState(false);
+  const { nextTrack, previousTrack } = usePlayer();
 
-  useEffect(() => {
-    if (!isSeeking) {
-      setDisplayProgressMs(progress);
-    }
-  }, [progress, isSeeking]);
-
-  const handleProgressDragUpdate = (newProgressPercent: number) => {
-    setIsSeeking(true);
-    const newProgressMs = (newProgressPercent / 100) * duration;
-    setDisplayProgressMs(newProgressMs);
+  const handleSeek = async (position: number) => {
+    await player.seek(position);
+    dispatchFn({ type: "SET_PROGRESS", payload: position });
   };
 
-  const handleProgressSeek = (newProgressPercent: number) => {
-    setIsSeeking(false);
-    const newProgressMs = (newProgressPercent / 100) * duration;
-    dispatchFn({ type: "SET_PROGRESS", payload: newProgressMs });
-    if (player && typeof player.seek === "function") {
-      player.seek(newProgressMs).catch((error: unknown) => {
-        console.error("Erro ao buscar no Spotify:", error);
-      });
-    } else {
-      console.warn(
-        "Objeto do player do Spotify não disponível ou sem método seek."
-      );
-    }
+  const handleNextTrack = async () => {
+    await player.nextTrack();
+    await nextTrack();
+  };
+
+  const handlePreviousTrack = async () => {
+    await player.previousTrack();
+    await previousTrack();
   };
 
   return (
-    <section className={styles.playerControlContainer}>
+    <div className={styles.playerControlContainer}>
       <div className={styles.controlsWrapper}>
-        <button
-          className={styles.skipButton}
-          onClick={() => player.previousTrack()}
-        >
-          <span className={styles.skipIcon}>
-            <SkipBackIcon size={24} weight="fill" />
-          </span>
+        <button className={styles.skipButton} onClick={handlePreviousTrack}>
+          <SkipBack size={20} weight="fill" />
         </button>
         <button
           className={styles.playButton}
-          onClick={() => player.togglePlay()}
+          onClick={() => {
+            player.togglePlay();
+            dispatchFn({ type: "TOGGLE_PAUSE" });
+          }}
         >
           {isPaused ? (
-            <span className={styles.playIcon}>
-              <PlayIcon size={24} weight="fill" key="play-icon" />
-            </span>
+            <Play size={24} weight="fill" />
           ) : (
-            <span className={styles.pauseIcon}>
-              <PauseIcon size={24} weight="fill" key="pause-icon" />
-            </span>
+            <Pause size={24} weight="fill" />
           )}
         </button>
-        <button
-          className={styles.skipButton}
-          onClick={() => player.nextTrack()}
-        >
-          <span className={styles.skipIcon}>
-            <SkipForwardIcon size={24} weight="fill" />
-          </span>
+        <button className={styles.skipButton} onClick={handleNextTrack}>
+          <SkipForward size={20} weight="fill" />
         </button>
       </div>
       <div className={styles.musicBarContainer}>
-        <span className={styles.musicMinutes}>
-          {formatMillisecondsToMMSS(displayProgressMs)}{" "}
-        </span>
         <ProgressBar
-          progress={duration > 0 ? (displayProgressMs / duration) * 100 : 0}
-          onSeek={handleProgressSeek}
-          onDragUpdate={handleProgressDragUpdate}
+          progress={progress}
+          duration={duration}
+          onSeek={handleSeek}
         />
-        <span className={styles.musicMinutes}>
-          {formatMillisecondsToMMSS(duration)}
-        </span>
       </div>
-    </section>
+      <div className={styles.reviewContainer}>
+        <BaseReview track={track} />
+      </div>
+    </div>
   );
 }
 
