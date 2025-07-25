@@ -47,10 +47,11 @@ export default function ArtistPage() {
                                                     comment: track.review?.comment,
                                                     created_at: "",
                                                     updated_at: ""
-                                                }
+                                                },
+                                                network: []
                                             }
                                             return (
-                                                <MusicItem key={track.id} track={trackWithReview} />
+                                                <MusicItem key={track.id} track={trackWithReview}  />
                                             )
                                         })
                                     }
