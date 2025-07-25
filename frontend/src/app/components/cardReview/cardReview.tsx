@@ -77,11 +77,11 @@ export default function CardReview({ review }: CardReviewProps) {
         </div>
         <div className={style.comment}>
           <i>
-            "
+            &ldquo;
             {review.comment.length > 40
               ? review.comment.slice(0, 30) + "..."
               : review.comment}
-            "
+            &rdquo;
           </i>
         </div>
       </div>

@@ -37,32 +37,17 @@ export default function RecentActivity() {
           responsive={[
             {
               breakpoint: 1200,
-<<<<<<< HEAD
               settings: { slidesToShow: 3 },
             },
             {
               breakpoint: 800,
               settings: { slidesToShow: 1 },
             },
-=======
-              settings: { slidesToShow: 3 }
-            },
-            {
-              breakpoint: 800,
-              settings: { slidesToShow: 1 }
-            }
->>>>>>> origin
           ]}
         >
           {reviews.map((review) => (
             <div key={review.track_info.id} className={style.carouselContent}>
-<<<<<<< HEAD
               <CardReview review={review} />
-=======
-              <CardReview
-                review={review}
-              />
->>>>>>> origin
             </div>
           ))}
         </Carousel>
