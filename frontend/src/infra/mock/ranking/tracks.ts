@@ -10,7 +10,7 @@ export const top5Tracks: RankingTrack[] = [
       id: '1',
       name: 'Shape of You',
       artist: 'Ed Sheeran',
-      cover: 'https://i.scdn.co/image/ab67616d0000b2733f7d5c7a6b6b6b6b6b6b6b6b',
+      cover: 'https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96',
       review: null
     },
     created_by: {
@@ -28,13 +28,13 @@ export const top5Tracks: RankingTrack[] = [
           id: '1',
           name: 'Shape of You',
           artist: 'Ed Sheeran',
-          cover: 'https://i.scdn.co/image/ab67616d0000b2733f7d5c7a6b6b6b6b6b6b6b6b',
+          cover: 'https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96',
           review: null
         },
         created_by: {
           id: 'u10',
           name: 'Alice',
-          image: 'https://randomuser.me/api/portraits/women/10.jpg'
+          image: 'https://i.scdn.co/image/ab6775700000ee85a9d63deebcefac355d0e19ef'
         }
       },
       {
@@ -46,13 +46,13 @@ export const top5Tracks: RankingTrack[] = [
           id: '1',
           name: 'Shape of You',
           artist: 'Ed Sheeran',
-          cover: 'https://i.scdn.co/image/ab67616d0000b2733f7d5c7a6b6b6b6b6b6b6b6b',
+          cover: 'https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96',
           review: null
         },
         created_by: {
           id: 'u11',
-          name: 'Bruno',
-          image: 'https://randomuser.me/api/portraits/men/11.jpg'
+          name: 'Cadu',
+          image: 'https://i.scdn.co/image/ab6775700000ee85248794051a22f8b178e2fdb4'
         }
       },
       {
@@ -64,13 +64,13 @@ export const top5Tracks: RankingTrack[] = [
           id: '1',
           name: 'Shape of You',
           artist: 'Ed Sheeran',
-          cover: 'https://i.scdn.co/image/ab67616d0000b2733f7d5c7a6b6b6b6b6b6b6b6b',
+          cover: 'https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96',
           review: null
         },
         created_by: {
           id: 'u12',
-          name: 'Carla',
-          image: 'https://randomuser.me/api/portraits/women/12.jpg'
+          name: 'Levid',
+          image: 'https://i.scdn.co/image/ab6775700000ee8526676e509897b125145b53c3'
         }
       }
     ]
@@ -84,7 +84,7 @@ export const top5Tracks: RankingTrack[] = [
       id: '2',
       name: 'Blinding Lights',
       artist: 'The Weeknd',
-      cover: 'https://i.scdn.co/image/ab67616d0000b273b94c0c7a6b6b6b6b6b6b6b6b',
+      cover: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36',
       review: null
     },
     created_by: {
@@ -102,13 +102,13 @@ export const top5Tracks: RankingTrack[] = [
           id: '2',
           name: 'Blinding Lights',
           artist: 'The Weeknd',
-          cover: 'https://i.scdn.co/image/ab67616d0000b273b94c0c7a6b6b6b6b6b6b6b6b',
+          cover: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36',
           review: null
         },
         created_by: {
           id: 'u13',
-          name: 'Davi',
-          image: 'https://randomuser.me/api/portraits/men/13.jpg'
+          name: 'Leonardo',
+          image: 'https://i.scdn.co/image/ab6775700000ee85aee7f3b1fe8ab3bd553ce671'
         }
       },
       {
@@ -120,13 +120,13 @@ export const top5Tracks: RankingTrack[] = [
           id: '2',
           name: 'Blinding Lights',
           artist: 'The Weeknd',
-          cover: 'https://i.scdn.co/image/ab67616d0000b273b94c0c7a6b6b6b6b6b6b6b6b',
+          cover: 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36',
           review: null
         },
         created_by: {
           id: 'u14',
-          name: 'Eva',
-          image: 'https://randomuser.me/api/portraits/women/14.jpg'
+          name: 'Vinicius',
+          image: 'https://i.scdn.co/image/ab6775700000ee858865d7b2d51ad6d290edb49c'
         }
       }
     ]
@@ -140,7 +140,7 @@ export const top5Tracks: RankingTrack[] = [
       id: '3',
       name: 'Levitating',
       artist: 'Dua Lipa',
-      cover: 'https://i.scdn.co/image/ab67616d0000b273b8b8b8b8b8b8b8b8b8b8b8b8',
+      cover: 'https://i.scdn.co/image/ab67616d0000b2734bc66095f8a70bc4e6593f4f',
       review: null
     },
     created_by: {
@@ -163,8 +163,8 @@ export const top5Tracks: RankingTrack[] = [
         },
         created_by: {
           id: 'u15',
-          name: 'Felipe',
-          image: 'https://randomuser.me/api/portraits/men/15.jpg'
+          name: 'Alice',
+          image: 'https://i.scdn.co/image/ab6775700000ee85a9d63deebcefac355d0e19ef'
         }
       }
     ]
@@ -178,7 +178,7 @@ export const top5Tracks: RankingTrack[] = [
       id: '4',
       name: 'Peaches',
       artist: 'Justin Bieber',
-      cover: 'https://i.scdn.co/image/ab67616d0000b273c9c9c9c9c9c9c9c9c9c9c9c9',
+      cover: 'https://i.scdn.co/image/ab67616d0000b273e6f407c7f3a0ec98845e4431',
       review: null
     },
     created_by: {
@@ -201,8 +201,8 @@ export const top5Tracks: RankingTrack[] = [
         },
         created_by: {
           id: 'u16',
-          name: 'Gabriela',
-          image: 'https://randomuser.me/api/portraits/women/16.jpg'
+          name: 'Emile Paola',
+          image: 'https://i.scdn.co/image/ab6775700000ee85a681ad980b2260706fd31ac5'
         }
       }
     ]
@@ -216,7 +216,7 @@ export const top5Tracks: RankingTrack[] = [
       id: '5',
       name: 'drivers license',
       artist: 'Olivia Rodrigo',
-      cover: 'https://i.scdn.co/image/ab67616d0000b273e7e7e7e7e7e7e7e7e7e7e7e7',
+      cover: 'https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a',
       review: null
     },
     created_by: {
@@ -239,8 +239,8 @@ export const top5Tracks: RankingTrack[] = [
         },
         created_by: {
           id: 'u17',
-          name: 'Henrique',
-          image: 'https://randomuser.me/api/portraits/men/17.jpg'
+          name: 'Emile Paola',
+          image: 'https://i.scdn.co/image/ab6775700000ee85a681ad980b2260706fd31ac5'
         }
       }
     ]
